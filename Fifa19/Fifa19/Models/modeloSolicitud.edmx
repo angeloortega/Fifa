@@ -1,0 +1,3008 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FootballModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Arbitro">
+          <Key>
+            <PropertyRef Name="idArbitro" />
+          </Key>
+          <Property Name="idArbitro" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="categoria" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ArbitroxPartido">
+          <Key>
+            <PropertyRef Name="idArbitro" />
+            <PropertyRef Name="idPartido" />
+          </Key>
+          <Property Name="idArbitro" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="tipo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="desempenho" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ArbitroxPartidoHistorico">
+          <Key>
+            <PropertyRef Name="idArbitro" />
+            <PropertyRef Name="idPartido" />
+          </Key>
+          <Property Name="idArbitro" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="tipo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="desempenho" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CambioxPartido">
+          <Key>
+            <PropertyRef Name="codigoJugadorEntra" />
+            <PropertyRef Name="codigoJugadorSale" />
+            <PropertyRef Name="idPartido" />
+          </Key>
+          <Property Name="codigoJugadorEntra" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="codigoJugadorSale" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="minuto" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CambioxPartidoHistorico">
+          <Key>
+            <PropertyRef Name="codigoJugadorEntra" />
+            <PropertyRef Name="codigoJugadorSale" />
+            <PropertyRef Name="idPartido" />
+          </Key>
+          <Property Name="codigoJugadorEntra" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="codigoJugadorSale" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="minuto" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Club">
+          <Key>
+            <PropertyRef Name="idClub" />
+          </Key>
+          <Property Name="idClub" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idFederacion" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fchFundacion" Type="date" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Competicion">
+          <Key>
+            <PropertyRef Name="IdCompeticion" />
+          </Key>
+          <Property Name="IdCompeticion" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="idFederacion" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="nbrCompeticion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="tipo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Contrato">
+          <Key>
+            <PropertyRef Name="idClub" />
+            <PropertyRef Name="codigoFuncionario" />
+            <PropertyRef Name="fchInicio" />
+          </Key>
+          <Property Name="idClub" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="codigoFuncionario" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="importe" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="fchInicio" Type="date" Nullable="false" />
+          <Property Name="fchFinProgramado" Type="date" Nullable="false" />
+          <Property Name="fchFinReal" Type="date" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CorreoxFuncionario">
+          <Key>
+            <PropertyRef Name="correo" />
+            <PropertyRef Name="codigoFuncionario" />
+          </Key>
+          <Property Name="correo" Type="varchar" MaxLength="140" Nullable="false" />
+          <Property Name="codigoFuncionario" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DireccionxFuncionario">
+          <Key>
+            <PropertyRef Name="codigoFuncionario" />
+            <PropertyRef Name="codigoDireccion" />
+          </Key>
+          <Property Name="codigoFuncionario" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="codigoDireccion" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="Pais" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ciudad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="distrito" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="calle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="direccionExacta" Type="varchar" MaxLength="240" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Entrenador">
+          <Key>
+            <PropertyRef Name="codigoFuncionario" />
+          </Key>
+          <Property Name="codigoFuncionario" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fchInicioCarrera" Type="date" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Especialidad">
+          <Key>
+            <PropertyRef Name="idEspecialidad" />
+          </Key>
+          <Property Name="idEspecialidad" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="140" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EspecialidadxJugador">
+          <Key>
+            <PropertyRef Name="idJugador" />
+            <PropertyRef Name="idEspecialidad" />
+          </Key>
+          <Property Name="idJugador" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idEspecialidad" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="descripcionDominio" Type="varchar" MaxLength="140" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FechaTorneo">
+          <Key>
+            <PropertyRef Name="idCompeticion" />
+            <PropertyRef Name="anho" />
+            <PropertyRef Name="nroFecha" />
+          </Key>
+          <Property Name="idCompeticion" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="anho" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="nroFecha" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FechaTorneoHistorico">
+          <Key>
+            <PropertyRef Name="idCompeticion" />
+            <PropertyRef Name="anho" />
+            <PropertyRef Name="nroFecha" />
+          </Key>
+          <Property Name="idCompeticion" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="anho" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="nroFecha" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Federacion">
+          <Key>
+            <PropertyRef Name="idFederacion" />
+          </Key>
+          <Property Name="idFederacion" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fchFundacion" Type="date" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Funcionario">
+          <Key>
+            <PropertyRef Name="codigoFuncionario" />
+          </Key>
+          <Property Name="codigoFuncionario" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fchNacimiento" Type="date" Nullable="false" />
+          <Property Name="idClub" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="foto" Type="varchar" MaxLength="140" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FuncionarioXClubXTorneo">
+          <Key>
+            <PropertyRef Name="codigoFuncionario" />
+            <PropertyRef Name="idClub" />
+            <PropertyRef Name="idCompeticion" />
+            <PropertyRef Name="anho" />
+          </Key>
+          <Property Name="codigoFuncionario" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idClub" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idCompeticion" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="anho" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="goles" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="sinopsisRendimiento" Type="varchar" MaxLength="240" Nullable="false" />
+          <Property Name="posicionTabla" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FuncionarioXClubXTorneoHistorico">
+          <Key>
+            <PropertyRef Name="codigoFuncionario" />
+            <PropertyRef Name="idClub" />
+            <PropertyRef Name="idCompeticion" />
+            <PropertyRef Name="anho" />
+          </Key>
+          <Property Name="codigoFuncionario" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idClub" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idCompeticion" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="anho" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="goles" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="sinopsisRendimiento" Type="varchar" MaxLength="240" Nullable="false" />
+          <Property Name="posicionTabla" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="GolxPartido">
+          <Key>
+            <PropertyRef Name="codigoJugador" />
+            <PropertyRef Name="idPartido" />
+            <PropertyRef Name="minuto" />
+            <PropertyRef Name="segundo" />
+          </Key>
+          <Property Name="codigoJugador" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="minuto" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="segundo" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="video" Type="varchar" MaxLength="140" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="GolxPartidoHistorico">
+          <Key>
+            <PropertyRef Name="codigoJugador" />
+            <PropertyRef Name="idPartido" />
+            <PropertyRef Name="minuto" />
+            <PropertyRef Name="segundo" />
+          </Key>
+          <Property Name="codigoJugador" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="minuto" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="segundo" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="video" Type="varchar" MaxLength="140" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Jugador">
+          <Key>
+            <PropertyRef Name="codigoFuncionario" />
+          </Key>
+          <Property Name="codigoFuncionario" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="Peso" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="Altura" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="nroCamiseta" Type="numeric" Precision="2" Scale="0" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="JugadorxPartido">
+          <Key>
+            <PropertyRef Name="codigoJugador" />
+            <PropertyRef Name="idPartido" />
+          </Key>
+          <Property Name="codigoJugador" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="posicion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="tipo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="desempenho" Type="numeric" Precision="1" Scale="0" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="JugadorxPartidoHistorico">
+          <Key>
+            <PropertyRef Name="codigoJugador" />
+            <PropertyRef Name="idPartido" />
+          </Key>
+          <Property Name="codigoJugador" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="posicion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="tipo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="desempenho" Type="numeric" Precision="1" Scale="0" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Oferta">
+          <Key>
+            <PropertyRef Name="idClub" />
+            <PropertyRef Name="codigoFuncionario" />
+            <PropertyRef Name="fchOferta" />
+          </Key>
+          <Property Name="idClub" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="codigoFuncionario" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="importe" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="fchInicio" Type="date" Nullable="false" />
+          <Property Name="fchFinProgramado" Type="date" Nullable="false" />
+          <Property Name="fchOferta" Type="date" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Partido">
+          <Key>
+            <PropertyRef Name="idPartido" />
+          </Key>
+          <Property Name="idPartido" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idCompeticion" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="anho" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="nroFecha" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="equipoVisita" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="equipoCasa" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="golesCasa" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="golesVisita" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PartidoHistorico">
+          <Key>
+            <PropertyRef Name="idPartido" />
+          </Key>
+          <Property Name="idPartido" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idCompeticion" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="anho" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="nroFecha" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="equipoVisita" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="equipoCasa" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="golesCasa" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="golesVisita" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Socio">
+          <Key>
+            <PropertyRef Name="codigoSocio" />
+          </Key>
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="codigoSocio" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="fchNacimiento" Type="date" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SocioxClub">
+          <Key>
+            <PropertyRef Name="codigoSocio" />
+            <PropertyRef Name="idClub" />
+          </Key>
+          <Property Name="codigoSocio" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="idClub" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="tipo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="fchAsociacion" Type="date" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TelefonoxFuncionario">
+          <Key>
+            <PropertyRef Name="codigoFuncionario" />
+            <PropertyRef Name="Telefono" />
+          </Key>
+          <Property Name="codigoFuncionario" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="Telefono" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="tipo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TituloxEntrenador">
+          <Key>
+            <PropertyRef Name="codigoEntrenador" />
+            <PropertyRef Name="idCompeticion" />
+            <PropertyRef Name="anho" />
+          </Key>
+          <Property Name="codigoEntrenador" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idCompeticion" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="anho" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Torneo">
+          <Key>
+            <PropertyRef Name="idCompeticion" />
+            <PropertyRef Name="anho" />
+          </Key>
+          <Property Name="idCompeticion" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="anho" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TorneoHistorico">
+          <Key>
+            <PropertyRef Name="idCompeticion" />
+            <PropertyRef Name="anho" />
+          </Key>
+          <Property Name="idCompeticion" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="anho" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TorneoXClub">
+          <Key>
+            <PropertyRef Name="idClub" />
+            <PropertyRef Name="idCompeticion" />
+            <PropertyRef Name="anho" />
+          </Key>
+          <Property Name="idClub" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idCompeticion" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="anho" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TorneoXClubHistorico">
+          <Key>
+            <PropertyRef Name="idClub" />
+            <PropertyRef Name="idCompeticion" />
+            <PropertyRef Name="anho" />
+          </Key>
+          <Property Name="idClub" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idCompeticion" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="anho" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="25" />
+          <Property Name="fchCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fchModificacion" Type="datetime" />
+        </EntityType>
+        <Association Name="ArbitroxPartido_FK1">
+          <End Role="Arbitro" Type="Self.Arbitro" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ArbitroxPartido" Type="Self.ArbitroxPartido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arbitro">
+              <PropertyRef Name="idArbitro" />
+            </Principal>
+            <Dependent Role="ArbitroxPartido">
+              <PropertyRef Name="idArbitro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ArbitroxPartido_FK2">
+          <End Role="Partido" Type="Self.Partido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ArbitroxPartido" Type="Self.ArbitroxPartido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partido">
+              <PropertyRef Name="idPartido" />
+            </Principal>
+            <Dependent Role="ArbitroxPartido">
+              <PropertyRef Name="idPartido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CambioxPartido_FK1">
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CambioxPartido" Type="Self.CambioxPartido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jugador">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="CambioxPartido">
+              <PropertyRef Name="codigoJugadorEntra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CambioxPartido_FK2">
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="1" />
+          <End Role="CambioxPartido" Type="Self.CambioxPartido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jugador">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="CambioxPartido">
+              <PropertyRef Name="codigoJugadorSale" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CambioxPartido_FK3">
+          <End Role="Partido" Type="Self.Partido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CambioxPartido" Type="Self.CambioxPartido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partido">
+              <PropertyRef Name="idPartido" />
+            </Principal>
+            <Dependent Role="CambioxPartido">
+              <PropertyRef Name="idPartido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Club_FK1">
+          <End Role="Federacion" Type="Self.Federacion" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Club" Type="Self.Club" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Federacion">
+              <PropertyRef Name="idFederacion" />
+            </Principal>
+            <Dependent Role="Club">
+              <PropertyRef Name="idFederacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Competicion_FK1">
+          <End Role="Federacion" Type="Self.Federacion" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Competicion" Type="Self.Competicion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Federacion">
+              <PropertyRef Name="idFederacion" />
+            </Principal>
+            <Dependent Role="Competicion">
+              <PropertyRef Name="idFederacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Contrato_FK1">
+          <End Role="Club" Type="Self.Club" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Contrato" Type="Self.Contrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Club">
+              <PropertyRef Name="idClub" />
+            </Principal>
+            <Dependent Role="Contrato">
+              <PropertyRef Name="idClub" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Contrato_FK2">
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Contrato" Type="Self.Contrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionario">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="Contrato">
+              <PropertyRef Name="codigoFuncionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CorreoxFuncionario_FK1">
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CorreoxFuncionario" Type="Self.CorreoxFuncionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionario">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="CorreoxFuncionario">
+              <PropertyRef Name="codigoFuncionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DireccionxFuncionario_FK1">
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DireccionxFuncionario" Type="Self.DireccionxFuncionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionario">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="DireccionxFuncionario">
+              <PropertyRef Name="codigoFuncionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Entrenador_FK1">
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Entrenador" Type="Self.Entrenador" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionario">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="Entrenador">
+              <PropertyRef Name="codigoFuncionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EspecialidadxJugador_FK1">
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EspecialidadxJugador" Type="Self.EspecialidadxJugador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jugador">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="EspecialidadxJugador">
+              <PropertyRef Name="idJugador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EspecialidadxJugador_FK2">
+          <End Role="Especialidad" Type="Self.Especialidad" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EspecialidadxJugador" Type="Self.EspecialidadxJugador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialidad">
+              <PropertyRef Name="idEspecialidad" />
+            </Principal>
+            <Dependent Role="EspecialidadxJugador">
+              <PropertyRef Name="idEspecialidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FechaTorneo_FK1">
+          <End Role="Torneo" Type="Self.Torneo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FechaTorneo" Type="Self.FechaTorneo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Torneo">
+              <PropertyRef Name="idCompeticion" />
+              <PropertyRef Name="anho" />
+            </Principal>
+            <Dependent Role="FechaTorneo">
+              <PropertyRef Name="idCompeticion" />
+              <PropertyRef Name="anho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Funcionario_FK1">
+          <End Role="Club" Type="Self.Club" Multiplicity="0..1" />
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Club">
+              <PropertyRef Name="idClub" />
+            </Principal>
+            <Dependent Role="Funcionario">
+              <PropertyRef Name="idClub" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FuncionarioXClubXTorneo_FK1">
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FuncionarioXClubXTorneo" Type="Self.FuncionarioXClubXTorneo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionario">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="FuncionarioXClubXTorneo">
+              <PropertyRef Name="codigoFuncionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FuncionarioXClubXTorneo_FK2">
+          <End Role="TorneoXClub" Type="Self.TorneoXClub" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FuncionarioXClubXTorneo" Type="Self.FuncionarioXClubXTorneo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TorneoXClub">
+              <PropertyRef Name="idClub" />
+              <PropertyRef Name="idCompeticion" />
+              <PropertyRef Name="anho" />
+            </Principal>
+            <Dependent Role="FuncionarioXClubXTorneo">
+              <PropertyRef Name="idClub" />
+              <PropertyRef Name="idCompeticion" />
+              <PropertyRef Name="anho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GolxPartido_FK1">
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GolxPartido" Type="Self.GolxPartido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jugador">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="GolxPartido">
+              <PropertyRef Name="codigoJugador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GolxPartido_FK2">
+          <End Role="Partido" Type="Self.Partido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GolxPartido" Type="Self.GolxPartido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partido">
+              <PropertyRef Name="idPartido" />
+            </Principal>
+            <Dependent Role="GolxPartido">
+              <PropertyRef Name="idPartido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Jugador_FK1">
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionario">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="Jugador">
+              <PropertyRef Name="codigoFuncionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="JugadorxPartido_FK1">
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="JugadorxPartido" Type="Self.JugadorxPartido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jugador">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="JugadorxPartido">
+              <PropertyRef Name="codigoJugador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="JugadorxPartido_FK2">
+          <End Role="Partido" Type="Self.Partido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="JugadorxPartido" Type="Self.JugadorxPartido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partido">
+              <PropertyRef Name="idPartido" />
+            </Principal>
+            <Dependent Role="JugadorxPartido">
+              <PropertyRef Name="idPartido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Oferta_FK1">
+          <End Role="Club" Type="Self.Club" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Oferta" Type="Self.Oferta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Club">
+              <PropertyRef Name="idClub" />
+            </Principal>
+            <Dependent Role="Oferta">
+              <PropertyRef Name="idClub" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Oferta_FK2">
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Oferta" Type="Self.Oferta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionario">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="Oferta">
+              <PropertyRef Name="codigoFuncionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Partido_FK1">
+          <End Role="Club" Type="Self.Club" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Partido" Type="Self.Partido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Club">
+              <PropertyRef Name="idClub" />
+            </Principal>
+            <Dependent Role="Partido">
+              <PropertyRef Name="equipoVisita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Partido_FK2">
+          <End Role="Club" Type="Self.Club" Multiplicity="1" />
+          <End Role="Partido" Type="Self.Partido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Club">
+              <PropertyRef Name="idClub" />
+            </Principal>
+            <Dependent Role="Partido">
+              <PropertyRef Name="equipoCasa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Partido_FK3">
+          <End Role="FechaTorneo" Type="Self.FechaTorneo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Partido" Type="Self.Partido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FechaTorneo">
+              <PropertyRef Name="idCompeticion" />
+              <PropertyRef Name="anho" />
+              <PropertyRef Name="nroFecha" />
+            </Principal>
+            <Dependent Role="Partido">
+              <PropertyRef Name="idCompeticion" />
+              <PropertyRef Name="anho" />
+              <PropertyRef Name="nroFecha" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SocioxClub_FK1">
+          <End Role="Socio" Type="Self.Socio" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SocioxClub" Type="Self.SocioxClub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Socio">
+              <PropertyRef Name="codigoSocio" />
+            </Principal>
+            <Dependent Role="SocioxClub">
+              <PropertyRef Name="codigoSocio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SocioxClub_FK2">
+          <End Role="Club" Type="Self.Club" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SocioxClub" Type="Self.SocioxClub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Club">
+              <PropertyRef Name="idClub" />
+            </Principal>
+            <Dependent Role="SocioxClub">
+              <PropertyRef Name="idClub" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TelefonoxFuncionario_FK1">
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TelefonoxFuncionario" Type="Self.TelefonoxFuncionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionario">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="TelefonoxFuncionario">
+              <PropertyRef Name="codigoFuncionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TituloxEntrenador_FK1">
+          <End Role="Torneo" Type="Self.Torneo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TituloxEntrenador" Type="Self.TituloxEntrenador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Torneo">
+              <PropertyRef Name="idCompeticion" />
+              <PropertyRef Name="anho" />
+            </Principal>
+            <Dependent Role="TituloxEntrenador">
+              <PropertyRef Name="idCompeticion" />
+              <PropertyRef Name="anho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TituloxEntrenador_FK2">
+          <End Role="Entrenador" Type="Self.Entrenador" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TituloxEntrenador" Type="Self.TituloxEntrenador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entrenador">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="TituloxEntrenador">
+              <PropertyRef Name="codigoEntrenador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Torneo_FK1">
+          <End Role="Competicion" Type="Self.Competicion" Multiplicity="1" />
+          <End Role="Torneo" Type="Self.Torneo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competicion">
+              <PropertyRef Name="IdCompeticion" />
+            </Principal>
+            <Dependent Role="Torneo">
+              <PropertyRef Name="idCompeticion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TorneoXClub_FK1">
+          <End Role="Torneo" Type="Self.Torneo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TorneoXClub" Type="Self.TorneoXClub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Torneo">
+              <PropertyRef Name="idCompeticion" />
+              <PropertyRef Name="anho" />
+            </Principal>
+            <Dependent Role="TorneoXClub">
+              <PropertyRef Name="idCompeticion" />
+              <PropertyRef Name="anho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TorneoXClub_FK2">
+          <End Role="Club" Type="Self.Club" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TorneoXClub" Type="Self.TorneoXClub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Club">
+              <PropertyRef Name="idClub" />
+            </Principal>
+            <Dependent Role="TorneoXClub">
+              <PropertyRef Name="idClub" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FootballModelStoreContainer">
+          <EntitySet Name="Arbitro" EntityType="Self.Arbitro" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="ArbitroxPartido" EntityType="Self.ArbitroxPartido" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="ArbitroxPartidoHistorico" EntityType="Self.ArbitroxPartidoHistorico" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="CambioxPartido" EntityType="Self.CambioxPartido" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="CambioxPartidoHistorico" EntityType="Self.CambioxPartidoHistorico" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="Club" EntityType="Self.Club" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="Competicion" EntityType="Self.Competicion" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="Contrato" EntityType="Self.Contrato" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="CorreoxFuncionario" EntityType="Self.CorreoxFuncionario" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="DireccionxFuncionario" EntityType="Self.DireccionxFuncionario" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="Entrenador" EntityType="Self.Entrenador" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="Especialidad" EntityType="Self.Especialidad" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="EspecialidadxJugador" EntityType="Self.EspecialidadxJugador" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="FechaTorneo" EntityType="Self.FechaTorneo" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="FechaTorneoHistorico" EntityType="Self.FechaTorneoHistorico" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="Federacion" EntityType="Self.Federacion" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="Funcionario" EntityType="Self.Funcionario" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="FuncionarioXClubXTorneo" EntityType="Self.FuncionarioXClubXTorneo" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="FuncionarioXClubXTorneoHistorico" EntityType="Self.FuncionarioXClubXTorneoHistorico" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="GolxPartido" EntityType="Self.GolxPartido" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="GolxPartidoHistorico" EntityType="Self.GolxPartidoHistorico" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="Jugador" EntityType="Self.Jugador" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="JugadorxPartido" EntityType="Self.JugadorxPartido" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="JugadorxPartidoHistorico" EntityType="Self.JugadorxPartidoHistorico" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="Oferta" EntityType="Self.Oferta" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="Partido" EntityType="Self.Partido" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="PartidoHistorico" EntityType="Self.PartidoHistorico" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="Socio" EntityType="Self.Socio" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="SocioxClub" EntityType="Self.SocioxClub" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="TelefonoxFuncionario" EntityType="Self.TelefonoxFuncionario" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="TituloxEntrenador" EntityType="Self.TituloxEntrenador" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="Torneo" EntityType="Self.Torneo" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="TorneoHistorico" EntityType="Self.TorneoHistorico" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="TorneoXClub" EntityType="Self.TorneoXClub" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="TorneoXClubHistorico" EntityType="Self.TorneoXClubHistorico" Schema="FIFA" store:Type="Tables" />
+          <AssociationSet Name="ArbitroxPartido_FK1" Association="Self.ArbitroxPartido_FK1">
+            <End Role="Arbitro" EntitySet="Arbitro" />
+            <End Role="ArbitroxPartido" EntitySet="ArbitroxPartido" />
+          </AssociationSet>
+          <AssociationSet Name="ArbitroxPartido_FK2" Association="Self.ArbitroxPartido_FK2">
+            <End Role="Partido" EntitySet="Partido" />
+            <End Role="ArbitroxPartido" EntitySet="ArbitroxPartido" />
+          </AssociationSet>
+          <AssociationSet Name="CambioxPartido_FK1" Association="Self.CambioxPartido_FK1">
+            <End Role="Jugador" EntitySet="Jugador" />
+            <End Role="CambioxPartido" EntitySet="CambioxPartido" />
+          </AssociationSet>
+          <AssociationSet Name="CambioxPartido_FK2" Association="Self.CambioxPartido_FK2">
+            <End Role="Jugador" EntitySet="Jugador" />
+            <End Role="CambioxPartido" EntitySet="CambioxPartido" />
+          </AssociationSet>
+          <AssociationSet Name="CambioxPartido_FK3" Association="Self.CambioxPartido_FK3">
+            <End Role="Partido" EntitySet="Partido" />
+            <End Role="CambioxPartido" EntitySet="CambioxPartido" />
+          </AssociationSet>
+          <AssociationSet Name="Club_FK1" Association="Self.Club_FK1">
+            <End Role="Federacion" EntitySet="Federacion" />
+            <End Role="Club" EntitySet="Club" />
+          </AssociationSet>
+          <AssociationSet Name="Competicion_FK1" Association="Self.Competicion_FK1">
+            <End Role="Federacion" EntitySet="Federacion" />
+            <End Role="Competicion" EntitySet="Competicion" />
+          </AssociationSet>
+          <AssociationSet Name="Contrato_FK1" Association="Self.Contrato_FK1">
+            <End Role="Club" EntitySet="Club" />
+            <End Role="Contrato" EntitySet="Contrato" />
+          </AssociationSet>
+          <AssociationSet Name="Contrato_FK2" Association="Self.Contrato_FK2">
+            <End Role="Funcionario" EntitySet="Funcionario" />
+            <End Role="Contrato" EntitySet="Contrato" />
+          </AssociationSet>
+          <AssociationSet Name="CorreoxFuncionario_FK1" Association="Self.CorreoxFuncionario_FK1">
+            <End Role="Funcionario" EntitySet="Funcionario" />
+            <End Role="CorreoxFuncionario" EntitySet="CorreoxFuncionario" />
+          </AssociationSet>
+          <AssociationSet Name="DireccionxFuncionario_FK1" Association="Self.DireccionxFuncionario_FK1">
+            <End Role="Funcionario" EntitySet="Funcionario" />
+            <End Role="DireccionxFuncionario" EntitySet="DireccionxFuncionario" />
+          </AssociationSet>
+          <AssociationSet Name="Entrenador_FK1" Association="Self.Entrenador_FK1">
+            <End Role="Funcionario" EntitySet="Funcionario" />
+            <End Role="Entrenador" EntitySet="Entrenador" />
+          </AssociationSet>
+          <AssociationSet Name="EspecialidadxJugador_FK1" Association="Self.EspecialidadxJugador_FK1">
+            <End Role="Jugador" EntitySet="Jugador" />
+            <End Role="EspecialidadxJugador" EntitySet="EspecialidadxJugador" />
+          </AssociationSet>
+          <AssociationSet Name="EspecialidadxJugador_FK2" Association="Self.EspecialidadxJugador_FK2">
+            <End Role="Especialidad" EntitySet="Especialidad" />
+            <End Role="EspecialidadxJugador" EntitySet="EspecialidadxJugador" />
+          </AssociationSet>
+          <AssociationSet Name="FechaTorneo_FK1" Association="Self.FechaTorneo_FK1">
+            <End Role="Torneo" EntitySet="Torneo" />
+            <End Role="FechaTorneo" EntitySet="FechaTorneo" />
+          </AssociationSet>
+          <AssociationSet Name="Funcionario_FK1" Association="Self.Funcionario_FK1">
+            <End Role="Club" EntitySet="Club" />
+            <End Role="Funcionario" EntitySet="Funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="FuncionarioXClubXTorneo_FK1" Association="Self.FuncionarioXClubXTorneo_FK1">
+            <End Role="Funcionario" EntitySet="Funcionario" />
+            <End Role="FuncionarioXClubXTorneo" EntitySet="FuncionarioXClubXTorneo" />
+          </AssociationSet>
+          <AssociationSet Name="FuncionarioXClubXTorneo_FK2" Association="Self.FuncionarioXClubXTorneo_FK2">
+            <End Role="TorneoXClub" EntitySet="TorneoXClub" />
+            <End Role="FuncionarioXClubXTorneo" EntitySet="FuncionarioXClubXTorneo" />
+          </AssociationSet>
+          <AssociationSet Name="GolxPartido_FK1" Association="Self.GolxPartido_FK1">
+            <End Role="Jugador" EntitySet="Jugador" />
+            <End Role="GolxPartido" EntitySet="GolxPartido" />
+          </AssociationSet>
+          <AssociationSet Name="GolxPartido_FK2" Association="Self.GolxPartido_FK2">
+            <End Role="Partido" EntitySet="Partido" />
+            <End Role="GolxPartido" EntitySet="GolxPartido" />
+          </AssociationSet>
+          <AssociationSet Name="Jugador_FK1" Association="Self.Jugador_FK1">
+            <End Role="Funcionario" EntitySet="Funcionario" />
+            <End Role="Jugador" EntitySet="Jugador" />
+          </AssociationSet>
+          <AssociationSet Name="JugadorxPartido_FK1" Association="Self.JugadorxPartido_FK1">
+            <End Role="Jugador" EntitySet="Jugador" />
+            <End Role="JugadorxPartido" EntitySet="JugadorxPartido" />
+          </AssociationSet>
+          <AssociationSet Name="JugadorxPartido_FK2" Association="Self.JugadorxPartido_FK2">
+            <End Role="Partido" EntitySet="Partido" />
+            <End Role="JugadorxPartido" EntitySet="JugadorxPartido" />
+          </AssociationSet>
+          <AssociationSet Name="Oferta_FK1" Association="Self.Oferta_FK1">
+            <End Role="Club" EntitySet="Club" />
+            <End Role="Oferta" EntitySet="Oferta" />
+          </AssociationSet>
+          <AssociationSet Name="Oferta_FK2" Association="Self.Oferta_FK2">
+            <End Role="Funcionario" EntitySet="Funcionario" />
+            <End Role="Oferta" EntitySet="Oferta" />
+          </AssociationSet>
+          <AssociationSet Name="Partido_FK1" Association="Self.Partido_FK1">
+            <End Role="Club" EntitySet="Club" />
+            <End Role="Partido" EntitySet="Partido" />
+          </AssociationSet>
+          <AssociationSet Name="Partido_FK2" Association="Self.Partido_FK2">
+            <End Role="Club" EntitySet="Club" />
+            <End Role="Partido" EntitySet="Partido" />
+          </AssociationSet>
+          <AssociationSet Name="Partido_FK3" Association="Self.Partido_FK3">
+            <End Role="FechaTorneo" EntitySet="FechaTorneo" />
+            <End Role="Partido" EntitySet="Partido" />
+          </AssociationSet>
+          <AssociationSet Name="SocioxClub_FK1" Association="Self.SocioxClub_FK1">
+            <End Role="Socio" EntitySet="Socio" />
+            <End Role="SocioxClub" EntitySet="SocioxClub" />
+          </AssociationSet>
+          <AssociationSet Name="SocioxClub_FK2" Association="Self.SocioxClub_FK2">
+            <End Role="Club" EntitySet="Club" />
+            <End Role="SocioxClub" EntitySet="SocioxClub" />
+          </AssociationSet>
+          <AssociationSet Name="TelefonoxFuncionario_FK1" Association="Self.TelefonoxFuncionario_FK1">
+            <End Role="Funcionario" EntitySet="Funcionario" />
+            <End Role="TelefonoxFuncionario" EntitySet="TelefonoxFuncionario" />
+          </AssociationSet>
+          <AssociationSet Name="TituloxEntrenador_FK1" Association="Self.TituloxEntrenador_FK1">
+            <End Role="Torneo" EntitySet="Torneo" />
+            <End Role="TituloxEntrenador" EntitySet="TituloxEntrenador" />
+          </AssociationSet>
+          <AssociationSet Name="TituloxEntrenador_FK2" Association="Self.TituloxEntrenador_FK2">
+            <End Role="Entrenador" EntitySet="Entrenador" />
+            <End Role="TituloxEntrenador" EntitySet="TituloxEntrenador" />
+          </AssociationSet>
+          <AssociationSet Name="Torneo_FK1" Association="Self.Torneo_FK1">
+            <End Role="Competicion" EntitySet="Competicion" />
+            <End Role="Torneo" EntitySet="Torneo" />
+          </AssociationSet>
+          <AssociationSet Name="TorneoXClub_FK1" Association="Self.TorneoXClub_FK1">
+            <End Role="Torneo" EntitySet="Torneo" />
+            <End Role="TorneoXClub" EntitySet="TorneoXClub" />
+          </AssociationSet>
+          <AssociationSet Name="TorneoXClub_FK2" Association="Self.TorneoXClub_FK2">
+            <End Role="Club" EntitySet="Club" />
+            <End Role="TorneoXClub" EntitySet="TorneoXClub" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FootballModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Arbitro">
+          <Key>
+            <PropertyRef Name="idArbitro" />
+          </Key>
+          <Property Name="idArbitro" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="categoria" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ArbitroxPartido" Relationship="Self.ArbitroxPartido_FK1" FromRole="Arbitro" ToRole="ArbitroxPartido" />
+        </EntityType>
+        <EntityType Name="ArbitroxPartido">
+          <Key>
+            <PropertyRef Name="idArbitro" />
+            <PropertyRef Name="idPartido" />
+          </Key>
+          <Property Name="idArbitro" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="desempenho" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Arbitro" Relationship="Self.ArbitroxPartido_FK1" FromRole="ArbitroxPartido" ToRole="Arbitro" />
+          <NavigationProperty Name="Partido" Relationship="Self.ArbitroxPartido_FK2" FromRole="ArbitroxPartido" ToRole="Partido" />
+        </EntityType>
+        <EntityType Name="ArbitroxPartidoHistorico">
+          <Key>
+            <PropertyRef Name="idArbitro" />
+            <PropertyRef Name="idPartido" />
+          </Key>
+          <Property Name="idArbitro" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="desempenho" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CambioxPartido">
+          <Key>
+            <PropertyRef Name="codigoJugadorEntra" />
+            <PropertyRef Name="codigoJugadorSale" />
+            <PropertyRef Name="idPartido" />
+          </Key>
+          <Property Name="codigoJugadorEntra" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="codigoJugadorSale" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="minuto" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Jugador" Relationship="Self.CambioxPartido_FK1" FromRole="CambioxPartido" ToRole="Jugador" />
+          <NavigationProperty Name="Jugador1" Relationship="Self.CambioxPartido_FK2" FromRole="CambioxPartido" ToRole="Jugador" />
+          <NavigationProperty Name="Partido" Relationship="Self.CambioxPartido_FK3" FromRole="CambioxPartido" ToRole="Partido" />
+        </EntityType>
+        <EntityType Name="CambioxPartidoHistorico">
+          <Key>
+            <PropertyRef Name="codigoJugadorEntra" />
+            <PropertyRef Name="codigoJugadorSale" />
+            <PropertyRef Name="idPartido" />
+          </Key>
+          <Property Name="codigoJugadorEntra" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="codigoJugadorSale" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="minuto" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Club">
+          <Key>
+            <PropertyRef Name="idClub" />
+          </Key>
+          <Property Name="idClub" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idFederacion" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fchFundacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Federacion" Relationship="Self.Club_FK1" FromRole="Club" ToRole="Federacion" />
+          <NavigationProperty Name="Contrato" Relationship="Self.Contrato_FK1" FromRole="Club" ToRole="Contrato" />
+          <NavigationProperty Name="Funcionario" Relationship="Self.Funcionario_FK1" FromRole="Club" ToRole="Funcionario" />
+          <NavigationProperty Name="Oferta" Relationship="Self.Oferta_FK1" FromRole="Club" ToRole="Oferta" />
+          <NavigationProperty Name="Partido" Relationship="Self.Partido_FK1" FromRole="Club" ToRole="Partido" />
+          <NavigationProperty Name="Partido1" Relationship="Self.Partido_FK2" FromRole="Club" ToRole="Partido" />
+          <NavigationProperty Name="SocioxClub" Relationship="Self.SocioxClub_FK2" FromRole="Club" ToRole="SocioxClub" />
+          <NavigationProperty Name="TorneoXClub" Relationship="Self.TorneoXClub_FK2" FromRole="Club" ToRole="TorneoXClub" />
+        </EntityType>
+        <EntityType Name="Competicion">
+          <Key>
+            <PropertyRef Name="IdCompeticion" />
+          </Key>
+          <Property Name="IdCompeticion" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="idFederacion" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="nbrCompeticion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Federacion" Relationship="Self.Competicion_FK1" FromRole="Competicion" ToRole="Federacion" />
+          <NavigationProperty Name="Torneo" Relationship="Self.Torneo_FK1" FromRole="Competicion" ToRole="Torneo" />
+        </EntityType>
+        <EntityType Name="Contrato">
+          <Key>
+            <PropertyRef Name="idClub" />
+            <PropertyRef Name="codigoFuncionario" />
+            <PropertyRef Name="fchInicio" />
+          </Key>
+          <Property Name="idClub" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="codigoFuncionario" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="importe" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="fchInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fchFinProgramado" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fchFinReal" Type="DateTime" Precision="0" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Club" Relationship="Self.Contrato_FK1" FromRole="Contrato" ToRole="Club" />
+          <NavigationProperty Name="Funcionario" Relationship="Self.Contrato_FK2" FromRole="Contrato" ToRole="Funcionario" />
+        </EntityType>
+        <EntityType Name="CorreoxFuncionario">
+          <Key>
+            <PropertyRef Name="correo" />
+            <PropertyRef Name="codigoFuncionario" />
+          </Key>
+          <Property Name="correo" Type="String" MaxLength="140" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codigoFuncionario" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Funcionario" Relationship="Self.CorreoxFuncionario_FK1" FromRole="CorreoxFuncionario" ToRole="Funcionario" />
+        </EntityType>
+        <EntityType Name="DireccionxFuncionario">
+          <Key>
+            <PropertyRef Name="codigoFuncionario" />
+            <PropertyRef Name="codigoDireccion" />
+          </Key>
+          <Property Name="codigoFuncionario" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="codigoDireccion" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="Pais" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ciudad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="distrito" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="calle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccionExacta" Type="String" MaxLength="240" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Funcionario" Relationship="Self.DireccionxFuncionario_FK1" FromRole="DireccionxFuncionario" ToRole="Funcionario" />
+        </EntityType>
+        <EntityType Name="Entrenador">
+          <Key>
+            <PropertyRef Name="codigoFuncionario" />
+          </Key>
+          <Property Name="codigoFuncionario" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fchInicioCarrera" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Funcionario" Relationship="Self.Entrenador_FK1" FromRole="Entrenador" ToRole="Funcionario" />
+          <NavigationProperty Name="TituloxEntrenador" Relationship="Self.TituloxEntrenador_FK2" FromRole="Entrenador" ToRole="TituloxEntrenador" />
+        </EntityType>
+        <EntityType Name="Especialidad">
+          <Key>
+            <PropertyRef Name="idEspecialidad" />
+          </Key>
+          <Property Name="idEspecialidad" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="140" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="EspecialidadxJugador" Relationship="Self.EspecialidadxJugador_FK2" FromRole="Especialidad" ToRole="EspecialidadxJugador" />
+        </EntityType>
+        <EntityType Name="EspecialidadxJugador">
+          <Key>
+            <PropertyRef Name="idJugador" />
+            <PropertyRef Name="idEspecialidad" />
+          </Key>
+          <Property Name="idJugador" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idEspecialidad" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="descripcionDominio" Type="String" MaxLength="140" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Especialidad" Relationship="Self.EspecialidadxJugador_FK2" FromRole="EspecialidadxJugador" ToRole="Especialidad" />
+          <NavigationProperty Name="Jugador" Relationship="Self.EspecialidadxJugador_FK1" FromRole="EspecialidadxJugador" ToRole="Jugador" />
+        </EntityType>
+        <EntityType Name="FechaTorneo">
+          <Key>
+            <PropertyRef Name="idCompeticion" />
+            <PropertyRef Name="anho" />
+            <PropertyRef Name="nroFecha" />
+          </Key>
+          <Property Name="idCompeticion" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="anho" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="nroFecha" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Torneo" Relationship="Self.FechaTorneo_FK1" FromRole="FechaTorneo" ToRole="Torneo" />
+          <NavigationProperty Name="Partido" Relationship="Self.Partido_FK3" FromRole="FechaTorneo" ToRole="Partido" />
+        </EntityType>
+        <EntityType Name="FechaTorneoHistorico">
+          <Key>
+            <PropertyRef Name="idCompeticion" />
+            <PropertyRef Name="anho" />
+            <PropertyRef Name="nroFecha" />
+          </Key>
+          <Property Name="idCompeticion" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="anho" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="nroFecha" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Federacion">
+          <Key>
+            <PropertyRef Name="idFederacion" />
+          </Key>
+          <Property Name="idFederacion" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fchFundacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Club" Relationship="Self.Club_FK1" FromRole="Federacion" ToRole="Club" />
+          <NavigationProperty Name="Competicion" Relationship="Self.Competicion_FK1" FromRole="Federacion" ToRole="Competicion" />
+        </EntityType>
+        <EntityType Name="Funcionario">
+          <Key>
+            <PropertyRef Name="codigoFuncionario" />
+          </Key>
+          <Property Name="codigoFuncionario" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fchNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="idClub" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="foto" Type="String" MaxLength="140" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Club" Relationship="Self.Funcionario_FK1" FromRole="Funcionario" ToRole="Club" />
+          <NavigationProperty Name="Contrato" Relationship="Self.Contrato_FK2" FromRole="Funcionario" ToRole="Contrato" />
+          <NavigationProperty Name="CorreoxFuncionario" Relationship="Self.CorreoxFuncionario_FK1" FromRole="Funcionario" ToRole="CorreoxFuncionario" />
+          <NavigationProperty Name="DireccionxFuncionario" Relationship="Self.DireccionxFuncionario_FK1" FromRole="Funcionario" ToRole="DireccionxFuncionario" />
+          <NavigationProperty Name="Entrenador" Relationship="Self.Entrenador_FK1" FromRole="Funcionario" ToRole="Entrenador" />
+          <NavigationProperty Name="FuncionarioXClubXTorneo" Relationship="Self.FuncionarioXClubXTorneo_FK1" FromRole="Funcionario" ToRole="FuncionarioXClubXTorneo" />
+          <NavigationProperty Name="Jugador" Relationship="Self.Jugador_FK1" FromRole="Funcionario" ToRole="Jugador" />
+          <NavigationProperty Name="Oferta" Relationship="Self.Oferta_FK2" FromRole="Funcionario" ToRole="Oferta" />
+          <NavigationProperty Name="TelefonoxFuncionario" Relationship="Self.TelefonoxFuncionario_FK1" FromRole="Funcionario" ToRole="TelefonoxFuncionario" />
+        </EntityType>
+        <EntityType Name="FuncionarioXClubXTorneo">
+          <Key>
+            <PropertyRef Name="codigoFuncionario" />
+            <PropertyRef Name="idClub" />
+            <PropertyRef Name="idCompeticion" />
+            <PropertyRef Name="anho" />
+          </Key>
+          <Property Name="codigoFuncionario" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idClub" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idCompeticion" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="anho" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="goles" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="sinopsisRendimiento" Type="String" MaxLength="240" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="posicionTabla" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Funcionario" Relationship="Self.FuncionarioXClubXTorneo_FK1" FromRole="FuncionarioXClubXTorneo" ToRole="Funcionario" />
+          <NavigationProperty Name="TorneoXClub" Relationship="Self.FuncionarioXClubXTorneo_FK2" FromRole="FuncionarioXClubXTorneo" ToRole="TorneoXClub" />
+        </EntityType>
+        <EntityType Name="FuncionarioXClubXTorneoHistorico">
+          <Key>
+            <PropertyRef Name="codigoFuncionario" />
+            <PropertyRef Name="idClub" />
+            <PropertyRef Name="idCompeticion" />
+            <PropertyRef Name="anho" />
+          </Key>
+          <Property Name="codigoFuncionario" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idClub" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idCompeticion" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="anho" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="goles" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="sinopsisRendimiento" Type="String" MaxLength="240" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="posicionTabla" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="GolxPartido">
+          <Key>
+            <PropertyRef Name="codigoJugador" />
+            <PropertyRef Name="idPartido" />
+            <PropertyRef Name="minuto" />
+            <PropertyRef Name="segundo" />
+          </Key>
+          <Property Name="codigoJugador" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="minuto" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="segundo" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="video" Type="String" MaxLength="140" FixedLength="false" Unicode="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Jugador" Relationship="Self.GolxPartido_FK1" FromRole="GolxPartido" ToRole="Jugador" />
+          <NavigationProperty Name="Partido" Relationship="Self.GolxPartido_FK2" FromRole="GolxPartido" ToRole="Partido" />
+        </EntityType>
+        <EntityType Name="GolxPartidoHistorico">
+          <Key>
+            <PropertyRef Name="codigoJugador" />
+            <PropertyRef Name="idPartido" />
+            <PropertyRef Name="minuto" />
+            <PropertyRef Name="segundo" />
+          </Key>
+          <Property Name="codigoJugador" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="minuto" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="segundo" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="video" Type="String" MaxLength="140" FixedLength="false" Unicode="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Jugador">
+          <Key>
+            <PropertyRef Name="codigoFuncionario" />
+          </Key>
+          <Property Name="codigoFuncionario" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="Peso" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="Altura" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="nroCamiseta" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CambioxPartido" Relationship="Self.CambioxPartido_FK1" FromRole="Jugador" ToRole="CambioxPartido" />
+          <NavigationProperty Name="CambioxPartido1" Relationship="Self.CambioxPartido_FK2" FromRole="Jugador" ToRole="CambioxPartido" />
+          <NavigationProperty Name="EspecialidadxJugador" Relationship="Self.EspecialidadxJugador_FK1" FromRole="Jugador" ToRole="EspecialidadxJugador" />
+          <NavigationProperty Name="Funcionario" Relationship="Self.Jugador_FK1" FromRole="Jugador" ToRole="Funcionario" />
+          <NavigationProperty Name="GolxPartido" Relationship="Self.GolxPartido_FK1" FromRole="Jugador" ToRole="GolxPartido" />
+          <NavigationProperty Name="JugadorxPartido" Relationship="Self.JugadorxPartido_FK1" FromRole="Jugador" ToRole="JugadorxPartido" />
+        </EntityType>
+        <EntityType Name="JugadorxPartido">
+          <Key>
+            <PropertyRef Name="codigoJugador" />
+            <PropertyRef Name="idPartido" />
+          </Key>
+          <Property Name="codigoJugador" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="posicion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="desempenho" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Jugador" Relationship="Self.JugadorxPartido_FK1" FromRole="JugadorxPartido" ToRole="Jugador" />
+          <NavigationProperty Name="Partido" Relationship="Self.JugadorxPartido_FK2" FromRole="JugadorxPartido" ToRole="Partido" />
+        </EntityType>
+        <EntityType Name="JugadorxPartidoHistorico">
+          <Key>
+            <PropertyRef Name="codigoJugador" />
+            <PropertyRef Name="idPartido" />
+          </Key>
+          <Property Name="codigoJugador" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="posicion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="desempenho" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Oferta">
+          <Key>
+            <PropertyRef Name="idClub" />
+            <PropertyRef Name="codigoFuncionario" />
+            <PropertyRef Name="fchOferta" />
+          </Key>
+          <Property Name="idClub" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="codigoFuncionario" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="importe" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="fchInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fchFinProgramado" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fchOferta" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Club" Relationship="Self.Oferta_FK1" FromRole="Oferta" ToRole="Club" />
+          <NavigationProperty Name="Funcionario" Relationship="Self.Oferta_FK2" FromRole="Oferta" ToRole="Funcionario" />
+        </EntityType>
+        <EntityType Name="Partido">
+          <Key>
+            <PropertyRef Name="idPartido" />
+          </Key>
+          <Property Name="idPartido" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idCompeticion" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="anho" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="nroFecha" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="equipoVisita" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="equipoCasa" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="golesCasa" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="golesVisita" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ArbitroxPartido" Relationship="Self.ArbitroxPartido_FK2" FromRole="Partido" ToRole="ArbitroxPartido" />
+          <NavigationProperty Name="CambioxPartido" Relationship="Self.CambioxPartido_FK3" FromRole="Partido" ToRole="CambioxPartido" />
+          <NavigationProperty Name="Club" Relationship="Self.Partido_FK1" FromRole="Partido" ToRole="Club" />
+          <NavigationProperty Name="Club1" Relationship="Self.Partido_FK2" FromRole="Partido" ToRole="Club" />
+          <NavigationProperty Name="FechaTorneo" Relationship="Self.Partido_FK3" FromRole="Partido" ToRole="FechaTorneo" />
+          <NavigationProperty Name="GolxPartido" Relationship="Self.GolxPartido_FK2" FromRole="Partido" ToRole="GolxPartido" />
+          <NavigationProperty Name="JugadorxPartido" Relationship="Self.JugadorxPartido_FK2" FromRole="Partido" ToRole="JugadorxPartido" />
+        </EntityType>
+        <EntityType Name="PartidoHistorico">
+          <Key>
+            <PropertyRef Name="idPartido" />
+          </Key>
+          <Property Name="idPartido" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idCompeticion" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="anho" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="nroFecha" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="equipoVisita" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="equipoCasa" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="golesCasa" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="golesVisita" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Socio">
+          <Key>
+            <PropertyRef Name="codigoSocio" />
+          </Key>
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codigoSocio" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="fchNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SocioxClub" Relationship="Self.SocioxClub_FK1" FromRole="Socio" ToRole="SocioxClub" />
+        </EntityType>
+        <EntityType Name="SocioxClub">
+          <Key>
+            <PropertyRef Name="codigoSocio" />
+            <PropertyRef Name="idClub" />
+          </Key>
+          <Property Name="codigoSocio" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="idClub" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="fchAsociacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Club" Relationship="Self.SocioxClub_FK2" FromRole="SocioxClub" ToRole="Club" />
+          <NavigationProperty Name="Socio" Relationship="Self.SocioxClub_FK1" FromRole="SocioxClub" ToRole="Socio" />
+        </EntityType>
+        <EntityType Name="TelefonoxFuncionario">
+          <Key>
+            <PropertyRef Name="codigoFuncionario" />
+            <PropertyRef Name="Telefono" />
+          </Key>
+          <Property Name="codigoFuncionario" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="Telefono" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Funcionario" Relationship="Self.TelefonoxFuncionario_FK1" FromRole="TelefonoxFuncionario" ToRole="Funcionario" />
+        </EntityType>
+        <EntityType Name="TituloxEntrenador">
+          <Key>
+            <PropertyRef Name="codigoEntrenador" />
+            <PropertyRef Name="idCompeticion" />
+            <PropertyRef Name="anho" />
+          </Key>
+          <Property Name="codigoEntrenador" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="idCompeticion" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="anho" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Entrenador" Relationship="Self.TituloxEntrenador_FK2" FromRole="TituloxEntrenador" ToRole="Entrenador" />
+          <NavigationProperty Name="Torneo" Relationship="Self.TituloxEntrenador_FK1" FromRole="TituloxEntrenador" ToRole="Torneo" />
+        </EntityType>
+        <EntityType Name="Torneo">
+          <Key>
+            <PropertyRef Name="idCompeticion" />
+            <PropertyRef Name="anho" />
+          </Key>
+          <Property Name="idCompeticion" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="anho" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Competicion" Relationship="Self.Torneo_FK1" FromRole="Torneo" ToRole="Competicion" />
+          <NavigationProperty Name="FechaTorneo" Relationship="Self.FechaTorneo_FK1" FromRole="Torneo" ToRole="FechaTorneo" />
+          <NavigationProperty Name="TituloxEntrenador" Relationship="Self.TituloxEntrenador_FK1" FromRole="Torneo" ToRole="TituloxEntrenador" />
+          <NavigationProperty Name="TorneoXClub" Relationship="Self.TorneoXClub_FK1" FromRole="Torneo" ToRole="TorneoXClub" />
+        </EntityType>
+        <EntityType Name="TorneoHistorico">
+          <Key>
+            <PropertyRef Name="idCompeticion" />
+            <PropertyRef Name="anho" />
+          </Key>
+          <Property Name="idCompeticion" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="anho" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TorneoXClub">
+          <Key>
+            <PropertyRef Name="idClub" />
+            <PropertyRef Name="idCompeticion" />
+            <PropertyRef Name="anho" />
+          </Key>
+          <Property Name="idClub" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idCompeticion" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="anho" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Club" Relationship="Self.TorneoXClub_FK2" FromRole="TorneoXClub" ToRole="Club" />
+          <NavigationProperty Name="FuncionarioXClubXTorneo" Relationship="Self.FuncionarioXClubXTorneo_FK2" FromRole="TorneoXClub" ToRole="FuncionarioXClubXTorneo" />
+          <NavigationProperty Name="Torneo" Relationship="Self.TorneoXClub_FK1" FromRole="TorneoXClub" ToRole="Torneo" />
+        </EntityType>
+        <EntityType Name="TorneoXClubHistorico">
+          <Key>
+            <PropertyRef Name="idClub" />
+            <PropertyRef Name="idCompeticion" />
+            <PropertyRef Name="anho" />
+          </Key>
+          <Property Name="idClub" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idCompeticion" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="anho" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fchCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fchModificacion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="ArbitroxPartido_FK1">
+          <End Role="Arbitro" Type="Self.Arbitro" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ArbitroxPartido" Type="Self.ArbitroxPartido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arbitro">
+              <PropertyRef Name="idArbitro" />
+            </Principal>
+            <Dependent Role="ArbitroxPartido">
+              <PropertyRef Name="idArbitro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ArbitroxPartido_FK2">
+          <End Role="Partido" Type="Self.Partido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ArbitroxPartido" Type="Self.ArbitroxPartido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partido">
+              <PropertyRef Name="idPartido" />
+            </Principal>
+            <Dependent Role="ArbitroxPartido">
+              <PropertyRef Name="idPartido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CambioxPartido_FK1">
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CambioxPartido" Type="Self.CambioxPartido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jugador">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="CambioxPartido">
+              <PropertyRef Name="codigoJugadorEntra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CambioxPartido_FK2">
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="1" />
+          <End Role="CambioxPartido" Type="Self.CambioxPartido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jugador">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="CambioxPartido">
+              <PropertyRef Name="codigoJugadorSale" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CambioxPartido_FK3">
+          <End Role="Partido" Type="Self.Partido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CambioxPartido" Type="Self.CambioxPartido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partido">
+              <PropertyRef Name="idPartido" />
+            </Principal>
+            <Dependent Role="CambioxPartido">
+              <PropertyRef Name="idPartido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Club_FK1">
+          <End Role="Federacion" Type="Self.Federacion" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Club" Type="Self.Club" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Federacion">
+              <PropertyRef Name="idFederacion" />
+            </Principal>
+            <Dependent Role="Club">
+              <PropertyRef Name="idFederacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Contrato_FK1">
+          <End Role="Club" Type="Self.Club" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Contrato" Type="Self.Contrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Club">
+              <PropertyRef Name="idClub" />
+            </Principal>
+            <Dependent Role="Contrato">
+              <PropertyRef Name="idClub" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Funcionario_FK1">
+          <End Role="Club" Type="Self.Club" Multiplicity="0..1" />
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Club">
+              <PropertyRef Name="idClub" />
+            </Principal>
+            <Dependent Role="Funcionario">
+              <PropertyRef Name="idClub" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Oferta_FK1">
+          <End Role="Club" Type="Self.Club" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Oferta" Type="Self.Oferta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Club">
+              <PropertyRef Name="idClub" />
+            </Principal>
+            <Dependent Role="Oferta">
+              <PropertyRef Name="idClub" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Partido_FK1">
+          <End Role="Club" Type="Self.Club" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Partido" Type="Self.Partido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Club">
+              <PropertyRef Name="idClub" />
+            </Principal>
+            <Dependent Role="Partido">
+              <PropertyRef Name="equipoVisita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Partido_FK2">
+          <End Role="Club" Type="Self.Club" Multiplicity="1" />
+          <End Role="Partido" Type="Self.Partido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Club">
+              <PropertyRef Name="idClub" />
+            </Principal>
+            <Dependent Role="Partido">
+              <PropertyRef Name="equipoCasa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SocioxClub_FK2">
+          <End Role="Club" Type="Self.Club" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SocioxClub" Type="Self.SocioxClub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Club">
+              <PropertyRef Name="idClub" />
+            </Principal>
+            <Dependent Role="SocioxClub">
+              <PropertyRef Name="idClub" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TorneoXClub_FK2">
+          <End Role="Club" Type="Self.Club" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TorneoXClub" Type="Self.TorneoXClub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Club">
+              <PropertyRef Name="idClub" />
+            </Principal>
+            <Dependent Role="TorneoXClub">
+              <PropertyRef Name="idClub" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Competicion_FK1">
+          <End Role="Federacion" Type="Self.Federacion" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Competicion" Type="Self.Competicion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Federacion">
+              <PropertyRef Name="idFederacion" />
+            </Principal>
+            <Dependent Role="Competicion">
+              <PropertyRef Name="idFederacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Torneo_FK1">
+          <End Role="Competicion" Type="Self.Competicion" Multiplicity="1" />
+          <End Role="Torneo" Type="Self.Torneo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competicion">
+              <PropertyRef Name="IdCompeticion" />
+            </Principal>
+            <Dependent Role="Torneo">
+              <PropertyRef Name="idCompeticion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Contrato_FK2">
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Contrato" Type="Self.Contrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionario">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="Contrato">
+              <PropertyRef Name="codigoFuncionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CorreoxFuncionario_FK1">
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CorreoxFuncionario" Type="Self.CorreoxFuncionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionario">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="CorreoxFuncionario">
+              <PropertyRef Name="codigoFuncionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DireccionxFuncionario_FK1">
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DireccionxFuncionario" Type="Self.DireccionxFuncionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionario">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="DireccionxFuncionario">
+              <PropertyRef Name="codigoFuncionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Entrenador_FK1">
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Entrenador" Type="Self.Entrenador" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionario">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="Entrenador">
+              <PropertyRef Name="codigoFuncionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TituloxEntrenador_FK2">
+          <End Role="Entrenador" Type="Self.Entrenador" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TituloxEntrenador" Type="Self.TituloxEntrenador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entrenador">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="TituloxEntrenador">
+              <PropertyRef Name="codigoEntrenador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EspecialidadxJugador_FK2">
+          <End Role="Especialidad" Type="Self.Especialidad" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EspecialidadxJugador" Type="Self.EspecialidadxJugador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialidad">
+              <PropertyRef Name="idEspecialidad" />
+            </Principal>
+            <Dependent Role="EspecialidadxJugador">
+              <PropertyRef Name="idEspecialidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EspecialidadxJugador_FK1">
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EspecialidadxJugador" Type="Self.EspecialidadxJugador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jugador">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="EspecialidadxJugador">
+              <PropertyRef Name="idJugador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FechaTorneo_FK1">
+          <End Role="Torneo" Type="Self.Torneo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FechaTorneo" Type="Self.FechaTorneo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Torneo">
+              <PropertyRef Name="idCompeticion" />
+              <PropertyRef Name="anho" />
+            </Principal>
+            <Dependent Role="FechaTorneo">
+              <PropertyRef Name="idCompeticion" />
+              <PropertyRef Name="anho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Partido_FK3">
+          <End Role="FechaTorneo" Type="Self.FechaTorneo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Partido" Type="Self.Partido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FechaTorneo">
+              <PropertyRef Name="idCompeticion" />
+              <PropertyRef Name="anho" />
+              <PropertyRef Name="nroFecha" />
+            </Principal>
+            <Dependent Role="Partido">
+              <PropertyRef Name="idCompeticion" />
+              <PropertyRef Name="anho" />
+              <PropertyRef Name="nroFecha" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FuncionarioXClubXTorneo_FK1">
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FuncionarioXClubXTorneo" Type="Self.FuncionarioXClubXTorneo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionario">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="FuncionarioXClubXTorneo">
+              <PropertyRef Name="codigoFuncionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Jugador_FK1">
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionario">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="Jugador">
+              <PropertyRef Name="codigoFuncionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Oferta_FK2">
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Oferta" Type="Self.Oferta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionario">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="Oferta">
+              <PropertyRef Name="codigoFuncionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TelefonoxFuncionario_FK1">
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TelefonoxFuncionario" Type="Self.TelefonoxFuncionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionario">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="TelefonoxFuncionario">
+              <PropertyRef Name="codigoFuncionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FuncionarioXClubXTorneo_FK2">
+          <End Role="TorneoXClub" Type="Self.TorneoXClub" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FuncionarioXClubXTorneo" Type="Self.FuncionarioXClubXTorneo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TorneoXClub">
+              <PropertyRef Name="idClub" />
+              <PropertyRef Name="idCompeticion" />
+              <PropertyRef Name="anho" />
+            </Principal>
+            <Dependent Role="FuncionarioXClubXTorneo">
+              <PropertyRef Name="idClub" />
+              <PropertyRef Name="idCompeticion" />
+              <PropertyRef Name="anho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GolxPartido_FK1">
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GolxPartido" Type="Self.GolxPartido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jugador">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="GolxPartido">
+              <PropertyRef Name="codigoJugador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GolxPartido_FK2">
+          <End Role="Partido" Type="Self.Partido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GolxPartido" Type="Self.GolxPartido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partido">
+              <PropertyRef Name="idPartido" />
+            </Principal>
+            <Dependent Role="GolxPartido">
+              <PropertyRef Name="idPartido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="JugadorxPartido_FK1">
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="JugadorxPartido" Type="Self.JugadorxPartido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jugador">
+              <PropertyRef Name="codigoFuncionario" />
+            </Principal>
+            <Dependent Role="JugadorxPartido">
+              <PropertyRef Name="codigoJugador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="JugadorxPartido_FK2">
+          <End Role="Partido" Type="Self.Partido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="JugadorxPartido" Type="Self.JugadorxPartido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partido">
+              <PropertyRef Name="idPartido" />
+            </Principal>
+            <Dependent Role="JugadorxPartido">
+              <PropertyRef Name="idPartido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SocioxClub_FK1">
+          <End Role="Socio" Type="Self.Socio" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SocioxClub" Type="Self.SocioxClub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Socio">
+              <PropertyRef Name="codigoSocio" />
+            </Principal>
+            <Dependent Role="SocioxClub">
+              <PropertyRef Name="codigoSocio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TituloxEntrenador_FK1">
+          <End Role="Torneo" Type="Self.Torneo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TituloxEntrenador" Type="Self.TituloxEntrenador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Torneo">
+              <PropertyRef Name="idCompeticion" />
+              <PropertyRef Name="anho" />
+            </Principal>
+            <Dependent Role="TituloxEntrenador">
+              <PropertyRef Name="idCompeticion" />
+              <PropertyRef Name="anho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TorneoXClub_FK1">
+          <End Role="Torneo" Type="Self.Torneo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TorneoXClub" Type="Self.TorneoXClub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Torneo">
+              <PropertyRef Name="idCompeticion" />
+              <PropertyRef Name="anho" />
+            </Principal>
+            <Dependent Role="TorneoXClub">
+              <PropertyRef Name="idCompeticion" />
+              <PropertyRef Name="anho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FootballEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Arbitro" EntityType="Self.Arbitro" />
+          <EntitySet Name="ArbitroxPartido" EntityType="Self.ArbitroxPartido" />
+          <EntitySet Name="ArbitroxPartidoHistorico" EntityType="Self.ArbitroxPartidoHistorico" />
+          <EntitySet Name="CambioxPartido" EntityType="Self.CambioxPartido" />
+          <EntitySet Name="CambioxPartidoHistorico" EntityType="Self.CambioxPartidoHistorico" />
+          <EntitySet Name="Club" EntityType="Self.Club" />
+          <EntitySet Name="Competicion" EntityType="Self.Competicion" />
+          <EntitySet Name="Contrato" EntityType="Self.Contrato" />
+          <EntitySet Name="CorreoxFuncionario" EntityType="Self.CorreoxFuncionario" />
+          <EntitySet Name="DireccionxFuncionario" EntityType="Self.DireccionxFuncionario" />
+          <EntitySet Name="Entrenador" EntityType="Self.Entrenador" />
+          <EntitySet Name="Especialidad" EntityType="Self.Especialidad" />
+          <EntitySet Name="EspecialidadxJugador" EntityType="Self.EspecialidadxJugador" />
+          <EntitySet Name="FechaTorneo" EntityType="Self.FechaTorneo" />
+          <EntitySet Name="FechaTorneoHistorico" EntityType="Self.FechaTorneoHistorico" />
+          <EntitySet Name="Federacion" EntityType="Self.Federacion" />
+          <EntitySet Name="Funcionario" EntityType="Self.Funcionario" />
+          <EntitySet Name="FuncionarioXClubXTorneo" EntityType="Self.FuncionarioXClubXTorneo" />
+          <EntitySet Name="FuncionarioXClubXTorneoHistorico" EntityType="Self.FuncionarioXClubXTorneoHistorico" />
+          <EntitySet Name="GolxPartido" EntityType="Self.GolxPartido" />
+          <EntitySet Name="GolxPartidoHistorico" EntityType="Self.GolxPartidoHistorico" />
+          <EntitySet Name="Jugador" EntityType="Self.Jugador" />
+          <EntitySet Name="JugadorxPartido" EntityType="Self.JugadorxPartido" />
+          <EntitySet Name="JugadorxPartidoHistorico" EntityType="Self.JugadorxPartidoHistorico" />
+          <EntitySet Name="Oferta" EntityType="Self.Oferta" />
+          <EntitySet Name="Partido" EntityType="Self.Partido" />
+          <EntitySet Name="PartidoHistorico" EntityType="Self.PartidoHistorico" />
+          <EntitySet Name="Socio" EntityType="Self.Socio" />
+          <EntitySet Name="SocioxClub" EntityType="Self.SocioxClub" />
+          <EntitySet Name="TelefonoxFuncionario" EntityType="Self.TelefonoxFuncionario" />
+          <EntitySet Name="TituloxEntrenador" EntityType="Self.TituloxEntrenador" />
+          <EntitySet Name="Torneo" EntityType="Self.Torneo" />
+          <EntitySet Name="TorneoHistorico" EntityType="Self.TorneoHistorico" />
+          <EntitySet Name="TorneoXClub" EntityType="Self.TorneoXClub" />
+          <EntitySet Name="TorneoXClubHistorico" EntityType="Self.TorneoXClubHistorico" />
+          <AssociationSet Name="ArbitroxPartido_FK1" Association="Self.ArbitroxPartido_FK1">
+            <End Role="Arbitro" EntitySet="Arbitro" />
+            <End Role="ArbitroxPartido" EntitySet="ArbitroxPartido" />
+          </AssociationSet>
+          <AssociationSet Name="ArbitroxPartido_FK2" Association="Self.ArbitroxPartido_FK2">
+            <End Role="Partido" EntitySet="Partido" />
+            <End Role="ArbitroxPartido" EntitySet="ArbitroxPartido" />
+          </AssociationSet>
+          <AssociationSet Name="CambioxPartido_FK1" Association="Self.CambioxPartido_FK1">
+            <End Role="Jugador" EntitySet="Jugador" />
+            <End Role="CambioxPartido" EntitySet="CambioxPartido" />
+          </AssociationSet>
+          <AssociationSet Name="CambioxPartido_FK2" Association="Self.CambioxPartido_FK2">
+            <End Role="Jugador" EntitySet="Jugador" />
+            <End Role="CambioxPartido" EntitySet="CambioxPartido" />
+          </AssociationSet>
+          <AssociationSet Name="CambioxPartido_FK3" Association="Self.CambioxPartido_FK3">
+            <End Role="Partido" EntitySet="Partido" />
+            <End Role="CambioxPartido" EntitySet="CambioxPartido" />
+          </AssociationSet>
+          <AssociationSet Name="Club_FK1" Association="Self.Club_FK1">
+            <End Role="Federacion" EntitySet="Federacion" />
+            <End Role="Club" EntitySet="Club" />
+          </AssociationSet>
+          <AssociationSet Name="Contrato_FK1" Association="Self.Contrato_FK1">
+            <End Role="Club" EntitySet="Club" />
+            <End Role="Contrato" EntitySet="Contrato" />
+          </AssociationSet>
+          <AssociationSet Name="Funcionario_FK1" Association="Self.Funcionario_FK1">
+            <End Role="Club" EntitySet="Club" />
+            <End Role="Funcionario" EntitySet="Funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="Oferta_FK1" Association="Self.Oferta_FK1">
+            <End Role="Club" EntitySet="Club" />
+            <End Role="Oferta" EntitySet="Oferta" />
+          </AssociationSet>
+          <AssociationSet Name="Partido_FK1" Association="Self.Partido_FK1">
+            <End Role="Club" EntitySet="Club" />
+            <End Role="Partido" EntitySet="Partido" />
+          </AssociationSet>
+          <AssociationSet Name="Partido_FK2" Association="Self.Partido_FK2">
+            <End Role="Club" EntitySet="Club" />
+            <End Role="Partido" EntitySet="Partido" />
+          </AssociationSet>
+          <AssociationSet Name="SocioxClub_FK2" Association="Self.SocioxClub_FK2">
+            <End Role="Club" EntitySet="Club" />
+            <End Role="SocioxClub" EntitySet="SocioxClub" />
+          </AssociationSet>
+          <AssociationSet Name="TorneoXClub_FK2" Association="Self.TorneoXClub_FK2">
+            <End Role="Club" EntitySet="Club" />
+            <End Role="TorneoXClub" EntitySet="TorneoXClub" />
+          </AssociationSet>
+          <AssociationSet Name="Competicion_FK1" Association="Self.Competicion_FK1">
+            <End Role="Federacion" EntitySet="Federacion" />
+            <End Role="Competicion" EntitySet="Competicion" />
+          </AssociationSet>
+          <AssociationSet Name="Torneo_FK1" Association="Self.Torneo_FK1">
+            <End Role="Competicion" EntitySet="Competicion" />
+            <End Role="Torneo" EntitySet="Torneo" />
+          </AssociationSet>
+          <AssociationSet Name="Contrato_FK2" Association="Self.Contrato_FK2">
+            <End Role="Funcionario" EntitySet="Funcionario" />
+            <End Role="Contrato" EntitySet="Contrato" />
+          </AssociationSet>
+          <AssociationSet Name="CorreoxFuncionario_FK1" Association="Self.CorreoxFuncionario_FK1">
+            <End Role="Funcionario" EntitySet="Funcionario" />
+            <End Role="CorreoxFuncionario" EntitySet="CorreoxFuncionario" />
+          </AssociationSet>
+          <AssociationSet Name="DireccionxFuncionario_FK1" Association="Self.DireccionxFuncionario_FK1">
+            <End Role="Funcionario" EntitySet="Funcionario" />
+            <End Role="DireccionxFuncionario" EntitySet="DireccionxFuncionario" />
+          </AssociationSet>
+          <AssociationSet Name="Entrenador_FK1" Association="Self.Entrenador_FK1">
+            <End Role="Funcionario" EntitySet="Funcionario" />
+            <End Role="Entrenador" EntitySet="Entrenador" />
+          </AssociationSet>
+          <AssociationSet Name="TituloxEntrenador_FK2" Association="Self.TituloxEntrenador_FK2">
+            <End Role="Entrenador" EntitySet="Entrenador" />
+            <End Role="TituloxEntrenador" EntitySet="TituloxEntrenador" />
+          </AssociationSet>
+          <AssociationSet Name="EspecialidadxJugador_FK2" Association="Self.EspecialidadxJugador_FK2">
+            <End Role="Especialidad" EntitySet="Especialidad" />
+            <End Role="EspecialidadxJugador" EntitySet="EspecialidadxJugador" />
+          </AssociationSet>
+          <AssociationSet Name="EspecialidadxJugador_FK1" Association="Self.EspecialidadxJugador_FK1">
+            <End Role="Jugador" EntitySet="Jugador" />
+            <End Role="EspecialidadxJugador" EntitySet="EspecialidadxJugador" />
+          </AssociationSet>
+          <AssociationSet Name="FechaTorneo_FK1" Association="Self.FechaTorneo_FK1">
+            <End Role="Torneo" EntitySet="Torneo" />
+            <End Role="FechaTorneo" EntitySet="FechaTorneo" />
+          </AssociationSet>
+          <AssociationSet Name="Partido_FK3" Association="Self.Partido_FK3">
+            <End Role="FechaTorneo" EntitySet="FechaTorneo" />
+            <End Role="Partido" EntitySet="Partido" />
+          </AssociationSet>
+          <AssociationSet Name="FuncionarioXClubXTorneo_FK1" Association="Self.FuncionarioXClubXTorneo_FK1">
+            <End Role="Funcionario" EntitySet="Funcionario" />
+            <End Role="FuncionarioXClubXTorneo" EntitySet="FuncionarioXClubXTorneo" />
+          </AssociationSet>
+          <AssociationSet Name="Jugador_FK1" Association="Self.Jugador_FK1">
+            <End Role="Funcionario" EntitySet="Funcionario" />
+            <End Role="Jugador" EntitySet="Jugador" />
+          </AssociationSet>
+          <AssociationSet Name="Oferta_FK2" Association="Self.Oferta_FK2">
+            <End Role="Funcionario" EntitySet="Funcionario" />
+            <End Role="Oferta" EntitySet="Oferta" />
+          </AssociationSet>
+          <AssociationSet Name="TelefonoxFuncionario_FK1" Association="Self.TelefonoxFuncionario_FK1">
+            <End Role="Funcionario" EntitySet="Funcionario" />
+            <End Role="TelefonoxFuncionario" EntitySet="TelefonoxFuncionario" />
+          </AssociationSet>
+          <AssociationSet Name="FuncionarioXClubXTorneo_FK2" Association="Self.FuncionarioXClubXTorneo_FK2">
+            <End Role="TorneoXClub" EntitySet="TorneoXClub" />
+            <End Role="FuncionarioXClubXTorneo" EntitySet="FuncionarioXClubXTorneo" />
+          </AssociationSet>
+          <AssociationSet Name="GolxPartido_FK1" Association="Self.GolxPartido_FK1">
+            <End Role="Jugador" EntitySet="Jugador" />
+            <End Role="GolxPartido" EntitySet="GolxPartido" />
+          </AssociationSet>
+          <AssociationSet Name="GolxPartido_FK2" Association="Self.GolxPartido_FK2">
+            <End Role="Partido" EntitySet="Partido" />
+            <End Role="GolxPartido" EntitySet="GolxPartido" />
+          </AssociationSet>
+          <AssociationSet Name="JugadorxPartido_FK1" Association="Self.JugadorxPartido_FK1">
+            <End Role="Jugador" EntitySet="Jugador" />
+            <End Role="JugadorxPartido" EntitySet="JugadorxPartido" />
+          </AssociationSet>
+          <AssociationSet Name="JugadorxPartido_FK2" Association="Self.JugadorxPartido_FK2">
+            <End Role="Partido" EntitySet="Partido" />
+            <End Role="JugadorxPartido" EntitySet="JugadorxPartido" />
+          </AssociationSet>
+          <AssociationSet Name="SocioxClub_FK1" Association="Self.SocioxClub_FK1">
+            <End Role="Socio" EntitySet="Socio" />
+            <End Role="SocioxClub" EntitySet="SocioxClub" />
+          </AssociationSet>
+          <AssociationSet Name="TituloxEntrenador_FK1" Association="Self.TituloxEntrenador_FK1">
+            <End Role="Torneo" EntitySet="Torneo" />
+            <End Role="TituloxEntrenador" EntitySet="TituloxEntrenador" />
+          </AssociationSet>
+          <AssociationSet Name="TorneoXClub_FK1" Association="Self.TorneoXClub_FK1">
+            <End Role="Torneo" EntitySet="Torneo" />
+            <End Role="TorneoXClub" EntitySet="TorneoXClub" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FootballModelStoreContainer" CdmEntityContainer="FootballEntities">
+          <EntitySetMapping Name="Arbitro">
+            <EntityTypeMapping TypeName="FootballModel.Arbitro">
+              <MappingFragment StoreEntitySet="Arbitro">
+                <ScalarProperty Name="idArbitro" ColumnName="idArbitro" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArbitroxPartido">
+            <EntityTypeMapping TypeName="FootballModel.ArbitroxPartido">
+              <MappingFragment StoreEntitySet="ArbitroxPartido">
+                <ScalarProperty Name="idArbitro" ColumnName="idArbitro" />
+                <ScalarProperty Name="idPartido" ColumnName="idPartido" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="desempenho" ColumnName="desempenho" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArbitroxPartidoHistorico">
+            <EntityTypeMapping TypeName="FootballModel.ArbitroxPartidoHistorico">
+              <MappingFragment StoreEntitySet="ArbitroxPartidoHistorico">
+                <ScalarProperty Name="idArbitro" ColumnName="idArbitro" />
+                <ScalarProperty Name="idPartido" ColumnName="idPartido" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="desempenho" ColumnName="desempenho" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CambioxPartido">
+            <EntityTypeMapping TypeName="FootballModel.CambioxPartido">
+              <MappingFragment StoreEntitySet="CambioxPartido">
+                <ScalarProperty Name="codigoJugadorEntra" ColumnName="codigoJugadorEntra" />
+                <ScalarProperty Name="codigoJugadorSale" ColumnName="codigoJugadorSale" />
+                <ScalarProperty Name="idPartido" ColumnName="idPartido" />
+                <ScalarProperty Name="minuto" ColumnName="minuto" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CambioxPartidoHistorico">
+            <EntityTypeMapping TypeName="FootballModel.CambioxPartidoHistorico">
+              <MappingFragment StoreEntitySet="CambioxPartidoHistorico">
+                <ScalarProperty Name="codigoJugadorEntra" ColumnName="codigoJugadorEntra" />
+                <ScalarProperty Name="codigoJugadorSale" ColumnName="codigoJugadorSale" />
+                <ScalarProperty Name="idPartido" ColumnName="idPartido" />
+                <ScalarProperty Name="minuto" ColumnName="minuto" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Club">
+            <EntityTypeMapping TypeName="FootballModel.Club">
+              <MappingFragment StoreEntitySet="Club">
+                <ScalarProperty Name="idClub" ColumnName="idClub" />
+                <ScalarProperty Name="idFederacion" ColumnName="idFederacion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fchFundacion" ColumnName="fchFundacion" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Competicion">
+            <EntityTypeMapping TypeName="FootballModel.Competicion">
+              <MappingFragment StoreEntitySet="Competicion">
+                <ScalarProperty Name="IdCompeticion" ColumnName="IdCompeticion" />
+                <ScalarProperty Name="idFederacion" ColumnName="idFederacion" />
+                <ScalarProperty Name="nbrCompeticion" ColumnName="nbrCompeticion" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contrato">
+            <EntityTypeMapping TypeName="FootballModel.Contrato">
+              <MappingFragment StoreEntitySet="Contrato">
+                <ScalarProperty Name="idClub" ColumnName="idClub" />
+                <ScalarProperty Name="codigoFuncionario" ColumnName="codigoFuncionario" />
+                <ScalarProperty Name="importe" ColumnName="importe" />
+                <ScalarProperty Name="fchInicio" ColumnName="fchInicio" />
+                <ScalarProperty Name="fchFinProgramado" ColumnName="fchFinProgramado" />
+                <ScalarProperty Name="fchFinReal" ColumnName="fchFinReal" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CorreoxFuncionario">
+            <EntityTypeMapping TypeName="FootballModel.CorreoxFuncionario">
+              <MappingFragment StoreEntitySet="CorreoxFuncionario">
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="codigoFuncionario" ColumnName="codigoFuncionario" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DireccionxFuncionario">
+            <EntityTypeMapping TypeName="FootballModel.DireccionxFuncionario">
+              <MappingFragment StoreEntitySet="DireccionxFuncionario">
+                <ScalarProperty Name="codigoFuncionario" ColumnName="codigoFuncionario" />
+                <ScalarProperty Name="codigoDireccion" ColumnName="codigoDireccion" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+                <ScalarProperty Name="distrito" ColumnName="distrito" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="direccionExacta" ColumnName="direccionExacta" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entrenador">
+            <EntityTypeMapping TypeName="FootballModel.Entrenador">
+              <MappingFragment StoreEntitySet="Entrenador">
+                <ScalarProperty Name="codigoFuncionario" ColumnName="codigoFuncionario" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fchInicioCarrera" ColumnName="fchInicioCarrera" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Especialidad">
+            <EntityTypeMapping TypeName="FootballModel.Especialidad">
+              <MappingFragment StoreEntitySet="Especialidad">
+                <ScalarProperty Name="idEspecialidad" ColumnName="idEspecialidad" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EspecialidadxJugador">
+            <EntityTypeMapping TypeName="FootballModel.EspecialidadxJugador">
+              <MappingFragment StoreEntitySet="EspecialidadxJugador">
+                <ScalarProperty Name="idJugador" ColumnName="idJugador" />
+                <ScalarProperty Name="idEspecialidad" ColumnName="idEspecialidad" />
+                <ScalarProperty Name="descripcionDominio" ColumnName="descripcionDominio" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FechaTorneo">
+            <EntityTypeMapping TypeName="FootballModel.FechaTorneo">
+              <MappingFragment StoreEntitySet="FechaTorneo">
+                <ScalarProperty Name="idCompeticion" ColumnName="idCompeticion" />
+                <ScalarProperty Name="anho" ColumnName="anho" />
+                <ScalarProperty Name="nroFecha" ColumnName="nroFecha" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FechaTorneoHistorico">
+            <EntityTypeMapping TypeName="FootballModel.FechaTorneoHistorico">
+              <MappingFragment StoreEntitySet="FechaTorneoHistorico">
+                <ScalarProperty Name="idCompeticion" ColumnName="idCompeticion" />
+                <ScalarProperty Name="anho" ColumnName="anho" />
+                <ScalarProperty Name="nroFecha" ColumnName="nroFecha" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Federacion">
+            <EntityTypeMapping TypeName="FootballModel.Federacion">
+              <MappingFragment StoreEntitySet="Federacion">
+                <ScalarProperty Name="idFederacion" ColumnName="idFederacion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fchFundacion" ColumnName="fchFundacion" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Funcionario">
+            <EntityTypeMapping TypeName="FootballModel.Funcionario">
+              <MappingFragment StoreEntitySet="Funcionario">
+                <ScalarProperty Name="codigoFuncionario" ColumnName="codigoFuncionario" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fchNacimiento" ColumnName="fchNacimiento" />
+                <ScalarProperty Name="idClub" ColumnName="idClub" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FuncionarioXClubXTorneo">
+            <EntityTypeMapping TypeName="FootballModel.FuncionarioXClubXTorneo">
+              <MappingFragment StoreEntitySet="FuncionarioXClubXTorneo">
+                <ScalarProperty Name="codigoFuncionario" ColumnName="codigoFuncionario" />
+                <ScalarProperty Name="idClub" ColumnName="idClub" />
+                <ScalarProperty Name="idCompeticion" ColumnName="idCompeticion" />
+                <ScalarProperty Name="anho" ColumnName="anho" />
+                <ScalarProperty Name="goles" ColumnName="goles" />
+                <ScalarProperty Name="sinopsisRendimiento" ColumnName="sinopsisRendimiento" />
+                <ScalarProperty Name="posicionTabla" ColumnName="posicionTabla" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FuncionarioXClubXTorneoHistorico">
+            <EntityTypeMapping TypeName="FootballModel.FuncionarioXClubXTorneoHistorico">
+              <MappingFragment StoreEntitySet="FuncionarioXClubXTorneoHistorico">
+                <ScalarProperty Name="codigoFuncionario" ColumnName="codigoFuncionario" />
+                <ScalarProperty Name="idClub" ColumnName="idClub" />
+                <ScalarProperty Name="idCompeticion" ColumnName="idCompeticion" />
+                <ScalarProperty Name="anho" ColumnName="anho" />
+                <ScalarProperty Name="goles" ColumnName="goles" />
+                <ScalarProperty Name="sinopsisRendimiento" ColumnName="sinopsisRendimiento" />
+                <ScalarProperty Name="posicionTabla" ColumnName="posicionTabla" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GolxPartido">
+            <EntityTypeMapping TypeName="FootballModel.GolxPartido">
+              <MappingFragment StoreEntitySet="GolxPartido">
+                <ScalarProperty Name="codigoJugador" ColumnName="codigoJugador" />
+                <ScalarProperty Name="idPartido" ColumnName="idPartido" />
+                <ScalarProperty Name="minuto" ColumnName="minuto" />
+                <ScalarProperty Name="segundo" ColumnName="segundo" />
+                <ScalarProperty Name="video" ColumnName="video" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GolxPartidoHistorico">
+            <EntityTypeMapping TypeName="FootballModel.GolxPartidoHistorico">
+              <MappingFragment StoreEntitySet="GolxPartidoHistorico">
+                <ScalarProperty Name="codigoJugador" ColumnName="codigoJugador" />
+                <ScalarProperty Name="idPartido" ColumnName="idPartido" />
+                <ScalarProperty Name="minuto" ColumnName="minuto" />
+                <ScalarProperty Name="segundo" ColumnName="segundo" />
+                <ScalarProperty Name="video" ColumnName="video" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jugador">
+            <EntityTypeMapping TypeName="FootballModel.Jugador">
+              <MappingFragment StoreEntitySet="Jugador">
+                <ScalarProperty Name="codigoFuncionario" ColumnName="codigoFuncionario" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+                <ScalarProperty Name="Altura" ColumnName="Altura" />
+                <ScalarProperty Name="nroCamiseta" ColumnName="nroCamiseta" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JugadorxPartido">
+            <EntityTypeMapping TypeName="FootballModel.JugadorxPartido">
+              <MappingFragment StoreEntitySet="JugadorxPartido">
+                <ScalarProperty Name="codigoJugador" ColumnName="codigoJugador" />
+                <ScalarProperty Name="idPartido" ColumnName="idPartido" />
+                <ScalarProperty Name="posicion" ColumnName="posicion" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="desempenho" ColumnName="desempenho" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JugadorxPartidoHistorico">
+            <EntityTypeMapping TypeName="FootballModel.JugadorxPartidoHistorico">
+              <MappingFragment StoreEntitySet="JugadorxPartidoHistorico">
+                <ScalarProperty Name="codigoJugador" ColumnName="codigoJugador" />
+                <ScalarProperty Name="idPartido" ColumnName="idPartido" />
+                <ScalarProperty Name="posicion" ColumnName="posicion" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="desempenho" ColumnName="desempenho" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Oferta">
+            <EntityTypeMapping TypeName="FootballModel.Oferta">
+              <MappingFragment StoreEntitySet="Oferta">
+                <ScalarProperty Name="idClub" ColumnName="idClub" />
+                <ScalarProperty Name="codigoFuncionario" ColumnName="codigoFuncionario" />
+                <ScalarProperty Name="importe" ColumnName="importe" />
+                <ScalarProperty Name="fchInicio" ColumnName="fchInicio" />
+                <ScalarProperty Name="fchFinProgramado" ColumnName="fchFinProgramado" />
+                <ScalarProperty Name="fchOferta" ColumnName="fchOferta" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Partido">
+            <EntityTypeMapping TypeName="FootballModel.Partido">
+              <MappingFragment StoreEntitySet="Partido">
+                <ScalarProperty Name="idPartido" ColumnName="idPartido" />
+                <ScalarProperty Name="idCompeticion" ColumnName="idCompeticion" />
+                <ScalarProperty Name="anho" ColumnName="anho" />
+                <ScalarProperty Name="nroFecha" ColumnName="nroFecha" />
+                <ScalarProperty Name="equipoVisita" ColumnName="equipoVisita" />
+                <ScalarProperty Name="equipoCasa" ColumnName="equipoCasa" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="golesCasa" ColumnName="golesCasa" />
+                <ScalarProperty Name="golesVisita" ColumnName="golesVisita" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PartidoHistorico">
+            <EntityTypeMapping TypeName="FootballModel.PartidoHistorico">
+              <MappingFragment StoreEntitySet="PartidoHistorico">
+                <ScalarProperty Name="idPartido" ColumnName="idPartido" />
+                <ScalarProperty Name="idCompeticion" ColumnName="idCompeticion" />
+                <ScalarProperty Name="anho" ColumnName="anho" />
+                <ScalarProperty Name="nroFecha" ColumnName="nroFecha" />
+                <ScalarProperty Name="equipoVisita" ColumnName="equipoVisita" />
+                <ScalarProperty Name="equipoCasa" ColumnName="equipoCasa" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="golesCasa" ColumnName="golesCasa" />
+                <ScalarProperty Name="golesVisita" ColumnName="golesVisita" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Socio">
+            <EntityTypeMapping TypeName="FootballModel.Socio">
+              <MappingFragment StoreEntitySet="Socio">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="codigoSocio" ColumnName="codigoSocio" />
+                <ScalarProperty Name="fchNacimiento" ColumnName="fchNacimiento" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SocioxClub">
+            <EntityTypeMapping TypeName="FootballModel.SocioxClub">
+              <MappingFragment StoreEntitySet="SocioxClub">
+                <ScalarProperty Name="codigoSocio" ColumnName="codigoSocio" />
+                <ScalarProperty Name="idClub" ColumnName="idClub" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="fchAsociacion" ColumnName="fchAsociacion" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TelefonoxFuncionario">
+            <EntityTypeMapping TypeName="FootballModel.TelefonoxFuncionario">
+              <MappingFragment StoreEntitySet="TelefonoxFuncionario">
+                <ScalarProperty Name="codigoFuncionario" ColumnName="codigoFuncionario" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TituloxEntrenador">
+            <EntityTypeMapping TypeName="FootballModel.TituloxEntrenador">
+              <MappingFragment StoreEntitySet="TituloxEntrenador">
+                <ScalarProperty Name="codigoEntrenador" ColumnName="codigoEntrenador" />
+                <ScalarProperty Name="idCompeticion" ColumnName="idCompeticion" />
+                <ScalarProperty Name="anho" ColumnName="anho" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Torneo">
+            <EntityTypeMapping TypeName="FootballModel.Torneo">
+              <MappingFragment StoreEntitySet="Torneo">
+                <ScalarProperty Name="idCompeticion" ColumnName="idCompeticion" />
+                <ScalarProperty Name="anho" ColumnName="anho" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TorneoHistorico">
+            <EntityTypeMapping TypeName="FootballModel.TorneoHistorico">
+              <MappingFragment StoreEntitySet="TorneoHistorico">
+                <ScalarProperty Name="idCompeticion" ColumnName="idCompeticion" />
+                <ScalarProperty Name="anho" ColumnName="anho" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TorneoXClub">
+            <EntityTypeMapping TypeName="FootballModel.TorneoXClub">
+              <MappingFragment StoreEntitySet="TorneoXClub">
+                <ScalarProperty Name="idClub" ColumnName="idClub" />
+                <ScalarProperty Name="idCompeticion" ColumnName="idCompeticion" />
+                <ScalarProperty Name="anho" ColumnName="anho" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TorneoXClubHistorico">
+            <EntityTypeMapping TypeName="FootballModel.TorneoXClubHistorico">
+              <MappingFragment StoreEntitySet="TorneoXClubHistorico">
+                <ScalarProperty Name="idClub" ColumnName="idClub" />
+                <ScalarProperty Name="idCompeticion" ColumnName="idCompeticion" />
+                <ScalarProperty Name="anho" ColumnName="anho" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fchCreacion" ColumnName="fchCreacion" />
+                <ScalarProperty Name="fchModificacion" ColumnName="fchModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

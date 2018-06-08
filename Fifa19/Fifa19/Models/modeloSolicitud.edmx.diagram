@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9f0df43d7106453e8d25e2d54d4886bf" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="FootballModel.Arbitro" Width="1.5" PointX="15.75" PointY="36.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.ArbitroxPartido" Width="1.5" PointX="18" PointY="41" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.ArbitroxPartidoHistorico" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.CambioxPartido" Width="1.5" PointX="12.75" PointY="41.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.CambioxPartidoHistorico" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.Club" Width="1.5" PointX="3" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.Competicion" Width="1.5" PointX="3" PointY="53.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.Contrato" Width="1.5" PointX="10.5" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.CorreoxFuncionario" Width="1.5" PointX="7.5" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.DireccionxFuncionario" Width="1.5" PointX="7.5" PointY="29" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.Entrenador" Width="1.5" PointX="7.5" PointY="33.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.Especialidad" Width="1.5" PointX="10.5" PointY="51.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.EspecialidadxJugador" Width="1.5" PointX="12.75" PointY="37.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.FechaTorneo" Width="1.5" PointX="7.5" PointY="53.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.FechaTorneoHistorico" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.Federacion" Width="1.5" PointX="0.75" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.Funcionario" Width="1.5" PointX="5.25" PointY="32.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.FuncionarioXClubXTorneo" Width="1.5" PointX="10.5" PointY="36" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.FuncionarioXClubXTorneoHistorico" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.GolxPartido" Width="1.5" PointX="12.75" PointY="45.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.GolxPartidoHistorico" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.Jugador" Width="1.5" PointX="7.5" PointY="41" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.JugadorxPartido" Width="1.5" PointX="9.75" PointY="47.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.JugadorxPartidoHistorico" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.Oferta" Width="1.5" PointX="10.5" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.Partido" Width="1.5" PointX="15.75" PointY="40" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.PartidoHistorico" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.Socio" Width="1.5" PointX="3" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.SocioxClub" Width="1.5" PointX="5.25" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.TelefonoxFuncionario" Width="1.5" PointX="7.5" PointY="49.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.TituloxEntrenador" Width="1.5" PointX="9.75" PointY="43.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.Torneo" Width="1.5" PointX="5.25" PointY="53.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.TorneoHistorico" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.TorneoXClub" Width="1.5" PointX="7.5" PointY="37" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballModel.TorneoXClubHistorico" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="FootballModel.ArbitroxPartido_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.ArbitroxPartido_FK2" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.CambioxPartido_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.CambioxPartido_FK2" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.CambioxPartido_FK3" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.Club_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.Contrato_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.Funcionario_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.Oferta_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.Partido_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.Partido_FK2" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.SocioxClub_FK2" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.TorneoXClub_FK2" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.Competicion_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.Torneo_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.Contrato_FK2" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.CorreoxFuncionario_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.DireccionxFuncionario_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.Entrenador_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.TituloxEntrenador_FK2" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.EspecialidadxJugador_FK2" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.EspecialidadxJugador_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.FechaTorneo_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.Partido_FK3" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.FuncionarioXClubXTorneo_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.Jugador_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.Oferta_FK2" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.TelefonoxFuncionario_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.FuncionarioXClubXTorneo_FK2" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.GolxPartido_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.GolxPartido_FK2" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.JugadorxPartido_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.JugadorxPartido_FK2" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.SocioxClub_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.TituloxEntrenador_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballModel.TorneoXClub_FK1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

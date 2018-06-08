@@ -1,0 +1,520 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Football" EntityNamespace="enSolicitudes" ContextNamespace="cnSolicitudes" Class="dcSolicitudes" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=ecRhin.ec.tec.ac.cr\Estudiantes;Initial Catalog=Football;Persist Security Info=True;User ID=angramirez" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="FootballConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="FIFA.Arbitro" Member="Arbitros">
+    <Type Name="Arbitro">
+      <Column Name="idArbitro" Type="System.Decimal" DbType="Decimal(5,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="categoria" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Arbitro_ArbitroxPartido" Member="ArbitroxPartidos" ThisKey="idArbitro" OtherKey="idArbitro" Type="ArbitroxPartido" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.ArbitroxPartido" Member="ArbitroxPartidos">
+    <Type Name="ArbitroxPartido">
+      <Column Name="idArbitro" Type="System.Decimal" DbType="Decimal(5,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idPartido" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tipo" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="desempenho" Type="System.Decimal" DbType="Decimal(1,0) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Arbitro_ArbitroxPartido" Member="Arbitro" ThisKey="idArbitro" OtherKey="idArbitro" Type="Arbitro" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Partido_ArbitroxPartido" Member="Partido" ThisKey="idPartido" OtherKey="idPartido" Type="Partido" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.CambioxPartido" Member="CambioxPartidos">
+    <Type Name="CambioxPartido">
+      <Column Name="codigoJugadorEntra" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="codigoJugadorSale" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idPartido" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="minuto" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Jugador_CambioxPartido" Member="Jugador" ThisKey="codigoJugadorEntra" OtherKey="codigoFuncionario" Type="Jugador" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Jugador_CambioxPartido1" Member="Jugador1" ThisKey="codigoJugadorSale" OtherKey="codigoFuncionario" Type="Jugador" IsForeignKey="true" />
+      <Association Name="Partido_CambioxPartido" Member="Partido" ThisKey="idPartido" OtherKey="idPartido" Type="Partido" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.Club" Member="Clubs">
+    <Type Name="Club">
+      <Column Name="idClub" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idFederacion" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="fchFundacion" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Club_Contrato" Member="Contratos" ThisKey="idClub" OtherKey="idClub" Type="Contrato" />
+      <Association Name="Club_Funcionario" Member="Funcionarios" ThisKey="idClub" OtherKey="idClub" Type="Funcionario" />
+      <Association Name="Club_Oferta" Member="Ofertas" ThisKey="idClub" OtherKey="idClub" Type="Oferta" />
+      <Association Name="Club_Partido" Member="Partidos" ThisKey="idClub" OtherKey="equipoVisita" Type="Partido" />
+      <Association Name="Club_Partido1" Member="Partidos1" ThisKey="idClub" OtherKey="equipoCasa" Type="Partido" />
+      <Association Name="Club_SocioxClub" Member="SocioxClubs" ThisKey="idClub" OtherKey="idClub" Type="SocioxClub" />
+      <Association Name="Club_TorneoXClub" Member="TorneoXClubs" ThisKey="idClub" OtherKey="idClub" Type="TorneoXClub" />
+      <Association Name="Federacion_Club" Member="Federacion" ThisKey="idFederacion" OtherKey="idFederacion" Type="Federacion" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.Competicion" Member="Competicions">
+    <Type Name="Competicion">
+      <Column Name="IdCompeticion" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idFederacion" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" CanBeNull="false" />
+      <Column Name="nbrCompeticion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="tipo" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Competicion_Torneo" Member="Torneos" ThisKey="IdCompeticion" OtherKey="idCompeticion" Type="Torneo" />
+      <Association Name="Federacion_Competicion" Member="Federacion" ThisKey="idFederacion" OtherKey="idFederacion" Type="Federacion" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.Contrato" Member="Contratos">
+    <Type Name="Contrato">
+      <Column Name="idClub" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="codigoFuncionario" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="importe" Type="System.Decimal" DbType="Decimal(8,2) NOT NULL" CanBeNull="false" />
+      <Column Name="fchInicio" Type="System.DateTime" DbType="Date NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="fchFinProgramado" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="fchFinReal" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Club_Contrato" Member="Club" ThisKey="idClub" OtherKey="idClub" Type="Club" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Funcionario_Contrato" Member="Funcionario" ThisKey="codigoFuncionario" OtherKey="codigoFuncionario" Type="Funcionario" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.CorreoxFuncionario" Member="CorreoxFuncionarios">
+    <Type Name="CorreoxFuncionario">
+      <Column Name="correo" Type="System.String" DbType="VarChar(140) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="codigoFuncionario" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Funcionario_CorreoxFuncionario" Member="Funcionario" ThisKey="codigoFuncionario" OtherKey="codigoFuncionario" Type="Funcionario" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.DireccionxFuncionario" Member="DireccionxFuncionarios">
+    <Type Name="DireccionxFuncionario">
+      <Column Name="codigoFuncionario" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="codigoDireccion" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Pais" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="estado" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ciudad" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="distrito" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="calle" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="direccionExacta" Type="System.String" DbType="VarChar(240) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Funcionario_DireccionxFuncionario" Member="Funcionario" ThisKey="codigoFuncionario" OtherKey="codigoFuncionario" Type="Funcionario" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.Funcionario" Member="Funcionarios">
+    <Type Name="Funcionario">
+      <Column Name="codigoFuncionario" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="fchNacimiento" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="idClub" Type="System.Decimal" DbType="Decimal(4,0)" CanBeNull="true" />
+      <Column Name="foto" Type="System.String" DbType="VarChar(140) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Funcionario_Contrato" Member="Contratos" ThisKey="codigoFuncionario" OtherKey="codigoFuncionario" Type="Contrato" />
+      <Association Name="Funcionario_CorreoxFuncionario" Member="CorreoxFuncionarios" ThisKey="codigoFuncionario" OtherKey="codigoFuncionario" Type="CorreoxFuncionario" />
+      <Association Name="Funcionario_DireccionxFuncionario" Member="DireccionxFuncionarios" ThisKey="codigoFuncionario" OtherKey="codigoFuncionario" Type="DireccionxFuncionario" />
+      <Association Name="Funcionario_Entrenador" Member="Entrenador" ThisKey="codigoFuncionario" OtherKey="codigoFuncionario" Type="Entrenador" Cardinality="One" />
+      <Association Name="Funcionario_FuncionarioXClubXTorneo" Member="FuncionarioXClubXTorneos" ThisKey="codigoFuncionario" OtherKey="codigoFuncionario" Type="FuncionarioXClubXTorneo" />
+      <Association Name="Funcionario_Jugador" Member="Jugador" ThisKey="codigoFuncionario" OtherKey="codigoFuncionario" Type="Jugador" Cardinality="One" />
+      <Association Name="Funcionario_Oferta" Member="Ofertas" ThisKey="codigoFuncionario" OtherKey="codigoFuncionario" Type="Oferta" />
+      <Association Name="Funcionario_TelefonoxFuncionario" Member="TelefonoxFuncionarios" ThisKey="codigoFuncionario" OtherKey="codigoFuncionario" Type="TelefonoxFuncionario" />
+      <Association Name="Club_Funcionario" Member="Club" ThisKey="idClub" OtherKey="idClub" Type="Club" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.Entrenador" Member="Entrenadors">
+    <Type Name="Entrenador">
+      <Column Name="codigoFuncionario" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="fchInicioCarrera" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Entrenador_TituloxEntrenador" Member="TituloxEntrenadors" ThisKey="codigoFuncionario" OtherKey="codigoEntrenador" Type="TituloxEntrenador" />
+      <Association Name="Funcionario_Entrenador" Member="Funcionario" ThisKey="codigoFuncionario" OtherKey="codigoFuncionario" Type="Funcionario" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.Especialidad" Member="Especialidads">
+    <Type Name="Especialidad">
+      <Column Name="idEspecialidad" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="descripcion" Type="System.String" DbType="VarChar(140) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Especialidad_EspecialidadxJugador" Member="EspecialidadxJugadors" ThisKey="idEspecialidad" OtherKey="idEspecialidad" Type="EspecialidadxJugador" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.EspecialidadxJugador" Member="EspecialidadxJugadors">
+    <Type Name="EspecialidadxJugador">
+      <Column Name="idJugador" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idEspecialidad" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="descripcionDominio" Type="System.String" DbType="VarChar(140) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Especialidad_EspecialidadxJugador" Member="Especialidad" ThisKey="idEspecialidad" OtherKey="idEspecialidad" Type="Especialidad" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Jugador_EspecialidadxJugador" Member="Jugador" ThisKey="idJugador" OtherKey="codigoFuncionario" Type="Jugador" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.Federacion" Member="Federacions">
+    <Type Name="Federacion">
+      <Column Name="idFederacion" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="fchFundacion" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Federacion_Club" Member="Clubs" ThisKey="idFederacion" OtherKey="idFederacion" Type="Club" />
+      <Association Name="Federacion_Competicion" Member="Competicions" ThisKey="idFederacion" OtherKey="idFederacion" Type="Competicion" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.FechaTorneo" Member="FechaTorneos">
+    <Type Name="FechaTorneo">
+      <Column Name="idCompeticion" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="anho" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nroFecha" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="FechaTorneo_Partido" Member="Partidos" ThisKey="idCompeticion,anho,nroFecha" OtherKey="idCompeticion,anho,nroFecha" Type="Partido" />
+      <Association Name="Torneo_FechaTorneo" Member="Torneo" ThisKey="idCompeticion,anho" OtherKey="idCompeticion,anho" Type="Torneo" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.FuncionarioXClubXTorneo" Member="FuncionarioXClubXTorneos">
+    <Type Name="FuncionarioXClubXTorneo">
+      <Column Name="codigoFuncionario" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idClub" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idCompeticion" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="anho" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="goles" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
+      <Column Name="sinopsisRendimiento" Type="System.String" DbType="VarChar(240) NOT NULL" CanBeNull="false" />
+      <Column Name="posicionTabla" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Funcionario_FuncionarioXClubXTorneo" Member="Funcionario" ThisKey="codigoFuncionario" OtherKey="codigoFuncionario" Type="Funcionario" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="TorneoXClub_FuncionarioXClubXTorneo" Member="TorneoXClub" ThisKey="idClub,idCompeticion,anho" OtherKey="idClub,idCompeticion,anho" Type="TorneoXClub" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.GolxPartido" Member="GolxPartidos">
+    <Type Name="GolxPartido">
+      <Column Name="codigoJugador" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idPartido" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="minuto" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="segundo" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="video" Type="System.String" DbType="VarChar(140)" CanBeNull="true" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Jugador_GolxPartido" Member="Jugador" ThisKey="codigoJugador" OtherKey="codigoFuncionario" Type="Jugador" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Partido_GolxPartido" Member="Partido" ThisKey="idPartido" OtherKey="idPartido" Type="Partido" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.FuncionarioXClubXTorneoHistorico" Member="FuncionarioXClubXTorneoHistoricos">
+    <Type Name="FuncionarioXClubXTorneoHistorico">
+      <Column Name="codigoFuncionario" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idClub" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idCompeticion" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="anho" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="goles" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
+      <Column Name="sinopsisRendimiento" Type="System.String" DbType="VarChar(240) NOT NULL" CanBeNull="false" />
+      <Column Name="posicionTabla" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.Jugador" Member="Jugadors">
+    <Type Name="Jugador">
+      <Column Name="codigoFuncionario" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Peso" Type="System.Decimal" DbType="Decimal(5,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Altura" Type="System.Decimal" DbType="Decimal(6,2) NOT NULL" CanBeNull="false" />
+      <Column Name="nroCamiseta" Type="System.Decimal" DbType="Decimal(2,0)" CanBeNull="true" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Jugador_CambioxPartido" Member="CambioxPartidos" ThisKey="codigoFuncionario" OtherKey="codigoJugadorEntra" Type="CambioxPartido" />
+      <Association Name="Jugador_CambioxPartido1" Member="CambioxPartidos1" ThisKey="codigoFuncionario" OtherKey="codigoJugadorSale" Type="CambioxPartido" />
+      <Association Name="Jugador_EspecialidadxJugador" Member="EspecialidadxJugadors" ThisKey="codigoFuncionario" OtherKey="idJugador" Type="EspecialidadxJugador" />
+      <Association Name="Jugador_GolxPartido" Member="GolxPartidos" ThisKey="codigoFuncionario" OtherKey="codigoJugador" Type="GolxPartido" />
+      <Association Name="Jugador_JugadorxPartido" Member="JugadorxPartidos" ThisKey="codigoFuncionario" OtherKey="codigoJugador" Type="JugadorxPartido" />
+      <Association Name="Funcionario_Jugador" Member="Funcionario" ThisKey="codigoFuncionario" OtherKey="codigoFuncionario" Type="Funcionario" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.JugadorxPartido" Member="JugadorxPartidos">
+    <Type Name="JugadorxPartido">
+      <Column Name="codigoJugador" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idPartido" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="posicion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="tipo" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="desempenho" Type="System.Decimal" DbType="Decimal(1,0)" CanBeNull="true" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Jugador_JugadorxPartido" Member="Jugador" ThisKey="codigoJugador" OtherKey="codigoFuncionario" Type="Jugador" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Partido_JugadorxPartido" Member="Partido" ThisKey="idPartido" OtherKey="idPartido" Type="Partido" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.Oferta" Member="Ofertas">
+    <Type Name="Oferta">
+      <Column Name="idClub" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="codigoFuncionario" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="importe" Type="System.Decimal" DbType="Decimal(8,2) NOT NULL" CanBeNull="false" />
+      <Column Name="fchInicio" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="fchFinProgramado" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="fchOferta" Type="System.DateTime" DbType="Date NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Club_Oferta" Member="Club" ThisKey="idClub" OtherKey="idClub" Type="Club" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Funcionario_Oferta" Member="Funcionario" ThisKey="codigoFuncionario" OtherKey="codigoFuncionario" Type="Funcionario" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.Partido" Member="Partidos">
+    <Type Name="Partido">
+      <Column Name="idPartido" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idCompeticion" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
+      <Column Name="anho" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" CanBeNull="false" />
+      <Column Name="nroFecha" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" CanBeNull="false" />
+      <Column Name="equipoVisita" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" CanBeNull="false" />
+      <Column Name="equipoCasa" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" CanBeNull="false" />
+      <Column Name="fecha" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="golesCasa" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" CanBeNull="false" />
+      <Column Name="golesVisita" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Partido_ArbitroxPartido" Member="ArbitroxPartidos" ThisKey="idPartido" OtherKey="idPartido" Type="ArbitroxPartido" />
+      <Association Name="Partido_CambioxPartido" Member="CambioxPartidos" ThisKey="idPartido" OtherKey="idPartido" Type="CambioxPartido" />
+      <Association Name="Partido_GolxPartido" Member="GolxPartidos" ThisKey="idPartido" OtherKey="idPartido" Type="GolxPartido" />
+      <Association Name="Partido_JugadorxPartido" Member="JugadorxPartidos" ThisKey="idPartido" OtherKey="idPartido" Type="JugadorxPartido" />
+      <Association Name="Club_Partido" Member="Club" ThisKey="equipoVisita" OtherKey="idClub" Type="Club" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Club_Partido1" Member="Club1" ThisKey="equipoCasa" OtherKey="idClub" Type="Club" IsForeignKey="true" />
+      <Association Name="FechaTorneo_Partido" Member="FechaTorneo" ThisKey="idCompeticion,anho,nroFecha" OtherKey="idCompeticion,anho,nroFecha" Type="FechaTorneo" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.TelefonoxFuncionario" Member="TelefonoxFuncionarios">
+    <Type Name="TelefonoxFuncionario">
+      <Column Name="codigoFuncionario" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.Decimal" DbType="Decimal(8,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tipo" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Funcionario_TelefonoxFuncionario" Member="Funcionario" ThisKey="codigoFuncionario" OtherKey="codigoFuncionario" Type="Funcionario" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.SocioxClub" Member="SocioxClubs">
+    <Type Name="SocioxClub">
+      <Column Name="codigoSocio" Type="System.Decimal" DbType="Decimal(5,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idClub" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tipo" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="fchAsociacion" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Club_SocioxClub" Member="Club" ThisKey="idClub" OtherKey="idClub" Type="Club" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Socio_SocioxClub" Member="Socio" ThisKey="codigoSocio" OtherKey="codigoSocio" Type="Socio" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.Socio" Member="Socios">
+    <Type Name="Socio">
+      <Column Name="nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="codigoSocio" Type="System.Decimal" DbType="Decimal(5,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="fchNacimiento" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Socio_SocioxClub" Member="SocioxClubs" ThisKey="codigoSocio" OtherKey="codigoSocio" Type="SocioxClub" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.TituloxEntrenador" Member="TituloxEntrenadors">
+    <Type Name="TituloxEntrenador">
+      <Column Name="codigoEntrenador" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idCompeticion" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="anho" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Entrenador_TituloxEntrenador" Member="Entrenador" ThisKey="codigoEntrenador" OtherKey="codigoFuncionario" Type="Entrenador" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Torneo_TituloxEntrenador" Member="Torneo" ThisKey="idCompeticion,anho" OtherKey="idCompeticion,anho" Type="Torneo" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.Torneo" Member="Torneos">
+    <Type Name="Torneo">
+      <Column Name="idCompeticion" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="anho" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Torneo_FechaTorneo" Member="FechaTorneos" ThisKey="idCompeticion,anho" OtherKey="idCompeticion,anho" Type="FechaTorneo" />
+      <Association Name="Torneo_TituloxEntrenador" Member="TituloxEntrenadors" ThisKey="idCompeticion,anho" OtherKey="idCompeticion,anho" Type="TituloxEntrenador" />
+      <Association Name="Torneo_TorneoXClub" Member="TorneoXClubs" ThisKey="idCompeticion,anho" OtherKey="idCompeticion,anho" Type="TorneoXClub" />
+      <Association Name="Competicion_Torneo" Member="Competicion" ThisKey="idCompeticion" OtherKey="IdCompeticion" Type="Competicion" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.TorneoXClub" Member="TorneoXClubs">
+    <Type Name="TorneoXClub">
+      <Column Name="idClub" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idCompeticion" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="anho" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="TorneoXClub_FuncionarioXClubXTorneo" Member="FuncionarioXClubXTorneos" ThisKey="idClub,idCompeticion,anho" OtherKey="idClub,idCompeticion,anho" Type="FuncionarioXClubXTorneo" />
+      <Association Name="Torneo_TorneoXClub" Member="Torneo" ThisKey="idCompeticion,anho" OtherKey="idCompeticion,anho" Type="Torneo" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Club_TorneoXClub" Member="Club" ThisKey="idClub" OtherKey="idClub" Type="Club" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.TorneoHistorico" Member="TorneoHistoricos">
+    <Type Name="TorneoHistorico">
+      <Column Name="idCompeticion" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="anho" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.TorneoXClubHistorico" Member="TorneoXClubHistoricos">
+    <Type Name="TorneoXClubHistorico">
+      <Column Name="idClub" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idCompeticion" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="anho" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.PartidoHistorico" Member="PartidoHistoricos">
+    <Type Name="PartidoHistorico">
+      <Column Name="idPartido" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idCompeticion" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
+      <Column Name="anho" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" CanBeNull="false" />
+      <Column Name="nroFecha" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" CanBeNull="false" />
+      <Column Name="equipoVisita" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" CanBeNull="false" />
+      <Column Name="equipoCasa" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" CanBeNull="false" />
+      <Column Name="fecha" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="golesCasa" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" CanBeNull="false" />
+      <Column Name="golesVisita" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.JugadorxPartidoHistorico" Member="JugadorxPartidoHistoricos">
+    <Type Name="JugadorxPartidoHistorico">
+      <Column Name="codigoJugador" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idPartido" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="posicion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="tipo" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="desempenho" Type="System.Decimal" DbType="Decimal(1,0)" CanBeNull="true" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.GolxPartidoHistorico" Member="GolxPartidoHistoricos">
+    <Type Name="GolxPartidoHistorico">
+      <Column Name="codigoJugador" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idPartido" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="minuto" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="segundo" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="video" Type="System.String" DbType="VarChar(140)" CanBeNull="true" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.ArbitroxPartidoHistorico" Member="ArbitroxPartidoHistoricos">
+    <Type Name="ArbitroxPartidoHistorico">
+      <Column Name="idArbitro" Type="System.Decimal" DbType="Decimal(5,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idPartido" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tipo" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="desempenho" Type="System.Decimal" DbType="Decimal(1,0) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.CambioxPartidoHistorico" Member="CambioxPartidoHistoricos">
+    <Type Name="CambioxPartidoHistorico">
+      <Column Name="codigoJugadorEntra" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="codigoJugadorSale" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idPartido" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="minuto" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.FechaTorneoHistorico" Member="FechaTorneoHistoricos">
+    <Type Name="FechaTorneoHistorico">
+      <Column Name="idCompeticion" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="anho" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nroFecha" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="FIFA.FuncionarioXClubXTorneoHistorico" Member="FuncionarioXClubXTorneoHistorico1s">
+    <Type Name="FuncionarioXClubXTorneoHistorico1">
+      <Column Name="codigoFuncionario" Type="System.Decimal" DbType="Decimal(6,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idClub" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idCompeticion" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="anho" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="goles" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
+      <Column Name="sinopsisRendimiento" Type="System.String" DbType="VarChar(240) NOT NULL" CanBeNull="false" />
+      <Column Name="posicionTabla" Type="System.Decimal" DbType="Decimal(2,0) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioCreacion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioModificacion" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="fchCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fchModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
