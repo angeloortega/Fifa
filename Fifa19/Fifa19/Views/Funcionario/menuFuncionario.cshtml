@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "menuFuncionario";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    @using (Html.BeginForm("menuFuncionario", "menuFuncionario", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(s => s.ReturnURL)
+
+        <h1>Funcionarios</h1>
+        <div>
+            <button type="Jugador"><img src="~/Views/Funcionario/jugador.png" alt="x">Jugador</button>
+            <button type="Entrenador"><img src="~/Views/Funcionario/entrenador.png" alt="x">Entrenador</button>
+            <button type="Arbitro"><img src="~/Views/Funcionario/arbitro.png" alt="x">Arbitro</button>
+        </div>
+    }
+</body>
+</html>
+
