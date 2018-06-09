@@ -12,10 +12,8 @@ public class clArbitro
 {
     public clArbitro()
     {
-        //
-        // TODO: Add constructor logic here
-        //
     }
+
     [DataMember]
     public int idArbitro { get; set; }
     [DataMember]
