@@ -15,7 +15,7 @@
             <div class="navbar-collapse collapse">
                 <ul class=" nav nav-pills">
                     <li role="presentation"><a href="/Home/Index">Home</a></li>
-                    <li role="presentation"><a href="/Home/Torneo">Control de Torneo</a></li>
+                    <li>@Html.ActionLink("Control de Torneo","Index","Torneos")</li>
                     <li>@Html.ActionLink("Control de Jugador", "Index", "Jugadors")</li>
                     <li>@Html.ActionLink("Control de Entrenador", "Index", "Entrenadors")</li>
                     <li>@Html.ActionLink("Control de Funcionario", "Index", "Funcionarios")</li>
