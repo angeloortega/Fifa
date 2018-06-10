@@ -1,22 +1,25 @@
-﻿@model Fifa19.Models.Torneo
+﻿@model Fifa19.Models.FechaTorneo
 
 @{
     ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h4>"     "</h4>
+
 <h2>Edit</h2>
+
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Torneo</h4>
+        <h4>FechaTorneo</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.idCompeticion)
+
         @Html.HiddenFor(model => model.anho)
+
+        @Html.HiddenFor(model => model.nroFecha)
 
         <div class="form-group">
             @Html.LabelFor(model => model.usuarioCreacion, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -61,3 +64,7 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,4 +1,4 @@
-﻿@model Fifa19.Models.Partido
+﻿@model Fifa19.Models.FechaTorneo
 
 @{
     ViewBag.Title = "Delete";
@@ -8,33 +8,9 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Partido</h4>
+    <h4>FechaTorneo</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.fecha)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fecha)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.golesCasa)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.golesCasa)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.golesVisita)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.golesVisita)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.usuarioCreacion)
         </dt>
@@ -68,27 +44,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Club.nombre)
+            @Html.DisplayNameFor(model => model.Torneo.usuarioCreacion)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Club.nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Club1.nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Club1.nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaTorneo.usuarioCreacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaTorneo.usuarioCreacion)
+            @Html.DisplayFor(model => model.Torneo.usuarioCreacion)
         </dd>
 
     </dl>

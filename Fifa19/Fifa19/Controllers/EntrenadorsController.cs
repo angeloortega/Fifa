@@ -24,7 +24,7 @@ namespace Fifa19.Controllers
         // GET: Entrenadors/Details/5
         public ActionResult Details(decimal id)
         {
-            if (id == null)
+            if (id == -1)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -64,7 +64,7 @@ namespace Fifa19.Controllers
         // GET: Entrenadors/Edit/5
         public ActionResult Edit(decimal id)
         {
-            if (id == null)
+            if (id == -1)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }

@@ -161,6 +161,7 @@
     <Compile Include="Controllers\CompeticionsController.cs" />
     <Compile Include="Controllers\EntrenadorsController.cs" />
     <Compile Include="Controllers\EspecialidadsController.cs" />
+    <Compile Include="Controllers\FechaTorneosController.cs" />
     <Compile Include="Controllers\FederacionsController.cs" />
     <Compile Include="Controllers\FuncionariosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -453,16 +454,22 @@
     <Content Include="Views\Competicions\Details.cshtml" />
     <Content Include="Views\Competicions\Edit.cshtml" />
     <Content Include="Views\Competicions\Index.cshtml" />
-    <Content Include="Views\Partidoes\Create.cshtml" />
-    <Content Include="Views\Partidoes\Delete.cshtml" />
-    <Content Include="Views\Partidoes\Details.cshtml" />
-    <Content Include="Views\Partidoes\Edit.cshtml" />
-    <Content Include="Views\Partidoes\Index.cshtml" />
     <Content Include="Views\Especialidads\Create.cshtml" />
     <Content Include="Views\Especialidads\Delete.cshtml" />
     <Content Include="Views\Especialidads\Details.cshtml" />
     <Content Include="Views\Especialidads\Edit.cshtml" />
     <Content Include="Views\Especialidads\Index.cshtml" />
+    <Content Include="Views\Partidoes\Create.cshtml" />
+    <Content Include="Views\Partidoes\Delete.cshtml" />
+    <Content Include="Views\Partidoes\Details.cshtml" />
+    <Content Include="Views\Partidoes\Edit.cshtml" />
+    <Content Include="Views\Partidoes\Index.cshtml" />
+    <Content Include="Views\FechaTorneos\Create.cshtml" />
+    <Content Include="Views\FechaTorneos\Delete.cshtml" />
+    <Content Include="Views\FechaTorneos\Details.cshtml" />
+    <Content Include="Views\FechaTorneos\Edit.cshtml" />
+    <Content Include="Views\FechaTorneos\Index.cshtml" />
+    <Content Include="Views\Torneos\AddFecha.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

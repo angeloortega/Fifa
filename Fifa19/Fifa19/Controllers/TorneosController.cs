@@ -22,13 +22,13 @@ namespace Fifa19.Controllers
         }
 
         // GET: Torneos/Details/5
-        public ActionResult Details(decimal id)
+        public ActionResult Details(decimal id, decimal id2)
         {
-            if (id == null)
+            if (id == null || id2 == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Torneo torneo = db.Torneo.Find(id);
+            Torneo torneo = db.Torneo.Find(id, id2);
             if (torneo == null)
             {
                 return HttpNotFound();
@@ -62,18 +62,19 @@ namespace Fifa19.Controllers
         }
 
         // GET: Torneos/Edit/5
-        public ActionResult Edit(decimal id)
+        public ActionResult Edit(decimal id, decimal id2)
         {
-            if (id == null)
+            if (id == null || id2 == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Torneo torneo = db.Torneo.Find(id);
+            Torneo torneo = db.Torneo.Find(id, id2);
             if (torneo == null)
             {
                 return HttpNotFound();
             }
             ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "nbrCompeticion", torneo.idCompeticion);
+            ViewBag.anho = new SelectList(db.Competicion, "anho", "anho", torneo.anho);
             return View(torneo);
         }
 
@@ -91,17 +92,18 @@ namespace Fifa19.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "nbrCompeticion", torneo.idCompeticion);
+            ViewBag.anho = new SelectList(db.Competicion, "anho", "anho", torneo.anho);
             return View(torneo);
         }
 
         // GET: Torneos/Delete/5
-        public ActionResult Delete(decimal id)
+        public ActionResult Delete(decimal id, decimal id2)
         {
-            if (id == null)
+            if (id == null || id2 == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Torneo torneo = db.Torneo.Find(id);
+            Torneo torneo = db.Torneo.Find(id, id2);
             if (torneo == null)
             {
                 return HttpNotFound();
@@ -109,12 +111,27 @@ namespace Fifa19.Controllers
             return View(torneo);
         }
 
+        public ActionResult AddFecha(decimal id, decimal id2)
+        {
+            if (id == null || id2 == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Torneo torneo = db.Torneo.Find(id, id2);
+            if (torneo == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(torneo);
+        }
+
         // POST: Torneos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(decimal id)
+        public ActionResult DeleteConfirmed(decimal id, decimal id2)
         {
-            Torneo torneo = db.Torneo.Find(id);
+            Torneo torneo = db.Torneo.Find(id, id2);
             db.Torneo.Remove(torneo);
             db.SaveChanges();
             return RedirectToAction("Index");

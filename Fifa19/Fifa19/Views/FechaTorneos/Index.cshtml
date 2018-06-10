@@ -1,17 +1,19 @@
-﻿@model IEnumerable<Fifa19.Models.Torneo>
+﻿@model IEnumerable<Fifa19.Models.FechaTorneo>
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h4>"     "</h4>
-<h2>Index</h2>
-
+<h2>Fecha de Torneo</h2>
+<h3>Fecha de Torneo</h3>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Agregar Fecha ", "Create")
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Torneo.idCompeticion)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.usuarioCreacion)
         </th>
@@ -24,14 +26,15 @@
         <th>
             @Html.DisplayNameFor(model => model.fchModificacion)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Competicion.nbrCompeticion)
-        </th>
+        
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Torneo.idCompeticion)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.usuarioCreacion)
         </td>
@@ -44,14 +47,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.fchModificacion)
         </td>
+        
         <td>
-            @Html.DisplayFor(modelItem => item.Competicion.nbrCompeticion)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.idCompeticion, id2 = item.anho }) |
-            @Html.ActionLink("Details", "Details", new { id = item.idCompeticion, id2 = item.anho }) |
-            @Html.ActionLink("Agregar Fecha", "AddFecha", new { id = item.idCompeticion, id2 = item.anho })
-            @Html.ActionLink("Delete", "Delete", new { id = item.idCompeticion, id2 = item.anho })
+            @Html.ActionLink("Edit", "Edit", new {id=item.idCompeticion}) |
+            @Html.ActionLink("Details", "Details", new { id=item.idCompeticion }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idCompeticion })
         </td>
     </tr>
 }
