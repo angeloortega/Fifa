@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FootballModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FootballModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Arbitro">
           <Key>
             <PropertyRef Name="idArbitro" />
@@ -1021,6 +1021,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sp_generarTablaPosiciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FIFA">
+          <Parameter Name="idCampeonato" Type="numeric" Mode="In" />
+          <Parameter Name="anho" Type="numeric" Mode="In" />
+        </Function>
         <EntityContainer Name="FootballModelStoreContainer">
           <EntitySet Name="Arbitro" EntityType="Self.Arbitro" Schema="FIFA" store:Type="Tables" />
           <EntitySet Name="ArbitroxPartido" EntityType="Self.ArbitroxPartido" Schema="FIFA" store:Type="Tables" />
@@ -1202,8 +1206,7 @@
             <End Role="TorneoXClub" EntitySet="TorneoXClub" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FootballModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -2475,7 +2478,21 @@
             <End Role="Torneo" EntitySet="Torneo" />
             <End Role="TorneoXClub" EntitySet="TorneoXClub" />
           </AssociationSet>
+          <FunctionImport Name="sp_generarTablaPosiciones" ReturnType="Collection(FootballModel.sp_generarTablaPosiciones_Result)">
+            <Parameter Name="idCampeonato" Mode="In" Type="Decimal" />
+            <Parameter Name="anho" Mode="In" Type="Decimal" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="sp_generarTablaPosiciones_Result">
+          <Property Type="Decimal" Name="idEquipo" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="Decimal" Name="partidosJugados" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="Decimal" Name="partidosGanados" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="Decimal" Name="partidosEmpatados" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="Decimal" Name="partidosPedridos" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="Decimal" Name="golesAFavor" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="golesEnContra" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="puntos" Nullable="true" Precision="3" Scale="0" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2982,6 +2999,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_generarTablaPosiciones" FunctionName="FootballModel.Store.sp_generarTablaPosiciones">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FootballModel.sp_generarTablaPosiciones_Result">
+                <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+                <ScalarProperty Name="partidosJugados" ColumnName="partidosJugados" />
+                <ScalarProperty Name="partidosGanados" ColumnName="partidosGanados" />
+                <ScalarProperty Name="partidosEmpatados" ColumnName="partidosEmpatados" />
+                <ScalarProperty Name="partidosPedridos" ColumnName="partidosPedridos" />
+                <ScalarProperty Name="golesAFavor" ColumnName="golesAFavor" />
+                <ScalarProperty Name="golesEnContra" ColumnName="golesEnContra" />
+                <ScalarProperty Name="puntos" ColumnName="puntos" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

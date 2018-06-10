@@ -274,6 +274,9 @@
     <Compile Include="Models\SocioxClub.cs">
       <DependentUpon>modeloSolicitud.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_generarTablaPosiciones_Result.cs">
+      <DependentUpon>modeloSolicitud.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TelefonoxFuncionario.cs">
       <DependentUpon>modeloSolicitud.tt</DependentUpon>
     </Compile>
@@ -454,11 +457,6 @@
     <Content Include="Views\Competicions\Details.cshtml" />
     <Content Include="Views\Competicions\Edit.cshtml" />
     <Content Include="Views\Competicions\Index.cshtml" />
-    <Content Include="Views\Especialidads\Create.cshtml" />
-    <Content Include="Views\Especialidads\Delete.cshtml" />
-    <Content Include="Views\Especialidads\Details.cshtml" />
-    <Content Include="Views\Especialidads\Edit.cshtml" />
-    <Content Include="Views\Especialidads\Index.cshtml" />
     <Content Include="Views\Partidoes\Create.cshtml" />
     <Content Include="Views\Partidoes\Delete.cshtml" />
     <Content Include="Views\Partidoes\Details.cshtml" />
@@ -470,6 +468,12 @@
     <Content Include="Views\FechaTorneos\Edit.cshtml" />
     <Content Include="Views\FechaTorneos\Index.cshtml" />
     <Content Include="Views\Torneos\AddFecha.cshtml" />
+    <Content Include="Views\Especialidads\Create.cshtml" />
+    <Content Include="Views\Especialidads\Delete.cshtml" />
+    <Content Include="Views\Especialidads\Details.cshtml" />
+    <Content Include="Views\Especialidads\Edit.cshtml" />
+    <Content Include="Views\Especialidads\Index.cshtml" />
+    <Content Include="Views\Torneos\Positions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

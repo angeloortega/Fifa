@@ -1,0 +1,41 @@
+﻿@model Fifa19.Models.sp_generarTablaPosiciones_Result
+
+@{
+    ViewBag.Title = "Positions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h4>"     "</h4>
+<h2>Positions</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idEquipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.partidosJugados)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.partidosGanados)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.partidosEmpatados)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.partidosPedridos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.golesAFavor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.golesEnContra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.puntos)
+        </th>
+        <th></th>
+    </tr>
+
+</table>
+
+

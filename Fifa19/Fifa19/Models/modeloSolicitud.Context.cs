@@ -12,6 +12,8 @@ namespace Fifa19.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class FootballEntities : DbContext
     {
@@ -60,5 +62,18 @@ namespace Fifa19.Models
         public virtual DbSet<TorneoHistorico> TorneoHistorico { get; set; }
         public virtual DbSet<TorneoXClub> TorneoXClub { get; set; }
         public virtual DbSet<TorneoXClubHistorico> TorneoXClubHistorico { get; set; }
+    
+        public virtual ObjectResult<sp_generarTablaPosiciones_Result> sp_generarTablaPosiciones(Nullable<decimal> idCampeonato, Nullable<decimal> anho)
+        {
+            var idCampeonatoParameter = idCampeonato.HasValue ?
+                new ObjectParameter("idCampeonato", idCampeonato) :
+                new ObjectParameter("idCampeonato", typeof(decimal));
+    
+            var anhoParameter = anho.HasValue ?
+                new ObjectParameter("anho", anho) :
+                new ObjectParameter("anho", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_generarTablaPosiciones_Result>("sp_generarTablaPosiciones", idCampeonatoParameter, anhoParameter);
+        }
     }
 }
