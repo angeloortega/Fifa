@@ -1,0 +1,99 @@
+﻿@model Fifa19.Models.Funcionario
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Funcionario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fchNacimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fchNacimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.foto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.foto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usuarioCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuarioCreacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usuarioModificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuarioModificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fchCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fchCreacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fchModificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fchModificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Club.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Club.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entrenador.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entrenador.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Jugador.usuarioCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Jugador.usuarioCreacion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.codigoFuncionario }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

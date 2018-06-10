@@ -1,0 +1,75 @@
+﻿@model Fifa19.Models.Entrenador
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Entrenador</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fchInicioCarrera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fchInicioCarrera)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usuarioCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuarioCreacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usuarioModificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuarioModificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fchCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fchCreacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fchModificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fchModificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Funcionario.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Funcionario.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.codigoFuncionario }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

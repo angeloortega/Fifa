@@ -26,5 +26,26 @@ namespace Fifa19.Controllers
 
             return View();
         }
+
+        public ActionResult Jugador()
+        {
+            ViewBag.Message = "Jugador Page";
+
+            return View();
+        }
+
+        public ActionResult Entrenador()
+        {
+            ViewBag.Message = "Entrenador Page";
+
+            return View();
+        }
+
+        public ActionResult Funcionario()
+        {
+            ViewBag.Message = "Funcionario Page";
+
+            return View();
+        }
     }
 }

@@ -156,7 +156,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\EntrenadorsController.cs" />
+    <Compile Include="Controllers\FuncionariosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JugadorsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -370,9 +373,9 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Views\Funcionario\arbitro.png" />
-    <Content Include="Views\Funcionario\entrenador.png" />
-    <Content Include="Views\Funcionario\jugador.png" />
+    <Content Include="Views\FuncionarioImg\arbitro.png" />
+    <Content Include="Views\FuncionarioImg\entrenador.png" />
+    <Content Include="Views\FuncionarioImg\jugador.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -396,11 +399,27 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\LogIn\logIn.cshtml" />
-    <Content Include="Views\Funcionario\menuFuncionario.cshtml" />
+    <Content Include="Views\FuncionarioImg\menuFuncionario.cshtml" />
+    <Content Include="Views\Jugadors\Create.cshtml" />
+    <Content Include="Views\Jugadors\Delete.cshtml" />
+    <Content Include="Views\Jugadors\Details.cshtml" />
+    <Content Include="Views\Jugadors\Edit.cshtml" />
+    <Content Include="Views\Jugadors\Index.cshtml" />
+    <Content Include="Views\Funcionarios\Create.cshtml" />
+    <Content Include="Views\Funcionarios\Delete.cshtml" />
+    <Content Include="Views\Funcionarios\Details.cshtml" />
+    <Content Include="Views\Funcionarios\Edit.cshtml" />
+    <Content Include="Views\Funcionarios\Index.cshtml" />
+    <Content Include="Views\Entrenadors\Create.cshtml" />
+    <Content Include="Views\Entrenadors\Delete.cshtml" />
+    <Content Include="Views\Entrenadors\Details.cshtml" />
+    <Content Include="Views\Entrenadors\Edit.cshtml" />
+    <Content Include="Views\Entrenadors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\LogIn\" />
+    <Folder Include="Views\menuFuncionario\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

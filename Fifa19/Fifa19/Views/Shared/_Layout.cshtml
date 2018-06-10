@@ -16,7 +16,9 @@
                 <ul class=" nav nav-pills">
                     <li role="presentation"><a href="/Home/Index">Home</a></li>
                     <li role="presentation"><a href="/Home/Torneo">Control de Torneo</a></li>
-                    <li role="presentation"><a href="/Home/Funcionario">Control de Funcionario</a></li>
+                    <li>@Html.ActionLink("Control de Jugador", "Index", "Jugadors")</li>
+                    <li>@Html.ActionLink("Control de Entrenador", "Index", "Entrenadors")</li>
+                    <li>@Html.ActionLink("Control de Funcionario", "Index", "Funcionarios")</li>
                     <li role="presentation"><a href="/Home/Socio">Control de Socio</a></li>
                     <li role="presentation"><a href="/Home/Federacion">Control de Federacion</a></li>
                     <li role="presentation"><a href="/Home/Club">Control de Club</a></li>
