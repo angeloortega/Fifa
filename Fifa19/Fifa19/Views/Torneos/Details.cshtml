@@ -1,4 +1,4 @@
-﻿@model Fifa19.Models.Entrenador
+﻿@model Fifa19.Models.Torneo
 
 @{
     ViewBag.Title = "Details";
@@ -8,25 +8,9 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Entrenador</h4>
+    <h4>Torneo</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.fchInicioCarrera)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fchInicioCarrera)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.usuarioCreacion)
         </dt>
@@ -60,16 +44,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Funcionario.nombre)
+            @Html.DisplayNameFor(model => model.Competicion.nbrCompeticion)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Funcionario.nombre)
+            @Html.DisplayFor(model => model.Competicion.nbrCompeticion)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.codigoFuncionario }) |
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

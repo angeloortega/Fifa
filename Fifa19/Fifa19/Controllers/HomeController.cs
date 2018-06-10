@@ -47,5 +47,12 @@ namespace Fifa19.Controllers
 
             return View();
         }
+
+        public ActionResult Torneo()
+        {
+            ViewBag.Message = "Torneo Page";
+
+            return View();
+        }
     }
 }

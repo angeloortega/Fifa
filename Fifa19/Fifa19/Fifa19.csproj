@@ -160,6 +160,7 @@
     <Compile Include="Controllers\FuncionariosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JugadorsController.cs" />
+    <Compile Include="Controllers\TorneosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -415,6 +416,11 @@
     <Content Include="Views\Entrenadors\Details.cshtml" />
     <Content Include="Views\Entrenadors\Edit.cshtml" />
     <Content Include="Views\Entrenadors\Index.cshtml" />
+    <Content Include="Views\Torneos\Create.cshtml" />
+    <Content Include="Views\Torneos\Delete.cshtml" />
+    <Content Include="Views\Torneos\Details.cshtml" />
+    <Content Include="Views\Torneos\Edit.cshtml" />
+    <Content Include="Views\Torneos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
