@@ -117,12 +117,29 @@ namespace Fifa19.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Torneo torneo = db.Torneo.Find(id, id2);
+            FechaTorneo torneo = new FechaTorneo();
+            torneo.idCompeticion = id;
+            torneo.anho = id2;
             if (torneo == null)
             {
                 return HttpNotFound();
             }
 
+            return View(torneo);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddFecha([Bind(Include = "idCompeticion,anho,nroFecha,usuarioCreacion,fchCreacion,usuarioModificacion,fchModificacion")] FechaTorneo torneo)
+        {
+            if (ModelState.IsValid)
+            {
+                db.FechaTorneo.Add(torneo);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "nbrCompeticion", torneo.idCompeticion);
             return View(torneo);
         }
 
