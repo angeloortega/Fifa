@@ -39,7 +39,7 @@ namespace Fifa19.Controllers
         // GET: Funcionarios/Create
         public ActionResult Create()
         {
-            ViewBag.idClub = new SelectList(db.Club, "idClub", "nombre");
+            ViewBag.idClub = new SelectList(db.Club, "idClub", "no mbre");
             ViewBag.codigoFuncionario = new SelectList(db.Entrenador, "codigoFuncionario", "nombre");
             ViewBag.codigoFuncionario = new SelectList(db.Jugador, "codigoFuncionario", "usuarioCreacion");
             return View();
