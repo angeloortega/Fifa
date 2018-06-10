@@ -1,29 +1,38 @@
-﻿@model Fifa19.Models.Club
+﻿@model Fifa19.Models.Partido
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h4>"     "</h4>
 <h2>Details</h2>
 
 <div>
-    <h4>Club</h4>
+    <h4>Partido</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.nombre)
+            @Html.DisplayNameFor(model => model.fecha)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.nombre)
+            @Html.DisplayFor(model => model.fecha)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.fchFundacion)
+            @Html.DisplayNameFor(model => model.golesCasa)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.fchFundacion)
+            @Html.DisplayFor(model => model.golesCasa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.golesVisita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.golesVisita)
         </dd>
 
         <dt>
@@ -59,16 +68,32 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Federacion.nombre)
+            @Html.DisplayNameFor(model => model.Club.nombre)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Federacion.nombre)
+            @Html.DisplayFor(model => model.Club.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Club1.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Club1.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaTorneo.usuarioCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaTorneo.usuarioCreacion)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idClub }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idPartido }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

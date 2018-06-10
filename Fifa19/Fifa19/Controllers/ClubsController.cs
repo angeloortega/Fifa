@@ -39,7 +39,7 @@ namespace Fifa19.Controllers
         // GET: Clubs/Create
         public ActionResult Create()
         {
-            ViewBag.idFederacion = new SelectList(db.Federacion, "idFederacion", "nombre");
+            ViewBag.idFederacion = new SelectList(db.Federacion, "idFederacion", "idFederacion");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace Fifa19.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idFederacion = new SelectList(db.Federacion, "idFederacion", "nombre", club.idFederacion);
+            ViewBag.idFederacion = new SelectList(db.Federacion, "idFederacion", "idFederacion", club.idFederacion);
             return View(club);
         }
 
@@ -73,7 +73,7 @@ namespace Fifa19.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.idFederacion = new SelectList(db.Federacion, "idFederacion", "nombre", club.idFederacion);
+            ViewBag.idFederacion = new SelectList(db.Federacion, "idFederacion", "idFederacion", club.idFederacion);
             return View(club);
         }
 
@@ -90,7 +90,7 @@ namespace Fifa19.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.idFederacion = new SelectList(db.Federacion, "idFederacion", "nombre", club.idFederacion);
+            ViewBag.idFederacion = new SelectList(db.Federacion, "idFederacion", "idFederacion", club.idFederacion);
             return View(club);
         }
 

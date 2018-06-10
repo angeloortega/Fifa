@@ -1,29 +1,30 @@
-﻿@model Fifa19.Models.Socio
+﻿@model Fifa19.Models.Competicion
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h4>"     "</h4>
 <h2>Details</h2>
 
 <div>
-    <h4>Socio</h4>
+    <h4>Competicion</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.nombre)
+            @Html.DisplayNameFor(model => model.nbrCompeticion)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.nombre)
+            @Html.DisplayFor(model => model.nbrCompeticion)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.fchNacimiento)
+            @Html.DisplayNameFor(model => model.tipo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.fchNacimiento)
+            @Html.DisplayFor(model => model.tipo)
         </dd>
 
         <dt>
@@ -58,9 +59,17 @@
             @Html.DisplayFor(model => model.fchModificacion)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Federacion.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Federacion.nombre)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.codigoSocio }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdCompeticion }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

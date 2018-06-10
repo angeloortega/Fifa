@@ -1,7 +1,8 @@
-﻿@model IEnumerable<Fifa19.Models.Socio>
+﻿@model IEnumerable<Fifa19.Models.Arbitro>
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h4>"     "</h4>
 <h2>Index</h2>
@@ -12,10 +13,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.nombre)
+            @Html.DisplayNameFor(model => model.categoria)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fchNacimiento)
+            @Html.DisplayNameFor(model => model.nombre)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.usuarioCreacion)
@@ -35,10 +36,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.nombre)
+            @Html.DisplayFor(modelItem => item.categoria)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.fchNacimiento)
+            @Html.DisplayFor(modelItem => item.nombre)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.usuarioCreacion)
@@ -53,9 +54,9 @@
             @Html.DisplayFor(modelItem => item.fchModificacion)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.codigoSocio }) |
-            @Html.ActionLink("Details", "Details", new { id=item.codigoSocio }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.codigoSocio })
+            @Html.ActionLink("Edit", "Edit", new { id=item.idArbitro }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idArbitro }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idArbitro })
         </td>
     </tr>
 }

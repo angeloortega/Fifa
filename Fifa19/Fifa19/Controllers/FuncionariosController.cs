@@ -59,7 +59,7 @@ namespace Fifa19.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idClub = new SelectList(db.Club, "idClub", "nombre", funcionario.idClub);
+            ViewBag.idClub = new SelectList(db.Club, "idClub", "idClub", funcionario.idClub);
             ViewBag.codigoFuncionario = new SelectList(db.Entrenador, "codigoFuncionario", "nombre", funcionario.codigoFuncionario);
             ViewBag.codigoFuncionario = new SelectList(db.Jugador, "codigoFuncionario", "usuarioCreacion", funcionario.codigoFuncionario);
             return View(funcionario);
@@ -77,7 +77,7 @@ namespace Fifa19.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.idClub = new SelectList(db.Club, "idClub", "nombre", funcionario.idClub);
+            ViewBag.idClub = new SelectList(db.Club, "idClub", "idClub", funcionario.idClub);
             ViewBag.codigoFuncionario = new SelectList(db.Entrenador, "codigoFuncionario", "nombre", funcionario.codigoFuncionario);
             ViewBag.codigoFuncionario = new SelectList(db.Jugador, "codigoFuncionario", "usuarioCreacion", funcionario.codigoFuncionario);
             return View(funcionario);
@@ -96,7 +96,7 @@ namespace Fifa19.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.idClub = new SelectList(db.Club, "idClub", "nombre", funcionario.idClub);
+            ViewBag.idClub = new SelectList(db.Club, "idClub", "idClub", funcionario.idClub);
             ViewBag.codigoFuncionario = new SelectList(db.Entrenador, "codigoFuncionario", "nombre", funcionario.codigoFuncionario);
             ViewBag.codigoFuncionario = new SelectList(db.Jugador, "codigoFuncionario", "usuarioCreacion", funcionario.codigoFuncionario);
             return View(funcionario);

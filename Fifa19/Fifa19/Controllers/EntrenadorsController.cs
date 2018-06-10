@@ -57,7 +57,7 @@ namespace Fifa19.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.codigoFuncionario = new SelectList(db.Funcionario, "codigoFuncionario", "nombre", entrenador.codigoFuncionario);
+            ViewBag.codigoFuncionario = new SelectList(db.Funcionario, "codigoFuncionario", "idClub", entrenador.codigoFuncionario);
             return View(entrenador);
         }
 

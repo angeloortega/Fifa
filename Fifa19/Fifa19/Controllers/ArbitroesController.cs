@@ -10,112 +10,107 @@ using Fifa19.Models;
 
 namespace Fifa19.Controllers
 {
-    public class TorneosController : Controller
+    public class ArbitroesController : Controller
     {
         private FootballEntities db = new FootballEntities();
 
-        // GET: Torneos
+        // GET: Arbitroes
         public ActionResult Index()
         {
-            var torneo = db.Torneo.Include(t => t.Competicion);
-            return View(torneo.ToList());
+            return View(db.Arbitro.ToList());
         }
 
-        // GET: Torneos/Details/5
+        // GET: Arbitroes/Details/5
         public ActionResult Details(decimal id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Torneo torneo = db.Torneo.Find(id);
-            if (torneo == null)
+            Arbitro arbitro = db.Arbitro.Find(id);
+            if (arbitro == null)
             {
                 return HttpNotFound();
             }
-            return View(torneo);
+            return View(arbitro);
         }
 
-        // GET: Torneos/Create
+        // GET: Arbitroes/Create
         public ActionResult Create()
         {
-            ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "IdCompeticion");
             return View();
         }
 
-        // POST: Torneos/Create
+        // POST: Arbitroes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idCompeticion,anho,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Torneo torneo)
+        public ActionResult Create([Bind(Include = "idArbitro,categoria,nombre,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Arbitro arbitro)
         {
             if (ModelState.IsValid)
             {
-                db.Torneo.Add(torneo);
+                db.Arbitro.Add(arbitro);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "nbrCompeticion", torneo.idCompeticion);
-            return View(torneo);
+            return View(arbitro);
         }
 
-        // GET: Torneos/Edit/5
+        // GET: Arbitroes/Edit/5
         public ActionResult Edit(decimal id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Torneo torneo = db.Torneo.Find(id);
-            if (torneo == null)
+            Arbitro arbitro = db.Arbitro.Find(id);
+            if (arbitro == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "nbrCompeticion", torneo.idCompeticion);
-            return View(torneo);
+            return View(arbitro);
         }
 
-        // POST: Torneos/Edit/5
+        // POST: Arbitroes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idCompeticion,anho,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Torneo torneo)
+        public ActionResult Edit([Bind(Include = "idArbitro,categoria,nombre,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Arbitro arbitro)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(torneo).State = EntityState.Modified;
+                db.Entry(arbitro).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "nbrCompeticion", torneo.idCompeticion);
-            return View(torneo);
+            return View(arbitro);
         }
 
-        // GET: Torneos/Delete/5
+        // GET: Arbitroes/Delete/5
         public ActionResult Delete(decimal id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Torneo torneo = db.Torneo.Find(id);
-            if (torneo == null)
+            Arbitro arbitro = db.Arbitro.Find(id);
+            if (arbitro == null)
             {
                 return HttpNotFound();
             }
-            return View(torneo);
+            return View(arbitro);
         }
 
-        // POST: Torneos/Delete/5
+        // POST: Arbitroes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(decimal id)
         {
-            Torneo torneo = db.Torneo.Find(id);
-            db.Torneo.Remove(torneo);
+            Arbitro arbitro = db.Arbitro.Find(id);
+            db.Arbitro.Remove(arbitro);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
