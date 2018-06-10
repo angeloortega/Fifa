@@ -81,7 +81,7 @@ namespace Fifa19.Controllers
             }
             ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "nbrCompeticion", torneo.idCompeticion);
             ViewBag.anho = new SelectList(db.Competicion, "anho", "anho", torneo.anho);
-            return View(torneo);
+            return View(torneo); 
         }
 
         // POST: Torneos/Edit/5
