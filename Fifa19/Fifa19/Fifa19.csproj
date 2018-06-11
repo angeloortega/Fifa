@@ -274,7 +274,19 @@
     <Compile Include="Models\SocioxClub.cs">
       <DependentUpon>modeloSolicitud.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_desempenhoArbitroTorneo_Result.cs">
+      <DependentUpon>modeloSolicitud.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_generarTablaPosiciones_Result.cs">
+      <DependentUpon>modeloSolicitud.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_obtenerEncuentrosHistoricos_Result.cs">
+      <DependentUpon>modeloSolicitud.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_obtenerListaEquiposEntrenador_Result.cs">
+      <DependentUpon>modeloSolicitud.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_obtenerListaEquiposJugador_Result.cs">
       <DependentUpon>modeloSolicitud.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TelefonoxFuncionario.cs">
@@ -474,11 +486,12 @@
     <Content Include="Views\Especialidads\Edit.cshtml" />
     <Content Include="Views\Especialidads\Index.cshtml" />
     <Content Include="Views\Torneos\Positions.cshtml" />
+    <Content Include="Views\Jugadors\HistorialEquipos.cshtml" />
+    <Content Include="Views\Entrenadors\HistorialEntrenador.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\LogIn\" />
-    <Folder Include="Views\menuFuncionario\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

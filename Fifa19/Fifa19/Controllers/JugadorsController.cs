@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -19,6 +20,22 @@ namespace Fifa19.Controllers
         {
             var jugador = db.Jugador.Include(j => j.Funcionario);
             return View(jugador.ToList());
+        }
+        
+        public ActionResult HistorialEquipos(decimal id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Jugador jugador = db.Jugador.Find(id);
+            if (jugador == null)
+            {
+                return HttpNotFound();
+            }
+            SqlParameter p1 = new SqlParameter("@codigoFuncionario", id);
+            var lista = db.Database.SqlQuery<sp_obtenerListaEquiposJugador_Result>("exec FIFA.sp_obtenerListaEquiposJugador @codigoFuncionario", p1);
+            return View(lista.ToList());
         }
 
         // GET: Jugadors/Details/5

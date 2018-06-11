@@ -11,16 +11,15 @@ namespace Fifa19.Models
 {
     using System;
     
-    public partial class sp_generarTablaPosiciones_Result
+    public partial class sp_obtenerListaEquiposEntrenador_Result
     {
-        public string nombre { get; set; }
         public Nullable<decimal> idEquipo { get; set; }
-        public Nullable<decimal> partidosJugados { get; set; }
-        public Nullable<decimal> partidosGanados { get; set; }
-        public Nullable<decimal> partidosEmpatados { get; set; }
-        public Nullable<decimal> partidosPedridos { get; set; }
-        public Nullable<decimal> golesAFavor { get; set; }
-        public Nullable<decimal> golesEnContra { get; set; }
-        public Nullable<decimal> puntos { get; set; }
+        public Nullable<System.DateTime> fchInicio { get; set; }
+        public Nullable<System.DateTime> fchFin { get; set; }
+        public Nullable<decimal> idCompetencia { get; set; }
+        public Nullable<decimal> anho { get; set; }
+        public string tipoCompetencia { get; set; }
+        public Nullable<decimal> posicion { get; set; }
+        public string sinopsis { get; set; }
     }
 }

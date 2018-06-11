@@ -1,4 +1,4 @@
-﻿@model Fifa19.Models.sp_generarTablaPosiciones_Result
+﻿@model IEnumerable<Fifa19.Models.sp_generarTablaPosiciones_Result>
 
 @{
     ViewBag.Title = "Positions";
@@ -10,32 +10,64 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.idEquipo)
+            Id Equipo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.partidosJugados)
+            Partidos Jugados
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.partidosGanados)
+            Partidos Ganados
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.partidosEmpatados)
+            Partidos Empatados
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.partidosPedridos)
+            Partidos Perdidos
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.golesAFavor)
+            Goles a favor
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.golesEnContra)
+            Goles en contra
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.puntos)
+            Puntos
         </th>
         <th></th>
     </tr>
 
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.partidosJugados)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.partidosGanados)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.partidosEmpatados)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.partidosPedridos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.golesAFavor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.golesEnContra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.puntos)
+            </td>
+        </tr>
+    }
+
 </table>
+
+@Html.ActionLink("Back to List", "Index")
 
 

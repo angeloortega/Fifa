@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Fifa19.Models.sp_obtenerListaEquiposEntrenador_Result>
+
+@{
+    ViewBag.Title = "HistorialEntrenador";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h4>"     "</h4>
+<h2>Historial Equipos</h2>
+<table class="table">
+    <tr>
+        <th>
+            Id Equipo
+        </th>
+        <th>
+            Fecha Inicio
+        </th>
+        <th>
+            Fecha Fin
+        </th>
+        <th>
+            Id Competencia
+        </th>
+        <th>
+            Año
+        </th>
+        <th>
+            Tipo de Competencia
+        </th>
+        <th>
+            Posicion
+        </th>
+        <th>
+            Sinopsis
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idEquipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fchInicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fchFin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idCompetencia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.anho)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipoCompetencia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.posicion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sinopsis)
+        </td>
+    </tr>
+    }
+
+</table>
+
+@Html.ActionLink("Back to List", "Index")

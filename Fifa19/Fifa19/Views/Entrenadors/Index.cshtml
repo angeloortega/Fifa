@@ -60,9 +60,10 @@
             @Html.DisplayFor(modelItem => item.Funcionario.nombre)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.codigoFuncionario }) |
-            @Html.ActionLink("Details", "Details", new { id=item.codigoFuncionario }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.codigoFuncionario })
+            @Html.ActionLink("Edit", "Edit", new { id = item.codigoFuncionario }) |
+            @Html.ActionLink("Details", "Details", new { id = item.codigoFuncionario }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.codigoFuncionario }) |
+            @Html.ActionLink("Club History", "HistorialEntrenador", new { id = item.codigoFuncionario })
         </td>
     </tr>
 }

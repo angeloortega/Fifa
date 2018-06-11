@@ -1021,8 +1021,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sp_desempenhoArbitroTorneo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FIFA">
+          <Parameter Name="idCampeonato" Type="numeric" Mode="In" />
+          <Parameter Name="anho" Type="numeric" Mode="In" />
+        </Function>
         <Function Name="sp_generarTablaPosiciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FIFA">
           <Parameter Name="idCampeonato" Type="numeric" Mode="In" />
+          <Parameter Name="anho" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="sp_obtenerEncuentrosHistoricos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FIFA">
+          <Parameter Name="equipo1" Type="numeric" Mode="In" />
+          <Parameter Name="equipo2" Type="numeric" Mode="In" />
+          <Parameter Name="fechaInicio" Type="date" Mode="In" />
+        </Function>
+        <Function Name="sp_obtenerListaEquiposEntrenador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FIFA">
+          <Parameter Name="codigoFuncionario" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="sp_obtenerListaEquiposJugador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FIFA">
+          <Parameter Name="codigoFuncionario" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="sp_simulacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FIFA">
+          <Parameter Name="idCompetencia" Type="numeric" Mode="In" />
           <Parameter Name="anho" Type="numeric" Mode="In" />
         </Function>
         <EntityContainer Name="FootballModelStoreContainer">
@@ -2482,6 +2501,25 @@
             <Parameter Name="idCampeonato" Mode="In" Type="Decimal" />
             <Parameter Name="anho" Mode="In" Type="Decimal" />
           </FunctionImport>
+          <FunctionImport Name="sp_desempenhoArbitroTorneo" ReturnType="Collection(FootballModel.sp_desempenhoArbitroTorneo_Result)">
+            <Parameter Name="idCampeonato" Mode="In" Type="Decimal" />
+            <Parameter Name="anho" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_obtenerEncuentrosHistoricos" ReturnType="Collection(FootballModel.sp_obtenerEncuentrosHistoricos_Result)">
+            <Parameter Name="equipo1" Mode="In" Type="Decimal" />
+            <Parameter Name="equipo2" Mode="In" Type="Decimal" />
+            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_obtenerListaEquiposEntrenador" ReturnType="Collection(FootballModel.sp_obtenerListaEquiposEntrenador_Result)">
+          <Parameter Name="codigoFuncionario" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_obtenerListaEquiposJugador" ReturnType="Collection(FootballModel.sp_obtenerListaEquiposJugador_Result)">
+          <Parameter Name="codigoFuncionario" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_simulacion">
+            <Parameter Name="idCompetencia" Mode="In" Type="Decimal" />
+            <Parameter Name="anho" Mode="In" Type="Decimal" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_generarTablaPosiciones_Result">
           <Property Type="Decimal" Name="idEquipo" Nullable="true" Precision="4" Scale="0" />
@@ -2492,6 +2530,40 @@
           <Property Type="Decimal" Name="golesAFavor" Nullable="true" Precision="3" Scale="0" />
           <Property Type="Decimal" Name="golesEnContra" Nullable="true" Precision="3" Scale="0" />
           <Property Type="Decimal" Name="puntos" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_desempenhoArbitroTorneo_Result">
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="Column1" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="sp_obtenerEncuentrosHistoricos_Result">
+          <Property Type="Decimal" Name="equipoCasa" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="Decimal" Name="equipoVisita" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="Decimal" Name="golesCasa" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="Decimal" Name="golesVisita" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="Decimal" Name="idCompetencia" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="anho" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="String" Name="nbrJugador" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Column1" Nullable="true" Precision="38" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="sp_obtenerListaEquiposEntrenador_Result">
+          <Property Type="Decimal" Name="idEquipo" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="DateTime" Name="fchInicio" Nullable="true" />
+          <Property Type="DateTime" Name="fchFin" Nullable="true" />
+          <Property Type="Decimal" Name="idCompetencia" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="anho" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="String" Name="tipoCompetencia" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="posicion" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="String" Name="sinopsis" Nullable="true" MaxLength="240" />
+        </ComplexType>
+        <ComplexType Name="sp_obtenerListaEquiposJugador_Result">
+          <Property Type="Decimal" Name="idEquipo" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="DateTime" Name="fchInicio" Nullable="true" />
+          <Property Type="DateTime" Name="fchFin" Nullable="true" />
+          <Property Type="Decimal" Name="idCompetencia" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="anho" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="String" Name="tipoCompetencia" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="sinopsis" Nullable="true" MaxLength="240" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3010,9 +3082,60 @@
                 <ScalarProperty Name="golesAFavor" ColumnName="golesAFavor" />
                 <ScalarProperty Name="golesEnContra" ColumnName="golesEnContra" />
                 <ScalarProperty Name="puntos" ColumnName="puntos" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_desempenhoArbitroTorneo" FunctionName="FootballModel.Store.sp_desempenhoArbitroTorneo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FootballModel.sp_desempenhoArbitroTorneo_Result">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_obtenerEncuentrosHistoricos" FunctionName="FootballModel.Store.sp_obtenerEncuentrosHistoricos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FootballModel.sp_obtenerEncuentrosHistoricos_Result">
+                <ScalarProperty Name="equipoCasa" ColumnName="equipoCasa" />
+                <ScalarProperty Name="equipoVisita" ColumnName="equipoVisita" />
+                <ScalarProperty Name="golesCasa" ColumnName="golesCasa" />
+                <ScalarProperty Name="golesVisita" ColumnName="golesVisita" />
+                <ScalarProperty Name="idCompetencia" ColumnName="idCompetencia" />
+                <ScalarProperty Name="anho" ColumnName="anho" />
+                <ScalarProperty Name="nbrJugador" ColumnName="nbrJugador" />
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_obtenerListaEquiposEntrenador" FunctionName="FootballModel.Store.sp_obtenerListaEquiposEntrenador">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FootballModel.sp_obtenerListaEquiposEntrenador_Result">
+                <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+                <ScalarProperty Name="fchInicio" ColumnName="fchInicio" />
+                <ScalarProperty Name="fchFin" ColumnName="fchFin" />
+                <ScalarProperty Name="idCompetencia" ColumnName="idCompetencia" />
+                <ScalarProperty Name="anho" ColumnName="anho" />
+                <ScalarProperty Name="tipoCompetencia" ColumnName="tipoCompetencia" />
+                <ScalarProperty Name="posicion" ColumnName="posicion" />
+                <ScalarProperty Name="sinopsis" ColumnName="sinopsis" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_obtenerListaEquiposJugador" FunctionName="FootballModel.Store.sp_obtenerListaEquiposJugador">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FootballModel.sp_obtenerListaEquiposJugador_Result">
+                <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+                <ScalarProperty Name="fchInicio" ColumnName="fchInicio" />
+                <ScalarProperty Name="fchFin" ColumnName="fchFin" />
+                <ScalarProperty Name="idCompetencia" ColumnName="idCompetencia" />
+                <ScalarProperty Name="anho" ColumnName="anho" />
+                <ScalarProperty Name="tipoCompetencia" ColumnName="tipoCompetencia" />
+                <ScalarProperty Name="sinopsis" ColumnName="sinopsis" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_simulacion" FunctionName="FootballModel.Store.sp_simulacion" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

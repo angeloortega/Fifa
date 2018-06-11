@@ -75,5 +75,66 @@ namespace Fifa19.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_generarTablaPosiciones_Result>("sp_generarTablaPosiciones", idCampeonatoParameter, anhoParameter);
         }
+    
+        public virtual ObjectResult<sp_desempenhoArbitroTorneo_Result> sp_desempenhoArbitroTorneo(Nullable<decimal> idCampeonato, Nullable<decimal> anho)
+        {
+            var idCampeonatoParameter = idCampeonato.HasValue ?
+                new ObjectParameter("idCampeonato", idCampeonato) :
+                new ObjectParameter("idCampeonato", typeof(decimal));
+    
+            var anhoParameter = anho.HasValue ?
+                new ObjectParameter("anho", anho) :
+                new ObjectParameter("anho", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_desempenhoArbitroTorneo_Result>("sp_desempenhoArbitroTorneo", idCampeonatoParameter, anhoParameter);
+        }
+    
+        public virtual ObjectResult<sp_obtenerEncuentrosHistoricos_Result> sp_obtenerEncuentrosHistoricos(Nullable<decimal> equipo1, Nullable<decimal> equipo2, Nullable<System.DateTime> fechaInicio)
+        {
+            var equipo1Parameter = equipo1.HasValue ?
+                new ObjectParameter("equipo1", equipo1) :
+                new ObjectParameter("equipo1", typeof(decimal));
+    
+            var equipo2Parameter = equipo2.HasValue ?
+                new ObjectParameter("equipo2", equipo2) :
+                new ObjectParameter("equipo2", typeof(decimal));
+    
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("fechaInicio", fechaInicio) :
+                new ObjectParameter("fechaInicio", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_obtenerEncuentrosHistoricos_Result>("sp_obtenerEncuentrosHistoricos", equipo1Parameter, equipo2Parameter, fechaInicioParameter);
+        }
+    
+        public virtual ObjectResult<sp_obtenerListaEquiposEntrenador_Result> sp_obtenerListaEquiposEntrenador(Nullable<decimal> codigoFuncionario)
+        {
+            var codigoFuncionarioParameter = codigoFuncionario.HasValue ?
+                new ObjectParameter("codigoFuncionario", codigoFuncionario) :
+                new ObjectParameter("codigoFuncionario", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_obtenerListaEquiposEntrenador_Result>("sp_obtenerListaEquiposEntrenador", codigoFuncionarioParameter);
+        }
+    
+        public virtual ObjectResult<sp_obtenerListaEquiposJugador_Result> sp_obtenerListaEquiposJugador(Nullable<decimal> codigoFuncionario)
+        {
+            var codigoFuncionarioParameter = codigoFuncionario.HasValue ?
+                new ObjectParameter("codigoFuncionario", codigoFuncionario) :
+                new ObjectParameter("codigoFuncionario", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_obtenerListaEquiposJugador_Result>("sp_obtenerListaEquiposJugador", codigoFuncionarioParameter);
+        }
+    
+        public virtual int sp_simulacion(Nullable<decimal> idCompetencia, Nullable<decimal> anho)
+        {
+            var idCompetenciaParameter = idCompetencia.HasValue ?
+                new ObjectParameter("idCompetencia", idCompetencia) :
+                new ObjectParameter("idCompetencia", typeof(decimal));
+    
+            var anhoParameter = anho.HasValue ?
+                new ObjectParameter("anho", anho) :
+                new ObjectParameter("anho", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_simulacion", idCompetenciaParameter, anhoParameter);
+        }
     }
 }
