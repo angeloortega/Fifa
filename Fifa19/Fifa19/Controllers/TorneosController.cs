@@ -37,6 +37,23 @@ namespace Fifa19.Controllers
             return View(torneo);
         }
 
+        public ActionResult Performance(decimal id, decimal id2)
+        {
+            if (id == null || id2 == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Torneo torneo = db.Torneo.Find(id, id2);
+            if (torneo == null)
+            {
+                return HttpNotFound();
+            }
+            SqlParameter p1 = new SqlParameter("@idCampeonato", id);
+            SqlParameter p2 = new SqlParameter("@anho", id2);
+            var lista = db.Database.SqlQuery<sp_desempenhoArbitroTorneo_Result>("exec FIFA.sp_desempenhoArbitroTorneo @idCampeonato, @anho", p1, p2);
+            return View(lista.ToList());
+        }
+
         // GET: Torneos/Create
         public ActionResult Create()
         {

@@ -488,6 +488,7 @@
     <Content Include="Views\Torneos\Positions.cshtml" />
     <Content Include="Views\Jugadors\HistorialEquipos.cshtml" />
     <Content Include="Views\Entrenadors\HistorialEntrenador.cshtml" />
+    <Content Include="Views\Torneos\Performance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
