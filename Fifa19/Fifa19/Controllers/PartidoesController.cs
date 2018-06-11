@@ -53,7 +53,6 @@ namespace Fifa19.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "idPartido,idCompeticion,anho,nroFecha,equipoVisita,equipoCasa,fecha,golesCasa,golesVisita,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Partido partido)
         {
-            return RedirectToAction("Index");
             if (ModelState.IsValid)
             {
                 db.Partido.Add(partido);
@@ -68,13 +67,28 @@ namespace Fifa19.Controllers
         }
 
         [HttpPost]
-        public ActionResult Partido(Partido model)
+        public ActionResult Partido(decimal id)
         {
-            ViewBag.equipoVisita = new SelectList(db.Club, "idClub", "nombre", model.equipoVisita);
-            ViewBag.equipoCasa = new SelectList(db.Club, "idClub", "nombre", model.equipoCasa);
-            ViewBag.idCompeticion = new SelectList(db.Torneo, "idCompeticion", "idCompeticion", model.idCompeticion);
-            ViewBag.nroFecha = new SelectList(db.FechaTorneo.Where(e => e.idCompeticion == model.idCompeticion), "nroFecha", "nroFecha");
-            return View(model);
+            return RedirectToAction("Index");
+            //ViewBag.equipoVisita = new SelectList(db.Club, "idClub", "nombre", model.equipoVisita);
+            //ViewBag.equipoCasa = new SelectList(db.Club, "idClub", "nombre", model.equipoCasa);
+            //ViewBag.idCompeticion = new SelectList(db.Torneo, "idCompeticion", "idCompeticion", model.idCompeticion);
+            ViewBag.nroFecha = new SelectList(db.FechaTorneo.Where(e => e.idCompeticion == id), "nroFecha", "nroFecha");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Cambio(decimal id)
+        {
+            //ViewBag.equipoVisita = new SelectList(db.Club, "idClub", "nombre", model.equipoVisita);
+            //ViewBag.equipoCasa = new SelectList(db.Club, "idClub", "nombre", model.equipoCasa);
+            //ViewBag.idCompeticion = new SelectList(db.Torneo, "idCompeticion", "idCompeticion", model.idCompeticion);
+            var lista = from m in db.FechaTorneo
+                        where m.idCompeticion == id
+                        select m.nroFecha;
+                         
+
+            return Json(lista);
         }
         // GET: Partidoes/Edit/5
         public ActionResult Edit(decimal id)

@@ -151,8 +151,26 @@
 <script type="text/javascript">
     function SelectedIndexChanged() {
         console.log("Detecta el cambio");
-        //Form post
-        document.demoForm.submit();
+        var id = $('#IdCompeticion').val();
+        $.ajax({
+            url: '@Url.Action("cambio", "Partidoes")',
+            data: { id : id},
+            type: 'POST',
+            success: function (data) {
+                $('#nroFecha').empty();
+                $.each(data, function (index, nro) {
+                    $("#nroFecha").append("<option>" +nro + "</option>");
+                });
+                
+                //$('#nroFecha').empty();
+                //$('#nroFecha').(data);  
+                //Html.DropDownList("nroFecha", null, htmlAttributes: new { class = "form-control" })
+            },
+            error: function (XMLHttpRequest,text , errorThrown) {
+                alert(errorThrown);
+            }
+        });
+
     }
 </script>
 @section Scripts {
