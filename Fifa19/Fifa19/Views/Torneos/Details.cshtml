@@ -11,6 +11,15 @@
     <h4>Torneo</h4>
     <hr />
     <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Competicion.nbrCompeticion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Competicion.nbrCompeticion)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.usuarioCreacion)
         </dt>
@@ -41,14 +50,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.fchModificacion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Competicion.nbrCompeticion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Competicion.nbrCompeticion)
         </dd>
 
     </dl>

@@ -42,6 +42,7 @@ namespace Fifa19.Controllers
             ViewBag.equipoVisita = new SelectList(db.Club, "idClub", "nombre");
             ViewBag.equipoCasa = new SelectList(db.Club, "idClub", "nombre");
             ViewBag.idCompeticion = new SelectList(db.Torneo, "idCompeticion", "idCompeticion");
+            ViewBag.nroFecha = new SelectList(db.FechaTorneo.Where(e => e.idCompeticion == 1), "nroFecha", "nroFecha");
             return View();
         }
 
@@ -58,13 +59,23 @@ namespace Fifa19.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            return RedirectToAction("Index");
             ViewBag.equipoVisita = new SelectList(db.Club, "idClub", "nombre", partido.equipoVisita);
             ViewBag.equipoCasa = new SelectList(db.Club, "idClub", "nombre", partido.equipoCasa);
             ViewBag.idCompeticion = new SelectList(db.Torneo, "idCompeticion", "idCompeticion", partido.idCompeticion);
+            ViewBag.nroFecha = new SelectList(db.FechaTorneo.Where(e => e.idCompeticion == partido.idCompeticion), "nroFecha", "nroFecha");
             return View(partido);
         }
 
+        [HttpPost]
+        public ActionResult Partido(Partido model)
+        {
+            ViewBag.equipoVisita = new SelectList(db.Club, "idClub", "nombre", model.equipoVisita);
+            ViewBag.equipoCasa = new SelectList(db.Club, "idClub", "nombre", model.equipoCasa);
+            ViewBag.idCompeticion = new SelectList(db.Torneo, "idCompeticion", "idCompeticion", model.idCompeticion);
+            ViewBag.nroFecha = new SelectList(db.FechaTorneo.Where(e => e.idCompeticion == model.idCompeticion), "nroFecha", "nroFecha");
+            return View(model);
+        }
         // GET: Partidoes/Edit/5
         public ActionResult Edit(decimal id)
         {
