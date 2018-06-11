@@ -41,7 +41,7 @@ namespace Fifa19.Controllers
         {
             ViewBag.equipoVisita = new SelectList(db.Club, "idClub", "nombre");
             ViewBag.equipoCasa = new SelectList(db.Club, "idClub", "nombre");
-            ViewBag.idCompeticion = new SelectList(db.FechaTorneo, "idCompeticion", "usuarioCreacion");
+            ViewBag.idCompeticion = new SelectList(db.Torneo, "idCompeticion", "idCompeticion");
             return View();
         }
 
@@ -61,7 +61,7 @@ namespace Fifa19.Controllers
 
             ViewBag.equipoVisita = new SelectList(db.Club, "idClub", "nombre", partido.equipoVisita);
             ViewBag.equipoCasa = new SelectList(db.Club, "idClub", "nombre", partido.equipoCasa);
-            ViewBag.idCompeticion = new SelectList(db.FechaTorneo, "idCompeticion", "usuarioCreacion", partido.idCompeticion);
+            ViewBag.idCompeticion = new SelectList(db.Torneo, "idCompeticion", "idCompeticion", partido.idCompeticion);
             return View(partido);
         }
 

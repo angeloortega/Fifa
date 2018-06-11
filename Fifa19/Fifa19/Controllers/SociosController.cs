@@ -23,7 +23,7 @@ namespace Fifa19.Controllers
         // GET: Socios/Details/5
         public ActionResult Details(decimal id)
         {
-            if (id == null)
+            if (id == -1)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -61,7 +61,7 @@ namespace Fifa19.Controllers
         // GET: Socios/Edit/5
         public ActionResult Edit(decimal id)
         {
-            if (id == null)
+            if (id == -1)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -92,7 +92,7 @@ namespace Fifa19.Controllers
         // GET: Socios/Delete/5
         public ActionResult Delete(decimal id)
         {
-            if (id == null)
+            if (id == -1)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }

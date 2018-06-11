@@ -10,112 +10,112 @@ using Fifa19.Models;
 
 namespace Fifa19.Controllers
 {
-    public class ClubsController : Controller
+    public class FechaTorneosController : Controller
     {
         private FootballEntities db = new FootballEntities();
 
-        // GET: Clubs
+        // GET: FechaTorneos
         public ActionResult Index()
         {
-            var club = db.Club.Include(c => c.Federacion);
-            return View(club.ToList());
+            var fechaTorneo = db.FechaTorneo.Include(f => f.Torneo);
+            return View(fechaTorneo.ToList());
         }
 
-        // GET: Clubs/Details/5
+        // GET: FechaTorneos/Details/5
         public ActionResult Details(decimal id)
         {
-            if (id == -1)
+            if (id == null )
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Club club = db.Club.Find(id);
-            if (club == null)
+            FechaTorneo fechaTorneo = db.FechaTorneo.Find(id);
+            if (fechaTorneo == null)
             {
                 return HttpNotFound();
             }
-            return View(club);
+            return View(fechaTorneo);
         }
 
-        // GET: Clubs/Create
+        // GET: FechaTorneos/Create
         public ActionResult Create()
         {
-            ViewBag.idFederacion = new SelectList(db.Federacion, "idFederacion", "idFederacion");
+            ViewBag.idCompeticion = new SelectList(db.Torneo, "idCompeticion", "idCompeticion");
             return View();
         }
 
-        // POST: Clubs/Create
+        // POST: FechaTorneos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idClub,idFederacion,nombre,fchFundacion,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Club club)
+        public ActionResult Create([Bind(Include = "idCompeticion,anho,nroFecha,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] FechaTorneo fechaTorneo)
         {
             if (ModelState.IsValid)
             {
-                db.Club.Add(club);
+                db.FechaTorneo.Add(fechaTorneo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idFederacion = new SelectList(db.Federacion, "idFederacion", "idFederacion", club.idFederacion);
-            return View(club);
+            ViewBag.idCompeticion = new SelectList(db.Torneo, "idCompeticion", "usuarioCreacion", fechaTorneo.idCompeticion);
+            return View(fechaTorneo);
         }
 
-        // GET: Clubs/Edit/5
+        // GET: FechaTorneos/Edit/5
         public ActionResult Edit(decimal id)
         {
-            if (id == -1)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Club club = db.Club.Find(id);
-            if (club == null)
+            FechaTorneo fechaTorneo = db.FechaTorneo.Find(id);
+            if (fechaTorneo == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.idFederacion = new SelectList(db.Federacion, "idFederacion", "idFederacion", club.idFederacion);
-            return View(club);
+            ViewBag.idCompeticion = new SelectList(db.Torneo, "idCompeticion", "usuarioCreacion", fechaTorneo.idCompeticion);
+            return View(fechaTorneo);
         }
 
-        // POST: Clubs/Edit/5
+        // POST: FechaTorneos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idClub,idFederacion,nombre,fchFundacion,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Club club)
+        public ActionResult Edit([Bind(Include = "idCompeticion,anho,nroFecha,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] FechaTorneo fechaTorneo)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(club).State = EntityState.Modified;
+                db.Entry(fechaTorneo).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.idFederacion = new SelectList(db.Federacion, "idFederacion", "idFederacion", club.idFederacion);
-            return View(club);
+            ViewBag.idCompeticion = new SelectList(db.Torneo, "idCompeticion", "usuarioCreacion", fechaTorneo.idCompeticion);
+            return View(fechaTorneo);
         }
 
-        // GET: Clubs/Delete/5
+        // GET: FechaTorneos/Delete/5
         public ActionResult Delete(decimal id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Club club = db.Club.Find(id);
-            if (club == null)
+            FechaTorneo fechaTorneo = db.FechaTorneo.Find(id);
+            if (fechaTorneo == null)
             {
                 return HttpNotFound();
             }
-            return View(club);
+            return View(fechaTorneo);
         }
 
-        // POST: Clubs/Delete/5
+        // POST: FechaTorneos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(decimal id)
         {
-            Club club = db.Club.Find(id);
-            db.Club.Remove(club);
+            FechaTorneo fechaTorneo = db.FechaTorneo.Find(id);
+            db.FechaTorneo.Remove(fechaTorneo);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
