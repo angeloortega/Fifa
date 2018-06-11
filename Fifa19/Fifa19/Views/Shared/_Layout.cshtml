@@ -15,13 +15,29 @@
             <div class="navbar-collapse collapse">
                 <ul class=" nav nav-pills">
                     <li role="presentation"><a href="/Home/Index">Home</a></li>
-                    <li>@Html.ActionLink("Control de Funcionario", "Index", "Funcionarios")</li>
-                    <li>@Html.ActionLink("Control de Jugador", "Index", "Jugadors")</li>
-                    <li>@Html.ActionLink("Control de Entrenador", "Index", "Entrenadors")</li>
-                    <li>@Html.ActionLink("Control de Arbitros", "Index", "Arbitroes")</li>
+
+                    <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Funcionario
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Control de Funcionario", "Index", "Funcionarios")</li>
+                            <li>@Html.ActionLink("Control de Jugador", "Index", "Jugadors")</li>
+                            <li>@Html.ActionLink("Control de Entrenador", "Index", "Entrenadors")</li>
+                            <li>@Html.ActionLink("Control de Arbitros", "Index", "Arbitroes")</li>
+                        </ul>
+                    </li>
                     <li>@Html.ActionLink("Control de Federacion", "Index", "Federacions")</li>
-                    <li>@Html.ActionLink("Control de Torneo", "Index", "Torneos")</li>
+                    <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Federacion
+                        </a>
+                        <ul class="dropdown-menu" role="menu"></ul>
                     <li>@Html.ActionLink("Control de Competicion", "Index", "Competicions")</li>
+                    <li>@Html.ActionLink("Control de Torneo", "Index", "Torneos")</li>
+                    </li>
+
+
                     <li>@Html.ActionLink("Control de Partido", "Index", "Partidoes")</li>
                     <li>@Html.ActionLink("Control de Club", "Index", "Clubs")</li>
                     <li>@Html.ActionLink("Control de Socio", "Index", "Socios")</li>
