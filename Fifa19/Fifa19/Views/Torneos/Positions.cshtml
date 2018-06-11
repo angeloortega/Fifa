@@ -4,70 +4,71 @@
     ViewBag.Title = "Positions";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h4>"     "</h4>
+
 <h2>Positions</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            Equipo
-        </th>
-        <th>
-            Partidos Jugados
-        </th>
-        <th>
-            Partidos Ganados
-        </th>
-        <th>
-            Partidos Empatados
-        </th>
-        <th>
-            Partidos Perdidos
-        </th>
-        <th>
-            Goles a favor
-        </th>
-        <th>
-            Goles en contra
-        </th>
-        <th>
-            Puntos
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div style="height: 550px; overflow: auto;">
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.partidosJugados)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.partidosGanados)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.partidosEmpatados)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.partidosPedridos)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.golesAFavor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.golesEnContra)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.puntos)
-            </td>
+            <th>
+                Equipo
+            </th>
+            <th>
+                Partidos Jugados
+            </th>
+            <th>
+                Partidos Ganados
+            </th>
+            <th>
+                Partidos Empatados
+            </th>
+            <th>
+                Partidos Perdidos
+            </th>
+            <th>
+                Goles a favor
+            </th>
+            <th>
+                Goles en contra
+            </th>
+            <th>
+                Puntos
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.partidosJugados)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.partidosGanados)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.partidosEmpatados)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.partidosPedridos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.golesAFavor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.golesEnContra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.puntos)
+                </td>
+            </tr>
+        }
 
-@Html.ActionLink("Back to List", "Index")
+    </table>
+</div>
+    @Html.ActionLink("Back to List", "Index")
 
 

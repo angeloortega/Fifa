@@ -10,79 +10,82 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fchNacimiento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.foto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.usuarioCreacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.usuarioModificacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fchCreacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fchModificacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Club.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Entrenador.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Jugador.usuarioCreacion)
-        </th>
-        <th></th>
-    </tr>
+<div style="height: 550px; overflow: auto;">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fchNacimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.foto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.usuarioCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.usuarioModificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fchCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fchModificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Club.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Entrenador.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jugador.usuarioCreacion)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fchNacimiento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.foto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.usuarioCreacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.usuarioModificacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fchCreacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fchModificacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Club.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Entrenador.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Jugador.usuarioCreacion)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.codigoFuncionario }) |
-            @Html.ActionLink("Details", "Details", new { id=item.codigoFuncionario }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.codigoFuncionario })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fchNacimiento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.foto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.usuarioCreacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.usuarioModificacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fchCreacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fchModificacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Club.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Entrenador.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Jugador.usuarioCreacion)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.codigoFuncionario }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.codigoFuncionario }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.codigoFuncionario })
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+</div>

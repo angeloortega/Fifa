@@ -4,32 +4,33 @@
     ViewBag.Title = "Performance";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h4>"          "</h4>
+
 <h2>Referee Performance</h2>
-<table class="table">
-    <tr>
-        <th>
-            Nombre
-        </th>
-        <th>
-            Porcentaje de Desempeño
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model)
-{
+<div style="height: 550px; overflow: auto;">
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.nombre)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.desempenho)
-            </td>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Porcentaje de Desempeño
+            </th>
+            <th></th>
         </tr>
-}
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
 
-@Html.ActionLink("Back to List", "Index")
+                <td>
+                    @Html.DisplayFor(modelItem => item.desempenho)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+    @Html.ActionLink("Back to List", "Index")

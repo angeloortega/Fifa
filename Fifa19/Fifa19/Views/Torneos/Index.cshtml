@@ -4,62 +4,65 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h4>"     "</h4>
+
 <h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create") 
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Competicion.nbrCompeticion)
-        </th>
-        
-        <th>
-            @Html.DisplayNameFor(model => model.usuarioCreacion)
-        </th>
-        <th> 
-            @Html.DisplayNameFor(model => model.usuarioModificacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fchCreacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fchModificacion)
-        </th>
-        
-        <th></th>
-    </tr>
+<div style="height: 550px; overflow: auto;">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Competicion.nbrCompeticion)
+            </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Competicion.nbrCompeticion)
-        </td>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.usuarioCreacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.usuarioModificacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fchCreacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fchModificacion)
-        </td>
-        
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.idCompeticion, id2 = item.anho }) |
-            @Html.ActionLink("Details", "Details", new { id = item.idCompeticion, id2 = item.anho }) |
-            @Html.ActionLink("Agregar Fecha", "AddFecha", new { id = item.idCompeticion, id2 = item.anho }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.idCompeticion, id2 = item.anho }) |
-            @Html.ActionLink("Positions Table", "Positions", new { id = item.idCompeticion, id2 = item.anho }) |
-            @Html.ActionLink("Referee Performance", "Performance", new { id = item.idCompeticion, id2 = item.anho })
-        </td>
-    </tr>
-}
+            <th>
+                @Html.DisplayNameFor(model => model.usuarioCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.usuarioModificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fchCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fchModificacion)
+            </th>
 
-</table>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Competicion.nbrCompeticion)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.usuarioCreacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.usuarioModificacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fchCreacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fchModificacion)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.idCompeticion, id2 = item.anho }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.idCompeticion, id2 = item.anho }) |
+                    @Html.ActionLink("Agregar Fecha", "AddFecha", new { id = item.idCompeticion, id2 = item.anho }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.idCompeticion, id2 = item.anho }) |
+                    @Html.ActionLink("Positions Table", "Positions", new { id = item.idCompeticion, id2 = item.anho }) |
+                    @Html.ActionLink("Referee Performance", "Performance", new { id = item.idCompeticion, id2 = item.anho })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

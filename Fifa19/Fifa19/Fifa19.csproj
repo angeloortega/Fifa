@@ -397,9 +397,6 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Views\FuncionarioImg\arbitro.png" />
-    <Content Include="Views\FuncionarioImg\entrenador.png" />
-    <Content Include="Views\FuncionarioImg\jugador.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -423,7 +420,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\FuncionarioImg\menuFuncionario.cshtml" />
     <Content Include="Views\Jugadors\Create.cshtml" />
     <Content Include="Views\Jugadors\Delete.cshtml" />
     <Content Include="Views\Jugadors\Details.cshtml" />
