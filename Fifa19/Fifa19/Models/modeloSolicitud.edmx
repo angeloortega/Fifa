@@ -2534,7 +2534,7 @@
         </ComplexType>
         <ComplexType Name="sp_desempenhoArbitroTorneo_Result">
           <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
-          <Property Type="Decimal" Name="Column1" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="desempenho" Nullable="true" Precision="38" Scale="6" />
         </ComplexType>
         <ComplexType Name="sp_obtenerEncuentrosHistoricos_Result">
           <Property Type="Decimal" Name="equipoCasa" Nullable="true" Precision="4" Scale="0" />
@@ -3090,7 +3090,7 @@
             <ResultMapping>
               <ComplexTypeMapping TypeName="FootballModel.sp_desempenhoArbitroTorneo_Result">
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="desempenho" ColumnName="desempenho" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

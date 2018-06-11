@@ -1,4 +1,4 @@
-﻿@model Fifa19.Models.Torneo
+﻿@model IEnumerable<Fifa19.Models.sp_desempenhoArbitroTorneo_Result>
 
 @{
     ViewBag.Title = "Performance";
@@ -16,6 +16,19 @@
         </th>
         <th></th>
     </tr>
+
+@foreach (var item in Model)
+{
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.desempenho)
+            </td>
+        </tr>
+}
 
 </table>
 

@@ -14,6 +14,6 @@ namespace Fifa19.Models
     public partial class sp_desempenhoArbitroTorneo_Result
     {
         public string nombre { get; set; }
-        public Nullable<decimal> Column1 { get; set; }
+        public Nullable<decimal> desempenho { get; set; }
     }
 }

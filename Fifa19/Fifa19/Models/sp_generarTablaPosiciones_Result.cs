@@ -13,7 +13,6 @@ namespace Fifa19.Models
     
     public partial class sp_generarTablaPosiciones_Result
     {
-        public string nombre { get; set; }
         public Nullable<decimal> idEquipo { get; set; }
         public Nullable<decimal> partidosJugados { get; set; }
         public Nullable<decimal> partidosGanados { get; set; }
@@ -22,5 +21,6 @@ namespace Fifa19.Models
         public Nullable<decimal> golesAFavor { get; set; }
         public Nullable<decimal> golesEnContra { get; set; }
         public Nullable<decimal> puntos { get; set; }
+        public string nombre { get; set; }
     }
 }
