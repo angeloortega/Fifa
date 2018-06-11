@@ -273,6 +273,9 @@
     <Compile Include="Models\SocioxClub.cs">
       <DependentUpon>modeloSolicitud.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_generarTablaPosiciones_Result.cs">
+      <DependentUpon>modeloSolicitud.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TelefonoxFuncionario.cs">
       <DependentUpon>modeloSolicitud.tt</DependentUpon>
     </Compile>
@@ -463,6 +466,7 @@
     <Content Include="Views\Especialidads\Details.cshtml" />
     <Content Include="Views\Especialidads\Edit.cshtml" />
     <Content Include="Views\Especialidads\Index.cshtml" />
+    <Content Include="Views\Torneos\Positions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -57,8 +57,14 @@ namespace Fifa19.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "nbrCompeticion", torneo.idCompeticion);
+            ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "IdCompeticion", torneo.idCompeticion);
             return View(torneo);
+        }
+
+        public ActionResult Positions()
+        {
+            ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "IdCompeticion");
+            return View();
         }
 
         // GET: Torneos/Edit/5
@@ -73,7 +79,7 @@ namespace Fifa19.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "nbrCompeticion", torneo.idCompeticion);
+            ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "IdCompeticion", torneo.idCompeticion);
             return View(torneo);
         }
 
@@ -90,7 +96,7 @@ namespace Fifa19.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "nbrCompeticion", torneo.idCompeticion);
+            ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "IdCompeticion", torneo.idCompeticion);
             return View(torneo);
         }
 

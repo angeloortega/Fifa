@@ -57,7 +57,7 @@ namespace Fifa19.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idFederacion = new SelectList(db.Federacion, "idFederacion", "nombre", competicion.idFederacion);
+            ViewBag.idFederacion = new SelectList(db.Federacion, "idFederacion", "idFederacion", competicion.idFederacion);
             return View(competicion);
         }
 
@@ -73,7 +73,7 @@ namespace Fifa19.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.idFederacion = new SelectList(db.Federacion, "idFederacion", "nombre", competicion.idFederacion);
+            ViewBag.idFederacion = new SelectList(db.Federacion, "idFederacion", "idFederacion", competicion.idFederacion);
             return View(competicion);
         }
 
@@ -90,7 +90,7 @@ namespace Fifa19.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.idFederacion = new SelectList(db.Federacion, "idFederacion", "nombre", competicion.idFederacion);
+            ViewBag.idFederacion = new SelectList(db.Federacion, "idFederacion", "idFederacion", competicion.idFederacion);
             return View(competicion);
         }
 
