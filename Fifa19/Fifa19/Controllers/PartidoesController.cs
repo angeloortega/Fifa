@@ -53,13 +53,13 @@ namespace Fifa19.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "idPartido,idCompeticion,anho,nroFecha,equipoVisita,equipoCasa,fecha,golesCasa,golesVisita,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Partido partido)
         {
+            return RedirectToAction("Index");
             if (ModelState.IsValid)
             {
                 db.Partido.Add(partido);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
             ViewBag.equipoVisita = new SelectList(db.Club, "idClub", "nombre", partido.equipoVisita);
             ViewBag.equipoCasa = new SelectList(db.Club, "idClub", "nombre", partido.equipoCasa);
             ViewBag.idCompeticion = new SelectList(db.Torneo, "idCompeticion", "idCompeticion", partido.idCompeticion);
