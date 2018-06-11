@@ -62,14 +62,15 @@
 </head>
 
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top"  style="background-color: #00985f; color: #fff;">
         <div class="container">
-            <div class="navbar-collapse collapse">
-                <ul class=" nav nav-pills">
-                    <li role="presentation"><a href="/Home/Index">Home</a></li>
+            <div class="navbar-collapse collapse" style=" color: #fff;">
+                <a href="#" class="navbar-left"><img src="~/Resources/logo.png" width="40" height="40" ></a>
+                <ul class=" nav nav-pills" style=" color: #fff; padding-left: 2em;">
+                    <li role="presentation"><a href="/Home/Index" style=" color: #fff;">Home</a></li>
 
                     <li>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" style=" color: #fff;">
                             Funcionarios
                         </a>
                         <ul class="dropdown-menu" role="menu">
@@ -82,19 +83,19 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" style=" color: #fff;">
                             Federaciones
                         </a>
                         <ul class="dropdown-menu multi-level" role="menu">
                             <li>@Html.ActionLink("Control de Federacion", "Index", "Federacions")</li>
                             <li class="divider"></li>
                             <li class="dropdown-submenu">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Competencias</a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Competencias"</a>
                                 <ul class="dropdown-menu">
                                     <li>@Html.ActionLink("Control de Competicion", "Index", "Competicions")</li>
                                     <li class="divider"></li>
                                     <li class="dropdown-submenu">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" style=" color: #fff;">
                                             Torneos
                                         </a>
                                         <ul class="dropdown-menu">
@@ -116,7 +117,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" style=" color: #fff;">
                             Clubes
                         </a>
                         <ul class="dropdown-menu" role="menu">
@@ -125,8 +126,6 @@
 
                         </ul>
                     </li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
                 </ul>
             </div>
         </div>
