@@ -1,4 +1,55 @@
 ﻿<!DOCTYPE html>
+
+<style>
+
+    .dropdown-submenu {
+        position: relative;
+    }
+
+        .dropdown-submenu > .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -6px;
+            margin-left: -1px;
+            -webkit-border-radius: 0 6px 6px 6px;
+            -moz-border-radius: 0 6px 6px;
+            border-radius: 0 6px 6px 6px;
+        }
+
+        .dropdown-submenu:hover > .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-submenu > a:after {
+            display: block;
+            content: " ";
+            float: right;
+            width: 0;
+            height: 0;
+            border-color: transparent;
+            border-style: solid;
+            border-width: 5px 0 5px 5px;
+            border-left-color: #ccc;
+            margin-top: 5px;
+            margin-right: -10px;
+        }
+
+        .dropdown-submenu:hover > a:after {
+            border-left-color: #fff;
+        }
+
+        .dropdown-submenu.pull-left {
+            float: none;
+        }
+
+            .dropdown-submenu.pull-left > .dropdown-menu {
+                left: -100%;
+                margin-left: 10px;
+                -webkit-border-radius: 6px 0 6px 6px;
+                -moz-border-radius: 6px 0 6px 6px;
+                border-radius: 6px 0 6px 6px;
+            }
+</style>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -9,6 +60,7 @@
     @Styles.Render("~/Content/jqueryui")
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
+
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -29,30 +81,30 @@
 
                         </ul>
                     </li>
-
                     <li>
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Federaciones
                         </a>
-                        <ul class="dropdown-menu" role="menu">
+                        <ul class="dropdown-menu multi-level" role="menu">
                             <li>@Html.ActionLink("Control de Federacion", "Index", "Federacions")</li>
-                            <li>
-                                <a href="#">
-                                    Competencias
-                                </a>
-                                <ul>
+                            <li class="divider"></li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Competencias</a>
+                                <ul class="dropdown-menu">
                                     <li>@Html.ActionLink("Control de Competicion", "Index", "Competicions")</li>
-                                    <li>
-                                        <ahref="#">
+                                    <li class="divider"></li>
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                             Torneos
                                         </a>
-                                        <ul>
+                                        <ul class="dropdown-menu">
                                             <li>@Html.ActionLink("Control de Torneo", "Index", "Torneos")</li>
-                                            <li>
-                                                <a href="#">
+                                            <li class="divider"></li>
+                                            <li class="dropdown-submenu">
+                                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                                     Partidos
                                                 </a>
-                                                <ul>
+                                                <ul class="dropdown-menu">
                                                     <li>@Html.ActionLink("Control de Partido", "Index", "Partidoes")</li>
 
                                                 </ul>
@@ -92,3 +144,4 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
