@@ -18,30 +18,61 @@
 
                     <li>
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            Funcionario
+                            Funcionarios
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>@Html.ActionLink("Control de Funcionario", "Index", "Funcionarios")</li>
                             <li>@Html.ActionLink("Control de Jugador", "Index", "Jugadors")</li>
                             <li>@Html.ActionLink("Control de Entrenador", "Index", "Entrenadors")</li>
                             <li>@Html.ActionLink("Control de Arbitros", "Index", "Arbitroes")</li>
+                            <li>@Html.ActionLink("Control de Especialidades", "Index", "Especialidads")</li>
+
                         </ul>
                     </li>
-                    <li>@Html.ActionLink("Control de Federacion", "Index", "Federacions")</li>
+
                     <li>
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            Federacion
+                            Federaciones
                         </a>
-                        <ul class="dropdown-menu" role="menu"></ul>
-                    <li>@Html.ActionLink("Control de Competicion", "Index", "Competicions")</li>
-                    <li>@Html.ActionLink("Control de Torneo", "Index", "Torneos")</li>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Control de Federacion", "Index", "Federacions")</li>
+                            <li>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    Competencias
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>@Html.ActionLink("Control de Competicion", "Index", "Competicions")</li>
+                                    <li>
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                            Torneos
+                                        </a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>@Html.ActionLink("Control de Torneo", "Index", "Torneos")</li>
+                                            <li>
+                                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                                    Partidos
+                                                </a>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li>@Html.ActionLink("Control de Partido", "Index", "Partidoes")</li>
+
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
                     </li>
+                    <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Clubes
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Control de Club", "Index", "Clubs")</li>
+                            <li>@Html.ActionLink("Control de Socio", "Index", "Socios")</li>
 
-
-                    <li>@Html.ActionLink("Control de Partido", "Index", "Partidoes")</li>
-                    <li>@Html.ActionLink("Control de Club", "Index", "Clubs")</li>
-                    <li>@Html.ActionLink("Control de Socio", "Index", "Socios")</li>
-                    <li>@Html.ActionLink("Control de Especialidades", "Index", "Especialidads")</li>
+                        </ul>
+                    </li>
                     <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
                 </ul>
