@@ -150,13 +150,13 @@ namespace Fifa19.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddFecha([Bind(Include = "idCompeticion,anho,nroFecha,usuarioCreacion,fchCreacion,usuarioModificacion,fchModificacion")] FechaTorneo torneo)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && !db.FechaTorneo.Contains(new FechaTorneo { idCompeticion = torneo.idCompeticion , anho = torneo.anho , nroFecha =torneo.nroFecha}))
             {
                 db.FechaTorneo.Add(torneo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            
             ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "nbrCompeticion", torneo.idCompeticion);
             return View(torneo);
         }
