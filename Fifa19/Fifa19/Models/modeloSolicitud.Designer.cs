@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Bárbara Gutiérrez\Source\Repos\Fifa\Fifa19\Fifa19\Models\modeloSolicitud.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Angelo PC\source\repos\Fifa\Fifa19\Fifa19\Models\modeloSolicitud.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -328,6 +328,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\imgPicker.css" />
     <Content Include="Content\navbarStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -1407,6 +1408,7 @@
       <DependentUpon>modeloSolicitud.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
+    <Content Include="Scripts\imgPicker.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
     <Content Include="Scripts\jquery-3.0.0.slim.js" />

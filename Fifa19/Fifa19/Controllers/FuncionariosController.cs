@@ -55,10 +55,17 @@ namespace Fifa19.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "codigoFuncionario,nombre,fchNacimiento,idClub,foto,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Funcionario funcionario)
+        public ActionResult Create(Funcionario funcionario, HttpPostedFileBase file)
         {
+           
             if (ModelState.IsValid)
             {
+                if (file != null)
+                {
+                    file.SaveAs(HttpContext.Server.MapPath("~/Resources/")
+                                                          + file.FileName);
+                    funcionario.foto = file.FileName;
+                }
                 db.Funcionario.Add(funcionario);
                 db.SaveChanges();
                 return RedirectToAction("Index");

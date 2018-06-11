@@ -27,14 +27,14 @@ namespace Fifa19.Models
                 colorFG = "white";
 
             }
-            else if (totalPos - pos < 4) {
+            else if (totalPos - pos < 3) {
                 colorBG = "red";
                 colorFG = "white";
             }
             else
             {
-                colorBG = "#white";
-                colorFG = "#balck";
+                colorBG = "white";
+                colorFG = "balck";
             }
             this.posicion = pos;
             this.nombre = f.nombre;
