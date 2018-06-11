@@ -10,6 +10,14 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+<form asp-controller="Jugador" asp-action="Index">
+    <p>
+        Title: <input type="text" name="search">
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
 <div style="height: 550px; overflow: auto;">
     <table class="table">
         <tr>

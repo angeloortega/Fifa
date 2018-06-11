@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Fifa19.Models;
@@ -15,7 +16,7 @@ namespace Fifa19.Controllers
         private FootballEntities db = new FootballEntities();
 
         // GET: Funcionarios
-        public ActionResult Index()
+        /*public ActionResult Index()
         {
             var funcionario = db.Funcionario.Include(f => f.Club).Include(f => f.Entrenador).Include(f => f.Jugador);
             List<FuncionarioImg> funcionarios = new List<FuncionarioImg>();
@@ -24,6 +25,23 @@ namespace Fifa19.Controllers
             }
 
             return View(funcionarios);
+        }*/
+
+        public async Task<ActionResult> Index(string search)
+        {
+            var funcionario = from m in db.Funcionario
+                       select m;
+            if (!String.IsNullOrEmpty(search))
+            {
+                funcionario = funcionario.Where(s => s.Club.nombre.Contains(search));
+            }
+            List<FuncionarioImg> funcionarios = new List<FuncionarioImg>();
+            foreach (var func in funcionario.ToList())
+            {
+                funcionarios.Add(new FuncionarioImg(func));
+            }
+
+            return View(await funcionario.ToListAsync());
         }
 
         // GET: Funcionarios/Details/5

@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Fifa19.Models;
@@ -15,10 +16,15 @@ namespace Fifa19.Controllers
         private FootballEntities db = new FootballEntities();
 
         // GET: Clubs
-        public ActionResult Index()
+        public async Task<ActionResult> Index(string search)
         {
-            var club = db.Club.Include(c => c.Federacion);
-            return View(club.ToList());
+            var club = from m in db.Club
+                         select m;
+            if (!String.IsNullOrEmpty(search))
+            {
+                club = club.Where(s => s.Federacion.nombre.Contains(search));
+            }
+            return View(await club.ToListAsync());
         }
 
         // GET: Clubs/Details/5
