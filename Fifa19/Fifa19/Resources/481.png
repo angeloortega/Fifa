@@ -1,0 +1,5 @@
+import glob, os
+contador = 0
+for pathAndFilename in os.listdir('C:\\Users\\Angelo PC\\Desktop\\Pictures'):
+    os.rename(pathAndFilename, str(contador) + ".png")
+    contador += 1

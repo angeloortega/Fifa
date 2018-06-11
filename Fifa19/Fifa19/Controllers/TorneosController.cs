@@ -93,7 +93,16 @@ namespace Fifa19.Controllers
             SqlParameter p1 = new SqlParameter("@idCampeonato", id);
             SqlParameter p2 = new SqlParameter("@anho", id2);
             var lista = db.Database.SqlQuery<sp_generarTablaPosiciones_Result>("exec FIFA.sp_generarTablaPosiciones @idCampeonato, @anho", p1, p2);
-            return View(lista.ToList());
+            List<posConColores> posiciones = new List<posConColores>();
+            int i = 1;
+            var iterate = lista.ToList();
+            int amount = iterate.Count;
+            foreach (var p in iterate)
+            {
+                posiciones.Add(new posConColores(p,i,amount));
+                i++;
+            }
+            return View(posiciones);
         }
 
         // GET: Torneos/Edit/5

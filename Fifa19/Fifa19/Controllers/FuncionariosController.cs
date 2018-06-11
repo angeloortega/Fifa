@@ -18,7 +18,12 @@ namespace Fifa19.Controllers
         public ActionResult Index()
         {
             var funcionario = db.Funcionario.Include(f => f.Club).Include(f => f.Entrenador).Include(f => f.Jugador);
-            return View(funcionario.ToList());
+            List<FuncionarioImg> funcionarios = new List<FuncionarioImg>();
+            foreach (var func in funcionario.ToList()) {
+                funcionarios.Add(new FuncionarioImg(func));
+            }
+
+            return View(funcionarios);
         }
 
         // GET: Funcionarios/Details/5

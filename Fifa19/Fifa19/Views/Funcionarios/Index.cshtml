@@ -1,10 +1,9 @@
-﻿@model IEnumerable<Fifa19.Models.Funcionario>
+﻿@model IEnumerable<Fifa19.Models.FuncionarioImg>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h4>"     "</h4>
 <h2>Index</h2>
 
 <p>
@@ -14,36 +13,31 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.nombre)
+                Nombre
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.fchNacimiento)
+                Fecha de Nacimiento
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.foto)
+                Foto
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.usuarioCreacion)
+                Usuario de Creacion
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.usuarioModificacion)
+                Usuario de Modificacion
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.fchCreacion)
+                Fecha de Creacion
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.fchModificacion)
+                Fecha de Modificacion
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Club.nombre)
+                ID De Club Actual
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Entrenador.nombre)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Jugador.usuarioCreacion)
-            </th>
-            <th></th>
         </tr>
 
         @foreach (var item in Model)
@@ -56,7 +50,7 @@
                     @Html.DisplayFor(modelItem => item.fchNacimiento)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.foto)
+                    <img src="@Url.Content(item.foto)" alt="IMAGES" width="75" height="75"/>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.usuarioCreacion)
@@ -71,13 +65,7 @@
                     @Html.DisplayFor(modelItem => item.fchModificacion)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Club.nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Entrenador.nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Jugador.usuarioCreacion)
+                    @Html.DisplayFor(modelItem => item.idClub)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.codigoFuncionario }) |

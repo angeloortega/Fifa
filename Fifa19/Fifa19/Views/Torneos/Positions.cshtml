@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Fifa19.Models.sp_generarTablaPosiciones_Result>
+﻿@model IEnumerable<Fifa19.Models.posConColores>
 
 @{
     ViewBag.Title = "Positions";
@@ -10,6 +10,9 @@
 <div style="height: 550px; overflow: auto;">
     <table class="table">
         <tr>
+            <th>
+                Posicion
+            </th>
             <th>
                 Equipo
             </th>
@@ -34,35 +37,53 @@
             <th>
                 Puntos
             </th>
-            <th></th>
         </tr>
-
         @foreach (var item in Model)
         {
-            <tr>
+            string foreground;
+            string background;
+            if (item.colorBG == "red")
+            {
+                background = "CC0000";
+                foreground = "FFFFFF";
+            }
+            else if (item.colorBG == "green")
+            {
+                background = "33CC66";
+                foreground = "FFFFFF";
+            }
+            else {
+                background = "FFFFFF";
+                foreground = "000000";
+            }
+
+            <tr style="background-color:#@background; color: #@foreground;">
                 <td>
-                    @Html.DisplayFor(modelItem => item.nombre)
+                    @Html.DisplayFor(modelItem => item.posicion)
+                </td>
+                <td >
+                        @Html.DisplayFor(modelItem => item.nombre)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.partidosJugados)
+                        @Html.DisplayFor(modelItem => item.partidosJugados)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.partidosGanados)
+                        @Html.DisplayFor(modelItem => item.partidosGanados)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.partidosEmpatados)
+                        @Html.DisplayFor(modelItem => item.partidosEmpatados)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.partidosPedridos)
+                        @Html.DisplayFor(modelItem => item.partidosPedridos)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.golesAFavor)
+                        @Html.DisplayFor(modelItem => item.golesAFavor)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.golesEnContra)
+                        @Html.DisplayFor(modelItem => item.golesEnContra)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.puntos)
+                        @Html.DisplayFor(modelItem => item.puntos)
                 </td>
             </tr>
         }
