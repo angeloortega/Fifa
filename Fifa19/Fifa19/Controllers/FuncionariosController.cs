@@ -15,32 +15,14 @@ namespace Fifa19.Controllers
     {
         private FootballEntities db = new FootballEntities();
 
-        // GET: Funcionarios
-        /*public ActionResult Index()
-        {
-            var funcionario = db.Funcionario.Include(f => f.Club).Include(f => f.Entrenador).Include(f => f.Jugador);
-            List<FuncionarioImg> funcionarios = new List<FuncionarioImg>();
-            foreach (var func in funcionario.ToList()) {
-                funcionarios.Add(new FuncionarioImg(func));
-            }
-
-            return View(funcionarios);
-        }*/
-
         public async Task<ActionResult> Index(string search)
         {
             var funcionario = from m in db.Funcionario
                        select m;
             if (!String.IsNullOrEmpty(search))
             {
-                funcionario = funcionario.Where(s => s.Club.nombre.Contains(search));
+                funcionario = funcionario.Where(s => s.nombre.Contains(search));
             }
-            List<FuncionarioImg> funcionarios = new List<FuncionarioImg>();
-            foreach (var func in funcionario.ToList())
-            {
-                funcionarios.Add(new FuncionarioImg(func));
-            }
-
             return View(await funcionario.ToListAsync());
         }
 

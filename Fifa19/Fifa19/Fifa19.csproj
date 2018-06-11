@@ -223,7 +223,6 @@
     <Compile Include="Models\Funcionario.cs">
       <DependentUpon>modeloSolicitud.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FuncionarioImg.cs" />
     <Compile Include="Models\FuncionarioXClubXTorneo.cs">
       <DependentUpon>modeloSolicitud.tt</DependentUpon>
     </Compile>

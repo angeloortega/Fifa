@@ -58,7 +58,7 @@
                     @Html.DisplayFor(modelItem => item.fchNacimiento)
                 </td>
                 <td>
-                    <img src="@Url.Content(item.foto)" alt="IMAGES" width="75" height="75"/>
+                    <img src="@Url.Content("~/Resources/" + item.foto)" alt="IMAGES" width="75" height="75"/>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.usuarioCreacion)
