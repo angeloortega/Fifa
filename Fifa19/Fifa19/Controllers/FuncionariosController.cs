@@ -26,7 +26,6 @@ namespace Fifa19.Controllers
             return View(await funcionario.ToListAsync());
         }
 
-        // GET: Funcionarios/Details/5
         public ActionResult Details(decimal id)
         {
             if (id == null)
