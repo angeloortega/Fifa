@@ -8,6 +8,14 @@
 <p>
     @Html.ActionLink("Create New Match", "Create")
 </p>
+
+<form asp-controller="Partido" asp-action="Index">
+    <p>
+        Busqueda: <input type="text" name="search">
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
 <div style="height: 550px; overflow: auto;">
     <table class="table">
         <tr>

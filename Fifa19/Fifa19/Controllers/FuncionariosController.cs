@@ -21,7 +21,7 @@ namespace Fifa19.Controllers
                        select m;
             if (!String.IsNullOrEmpty(search))
             {
-                funcionario = funcionario.Where(s => s.nombre.Contains(search));
+                funcionario = funcionario.Where(s => s.Club.nombre.Contains(search) || s.nombre.Contains(search));
             }
             return View(await funcionario.ToListAsync());
         }
