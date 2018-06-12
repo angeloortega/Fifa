@@ -57,7 +57,7 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td style ="width: 10px">
+                <td>
                     @Html.DisplayFor(modelItem => item.fecha)
                 </td>
                 <td>
@@ -87,7 +87,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.FechaTorneo.nroFecha)
                 </td>
-                <td nowrap="">
+                <td style="white-space:nowrap;">
                     @Html.ActionLink("Edit", "Edit", new { id = item.idPartido }) |
                     @Html.ActionLink("Details", "Details", new { id = item.idPartido }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.idPartido }) |
