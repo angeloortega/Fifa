@@ -41,21 +41,23 @@
                 @Html.DisplayNameFor(model => model.fchModificacion)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Club.nombre)
+                @Html.DisplayNameFor(model => model.equipoVisita)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Club1.nombre)
+                @Html.DisplayNameFor(model => model.equipoCasa)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FechaTorneo.nroFecha)
             </th>
-            <th></th>
+            <th style ="width: 100%">
+                
+            </th>
         </tr>
 
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td style ="width: 10px">
                     @Html.DisplayFor(modelItem => item.fecha)
                 </td>
                 <td>
@@ -85,13 +87,29 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.FechaTorneo.nroFecha)
                 </td>
-                <td>
+                <td nowrap="">
                     @Html.ActionLink("Edit", "Edit", new { id = item.idPartido }) |
                     @Html.ActionLink("Details", "Details", new { id = item.idPartido }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.idPartido })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.idPartido }) |
+                    @Html.ActionLink("Add Referee", "RegistrarArbitro", new { idPartido = item.idPartido }) |
+                    @Html.ActionLink("Add Local Goal", "RegistrarGol", new { idEquipo = item.equipoCasa, idPartido = item.idPartido }) |
+                    @Html.ActionLink("Add Visit Goal", "RegistrarGol", new { idEquipo = item.equipoVisita, idPartido = item.idPartido }) |
+                    @Html.ActionLink("Add Local Sub", "RegistrarCambio", new { idEquipo = item.equipoCasa, idPartido = item.idPartido }) |
+                    @Html.ActionLink("Add Visit Sub", "RegistrarCambio", new { idEquipo = item.equipoVisita, idPartido = item.idPartido }) |
+                    @*@Html.ActionLink("Add line-up", "AgregaAlineacion", new { id = item.idPartido})*@
+
                 </td>
             </tr>
         }
+            <style type="text/css">
+                td {
+                    width: 100px;
+                }
 
+                th {
+                    width: 100px;
+                }
+            </style>
     </table>
+    
 </div>

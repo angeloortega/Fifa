@@ -49,6 +49,7 @@ namespace Fifa19.Controllers
             ViewBag.equipoCasa = new SelectList(db.Club, "idClub", "nombre");
             ViewBag.idCompeticion = new SelectList(db.Torneo, "idCompeticion", "idCompeticion");
             ViewBag.nroFecha = new SelectList(db.FechaTorneo.Where(e => e.idCompeticion == 1), "nroFecha", "nroFecha");
+            ViewBag.arbitro = new SelectList(db.Arbitro, "idArbitro", "nombre");
             return View();
         }
 
@@ -57,10 +58,14 @@ namespace Fifa19.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idPartido,idCompeticion,anho,nroFecha,equipoVisita,equipoCasa,fecha,golesCasa,golesVisita,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Partido partido)
+        public ActionResult Create([Bind(Include = "idPartido,idCompeticion,anho,nroFecha,equipoVisita,equipoCasa,fecha,golesCasa,golesVisita,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Partido partido) //[Bind(Include ="ArbitroxPartido")] ArbitroxPartido arbitro)
         {
+            var last = (from m in db.Partido
+                       select m.idPartido).Max();
             if (ModelState.IsValid)
             {
+                partido.idPartido = last + 1;
+                //db.ArbitroxPartido.Add(arbitro);
                 db.Partido.Add(partido);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -69,6 +74,7 @@ namespace Fifa19.Controllers
             ViewBag.equipoCasa = new SelectList(db.Club, "idClub", "nombre", partido.equipoCasa);
             ViewBag.idCompeticion = new SelectList(db.Torneo, "idCompeticion", "idCompeticion", partido.idCompeticion);
             ViewBag.nroFecha = new SelectList(db.FechaTorneo.Where(e => e.idCompeticion == partido.idCompeticion), "nroFecha", "nroFecha");
+            ViewBag.arbitro = new SelectList(db.Arbitro, "idArbitro", "nombre");
             return View(partido);
         }
 
@@ -146,6 +152,136 @@ namespace Fifa19.Controllers
                 return HttpNotFound();
             }
             return View(partido);
+        }
+
+        public ActionResult RegistrarGol(decimal idEquipo, decimal idPartido)
+        {
+            if (idEquipo == null || idPartido == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SelectList nombreJugadores = new SelectList (from a in db.Funcionario
+                         where a.idClub == idEquipo
+                         join b in db.Jugador on a.codigoFuncionario equals b.codigoFuncionario
+                         select new { a.nombre, a.codigoFuncionario});
+            ViewBag.codigoJugador = new SelectList(db.Funcionario.Where(x => x.idClub == idEquipo), "codigoFuncionario", "nombre");
+            //SelectList minutos = new SelectList();
+            GolxPartido variable = new GolxPartido();
+            variable.idPartido = idPartido;
+            return View(variable);
+            
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RegistrarGol([Bind(Include = "idPartido,codigoJugador,minuto,segundo,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] GolxPartido golxpartido)
+        {
+            if (ModelState.IsValid)
+            {
+                
+                db.GolxPartido.Add(golxpartido);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            SelectList nombreJugadores = new SelectList(from a in db.Funcionario
+                                                        where a.idClub == golxpartido.Jugador.Funcionario.idClub
+                                                        join b in db.Jugador on a.codigoFuncionario equals b.codigoFuncionario
+                                                        select new { a.nombre, a.codigoFuncionario });
+
+            ViewBag.jugadores = nombreJugadores;
+            return View(golxpartido);
+        }
+
+        public ActionResult RegistrarCambio(decimal idEquipo, decimal idPartido)
+        {
+            if (idEquipo == null || idPartido == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SelectList nombreJugadores = new SelectList(from a in db.Funcionario
+                                                        where a.idClub == idEquipo
+                                                        join b in db.Jugador on a.codigoFuncionario equals b.codigoFuncionario
+                                                        select new { a.nombre, a.codigoFuncionario });
+            SelectList nombreJugadores2 = new SelectList(from a in db.Funcionario
+                                                        where a.idClub == idEquipo
+                                                        join b in db.Jugador on a.codigoFuncionario equals b.codigoFuncionario
+                                                        select new { a.nombre, a.codigoFuncionario });
+            ViewBag.codigoJugadorEntra = new SelectList(db.Funcionario.Where(x => x.idClub == idEquipo), "codigoFuncionario", "nombre");
+            ViewBag.codigoJugadorSale = new SelectList(db.Funcionario.Where(x => x.idClub == idEquipo), "codigoFuncionario", "nombre");
+            //ViewBag.jugadoresEntran = nombreJugadores;
+            //ViewBag.jugadoresSalen = nombreJugadores2;
+            //SelectList minutos = new SelectList();
+            CambioxPartido variable = new CambioxPartido();
+            variable.idPartido = idPartido;
+            return View(variable);
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RegistrarCambio([Bind(Include = "idPartido,codigoJugadorEntra,codigoJugadorSale,minuto,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] CambioxPartido cambioxpartido)
+        {
+            
+            if (ModelState.IsValid)
+            {
+
+                db.CambioxPartido.Add(cambioxpartido);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            SelectList nombreJugadores = new SelectList(from a in db.Funcionario
+                                                        where a.idClub == cambioxpartido.Jugador.Funcionario.idClub
+                                                        join b in db.Jugador on a.codigoFuncionario equals b.codigoFuncionario
+                                                        select new { a.nombre, a.codigoFuncionario });
+
+            ViewBag.jugadores = nombreJugadores;
+            return View(cambioxpartido);
+        }
+
+        public ActionResult RegistrarArbitro(decimal idPartido)
+        {
+            if (idPartido == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            };
+            var tipos = new List<String>()
+            {
+                ("A"),
+                ("S")
+            };
+            SelectList lista = new SelectList(tipos);
+            ViewBag.idArbitro = new SelectList(db.Arbitro, "idArbitro", "nombre");
+            ViewBag.tipo = lista;
+            //ViewBag.jugadoresEntran = nombreJugadores;
+            //ViewBag.jugadoresSalen = nombreJugadores2;
+            //SelectList minutos = new SelectList();
+            ArbitroxPartido variable = new ArbitroxPartido();
+            variable.idPartido = idPartido;
+            return View(variable);
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RegistrarArbitro([Bind(Include = "idPartido,idArbitro,desempenho,tipo,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] ArbitroxPartido arbitroxpartido)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                db.ArbitroxPartido.Add(arbitroxpartido);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            var tipos = new List<String>()
+            {
+                ("A"),
+                ("S")
+            };
+            SelectList lista = new SelectList(tipos);
+            ViewBag.idArbitro = new SelectList(db.Arbitro, "idArbitro", "nombre");
+            ViewBag.tipo = lista;
+            return View(arbitroxpartido);
         }
 
         // POST: Partidoes/Delete/5
