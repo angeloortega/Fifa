@@ -1021,6 +1021,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sorteoTabla" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FIFA">
+          <Parameter Name="idCampeonato" Type="numeric" Mode="In" />
+          <Parameter Name="anho" Type="numeric" Mode="In" />
+          <Parameter Name="fchInicio" Type="date" Mode="In" />
+        </Function>
         <Function Name="sp_desempenhoArbitroTorneo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FIFA">
           <Parameter Name="idCampeonato" Type="numeric" Mode="In" />
           <Parameter Name="anho" Type="numeric" Mode="In" />
@@ -2520,6 +2525,11 @@
             <Parameter Name="idCompetencia" Mode="In" Type="Decimal" />
             <Parameter Name="anho" Mode="In" Type="Decimal" />
           </FunctionImport>
+          <FunctionImport Name="sorteoTabla">
+            <Parameter Name="idCampeonato" Mode="In" Type="Decimal" />
+            <Parameter Name="anho" Mode="In" Type="Decimal" />
+            <Parameter Name="fchInicio" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_generarTablaPosiciones_Result">
           <Property Type="Decimal" Name="idEquipo" Nullable="true" Precision="4" Scale="0" />
@@ -3136,6 +3146,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_simulacion" FunctionName="FootballModel.Store.sp_simulacion" />
+          <FunctionImportMapping FunctionImportName="sorteoTabla" FunctionName="FootballModel.Store.sorteoTabla" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

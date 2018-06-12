@@ -1,0 +1,23 @@
+﻿@model Fifa19.Models.Torneo
+@{
+    ViewBag.Title = "Calendar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Calendar</h2>
+
+<form>
+    <p>
+        Fecha Inicio: <input type="date" name="fchInicio" id="fcInicio">
+         <button type="submit" onclick="Generator(Model.idCompeticion, Model.anho)"> Generar Calendario </button>
+    </p>
+</form>
+@Html.ActionLink("Partidos", "Index", "Partidoes")
+
+<script type="text/javascript"> 
+    function Generator(Ml) {
+        var id3 = document.getElementById("fcinicio").value = "12/05/1999";
+        var id1 = ne
+    }
+
+</script>

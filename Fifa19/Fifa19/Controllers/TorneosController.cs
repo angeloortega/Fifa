@@ -22,6 +22,55 @@ namespace Fifa19.Controllers
             return View(torneo.ToList());
         }
 
+        public ActionResult Simulation(decimal id, decimal id2)
+        {
+            if (id == null || id2 == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Torneo torneo = db.Torneo.Find(id, id2);
+            if (torneo == null)
+            {
+                return HttpNotFound();
+            }
+            SqlParameter p1 = new SqlParameter("@idCompetencia", id);
+            SqlParameter p2 = new SqlParameter("@anho", id2);
+            db.Database.ExecuteSqlCommand("exec FIFA.sp_simulacion @idCompetencia, @anho", p1, p2); 
+            return View(torneo);
+        }
+
+        public ActionResult Calendar(decimal id, decimal id2)
+        {
+            if (id == null || id2 == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Torneo torneo = db.Torneo.Find(id, id2);
+            if (torneo == null)
+            {
+                return HttpNotFound();
+            }
+            return View(torneo);
+        }
+        public ActionResult GenerateCalendar(decimal id, decimal id2, DateTime id3)
+        {
+            if (id == null || id2 == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Torneo torneo = db.Torneo.Find(id, id2);
+            if (torneo == null)
+            {
+                return HttpNotFound();
+            }
+            SqlParameter p1 = new SqlParameter("@idCampeonato", id);
+            SqlParameter p2 = new SqlParameter("@anho", id2);
+            SqlParameter p3 = new SqlParameter("@fchInicio", id3);
+            db.Database.ExecuteSqlCommand("exec FIFA.sp_simulacion @idCampeonato, @anho, @fchInicio", p1, p2, p3);
+            return View();
+        }
+
+
         // GET: Torneos/Details/5
         public ActionResult Details(decimal id, decimal id2)
         {

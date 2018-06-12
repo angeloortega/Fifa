@@ -1,0 +1,11 @@
+﻿@model Fifa19.Models.Torneo
+@{
+    ViewBag.Title = "Simulation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Simulation</h2>
+
+<p> Resultados generados </p>
+
+@Html.ActionLink("Position Table", "Positions", new { id = Model.idCompeticion, id2 = Model.anho })

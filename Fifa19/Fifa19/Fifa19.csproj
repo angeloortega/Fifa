@@ -1525,6 +1525,8 @@
     </Content>
     <Content Include="Views\Partidoes\RegistrarCambio.cshtml" />
     <Content Include="Views\Partidoes\RegistrarArbitro.cshtml" />
+    <Content Include="Views\Torneos\Simulation.cshtml" />
+    <Content Include="Views\Torneos\Calendar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

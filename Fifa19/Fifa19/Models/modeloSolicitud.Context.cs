@@ -136,5 +136,22 @@ namespace Fifa19.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_simulacion", idCompetenciaParameter, anhoParameter);
         }
+    
+        public virtual int sorteoTabla(Nullable<decimal> idCampeonato, Nullable<decimal> anho, Nullable<System.DateTime> fchInicio)
+        {
+            var idCampeonatoParameter = idCampeonato.HasValue ?
+                new ObjectParameter("idCampeonato", idCampeonato) :
+                new ObjectParameter("idCampeonato", typeof(decimal));
+    
+            var anhoParameter = anho.HasValue ?
+                new ObjectParameter("anho", anho) :
+                new ObjectParameter("anho", typeof(decimal));
+    
+            var fchInicioParameter = fchInicio.HasValue ?
+                new ObjectParameter("fchInicio", fchInicio) :
+                new ObjectParameter("fchInicio", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sorteoTabla", idCampeonatoParameter, anhoParameter, fchInicioParameter);
+        }
     }
 }
