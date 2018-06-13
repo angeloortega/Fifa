@@ -55,24 +55,6 @@ namespace Fifa19.Controllers
             cal.idCompeticion = torneo.idCompeticion;
             return View(cal);
         }
-        public ActionResult GenerateCalendar(decimal id, decimal id2, DateTime id3)
-        {
-            if (id == null || id2 == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Torneo torneo = db.Torneo.Find(id, id2);
-            if (torneo == null)
-            {
-                return HttpNotFound();
-            }
-            SqlParameter p1 = new SqlParameter("@idCampeonato", id);
-            SqlParameter p2 = new SqlParameter("@anho", id2);
-            SqlParameter p3 = new SqlParameter("@fchInicio", id3);
-            db.Database.ExecuteSqlCommand("exec FIFA.sp_simulacion @idCampeonato, @anho, @fchInicio", p1, p2, p3);
-            return View();
-        }
-
 
         // GET: Torneos/Details/5
         public ActionResult Details(decimal id, decimal id2)

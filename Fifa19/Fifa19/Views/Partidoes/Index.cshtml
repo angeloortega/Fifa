@@ -20,97 +20,101 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.fecha)
+                Fecha
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.golesCasa)
+                Competicion
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.golesVisita)
+                Año
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.usuarioCreacion)
+                Fecha de Competicion
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.usuarioModificacion)
+                Casa
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.fchCreacion)
+                Visita
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.fchModificacion)
+                Goles Casa
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.equipoVisita)
+                Goles Visita
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.equipoCasa)
+                Usuario de Creacion
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FechaTorneo.nroFecha)
+                Usuario de Modificacion
             </th>
-            <th style ="width: 100%">
-                
+            <th>
+                Fecha de Creacion
+            </th>
+            <th>
+                Fecha de Modificacion
+            </th>
+
+            <th style="width: 100%">
+
             </th>
         </tr>
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fecha)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.golesCasa)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.golesVisita)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.usuarioCreacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.usuarioModificacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fchCreacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fchModificacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Club.nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Club1.nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaTorneo.nroFecha)
-                </td>
-                <td style="white-space:nowrap;">
-                    @Html.ActionLink("Edit", "Edit", new { id = item.idPartido }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.idPartido }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.idPartido }) |
-                    @Html.ActionLink("Add Referee", "RegistrarArbitro", new { idPartido = item.idPartido }) |
-                    @Html.ActionLink("Add Local Goal", "RegistrarGol", new { idEquipo = item.equipoCasa, idPartido = item.idPartido }) |
-                    @Html.ActionLink("Add Visit Goal", "RegistrarGol", new { idEquipo = item.equipoVisita, idPartido = item.idPartido }) |
-                    @Html.ActionLink("Add Local Sub", "RegistrarCambio", new { idEquipo = item.equipoCasa, idPartido = item.idPartido }) |
-                    @Html.ActionLink("Add Visit Sub", "RegistrarCambio", new { idEquipo = item.equipoVisita, idPartido = item.idPartido }) |
-                    @Html.ActionLink("Match History", "MatchHistory", new { idEquipo1 = item.equipoCasa, idEquipo2 = item.equipoVisita, idFecha = item.fecha})
-                    @*@Html.ActionLink("Add line-up", "AgregaAlineacion", new { id = item.idPartido})*@
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaTorneo.Torneo.Competicion.nbrCompeticion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaTorneo.Torneo.anho)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nroFecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Club1.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Club.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.golesCasa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.golesVisita)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.usuarioCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.usuarioModificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fchCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fchModificacion)
+            </td>
 
-                </td>
-            </tr>
+            <td style="white-space:nowrap;">
+                @Html.ActionLink("Edit", "Edit", new { id = item.idPartido }) |
+                @Html.ActionLink("Details", "Details", new { id = item.idPartido }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.idPartido }) |
+                @Html.ActionLink("Add Referee", "RegistrarArbitro", new { idPartido = item.idPartido }) |
+                @Html.ActionLink("Add Local Goal", "RegistrarGol", new { idEquipo = item.equipoCasa, idPartido = item.idPartido }) |
+                @Html.ActionLink("Add Visit Goal", "RegistrarGol", new { idEquipo = item.equipoVisita, idPartido = item.idPartido }) |
+                @Html.ActionLink("Add Local Sub", "RegistrarCambio", new { idEquipo = item.equipoCasa, idPartido = item.idPartido }) |
+                @Html.ActionLink("Add Visit Sub", "RegistrarCambio", new { idEquipo = item.equipoVisita, idPartido = item.idPartido }) |
+                @Html.ActionLink("Match History", "MatchHistory", new { idEquipo1 = item.equipoCasa, idEquipo2 = item.equipoVisita, idFecha = item.fecha })
+
+            </td>
+        </tr>
         }
-            <style type="text/css">
-                td {
-                    width: 100px;
-                }
-
-                th {
-                    width: 100px;
-                }
-            </style>
     </table>
     
 </div>

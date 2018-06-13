@@ -21,32 +21,36 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.nombre)
+                Foto
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.fchInicioCarrera)
+                Nombre
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.usuarioCreacion)
+                Fecha de Inicio de Carrera
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.usuarioModificacion)
+                Usuario de Creacion
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.fchCreacion)
+                Usuario de Modificacion
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.fchModificacion)
+                Fecha de Creacion
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Funcionario.nombre)
+                Fecha de Modificacion
             </th>
+
             <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    <img src="@Url.Content("~/Resources/" + item.Funcionario.foto)" alt="IMAGES" width="75" height="75" />
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.nombre)
                 </td>
@@ -64,9 +68,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.fchModificacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Funcionario.nombre)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.codigoFuncionario }) |

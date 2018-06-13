@@ -24,13 +24,20 @@
     <table class="table">
         <tr>
             <th>
+                Foto
+            </th>
+
+            <th>
+                @Html.ActionLink("Nombre", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
                 Peso
             </th>
             <th>
                 Altura
             </th>
             <th>
-                Nro Camiseta
+                Numero Camiseta
             </th>
             <th>
                 Usuario Creacion
@@ -44,46 +51,48 @@
             <th>
                 Fecha Modificacion
             </th>
-            <th>
-                @Html.ActionLink("Nombre Funcionario", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
-            </th>
+
             <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Peso)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Altura)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.nroCamiseta)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.usuarioCreacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.usuarioModificacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fchCreacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fchModificacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Funcionario.nombre)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.codigoFuncionario }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.codigoFuncionario }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.codigoFuncionario }) |
-                    @Html.ActionLink("Club History", "HistorialEquipos", new { id = item.codigoFuncionario })
-                </td>
-            </tr>
+        <tr>
+            <td>
+                <img src="@Url.Content("~/Resources/" + item.Funcionario.foto)" alt="IMAGES" width="75" height="75" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Funcionario.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Peso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Altura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nroCamiseta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.usuarioCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.usuarioModificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fchCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fchModificacion)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.codigoFuncionario }) |
+                @Html.ActionLink("Details", "Details", new { id = item.codigoFuncionario }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.codigoFuncionario }) |
+                @Html.ActionLink("Club History", "HistorialEquipos", new { id = item.codigoFuncionario })
+            </td>
+        </tr>
         }
     </table>
 </div>
