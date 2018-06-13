@@ -16,14 +16,9 @@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.idPartido)
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.anho, "anho", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.anho, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.anho, "", new { @class = "text-danger" })
-        </div>
-    </div>
+    @Html.HiddenFor(model => model.anho)
+    @Html.HiddenFor(model => model.nroFecha)
+    @Html.HiddenFor(model => model.idCompeticion)
 
     <div class="form-group">
         @Html.LabelFor(model => model.equipoVisita, "equipoVisita", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -56,7 +51,7 @@
             @Html.ValidationMessageFor(model => model.golesCasa, "", new { @class = "text-danger" })
         </div>
     </div>
-    
+
     <div class="form-group">
         @Html.LabelFor(model => model.fecha, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">

@@ -41,11 +41,9 @@ namespace Fifa19.Controllers
         }
 
         // GET: Funcionarios/Create
-        public ActionResult Create()
+        public ActionResult CreatePlayer()
         {
-            ViewBag.idClub = new SelectList(db.Club, "idClub", "idClub");
-            ViewBag.codigoFuncionario = new SelectList(db.Entrenador, "codigoFuncionario", "nombre");
-            ViewBag.codigoFuncionario = new SelectList(db.Jugador, "codigoFuncionario", "usuarioCreacion");
+            ViewBag.idClub = new SelectList(db.Club, "idClub", "nombre");
             return View();
         }
 
@@ -54,25 +52,32 @@ namespace Fifa19.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Funcionario funcionario, HttpPostedFileBase file)
+        public ActionResult CreatePlayer([Bind(Include = "Funcionario.nombre,Funcionario.fchNacimiento,Funcionario.idClub,usuarioCreacion")] Funcionario funcionario, [Bind(Include = "Peso,Altura,nroCamiseta")] Jugador jugador, HttpPostedFileBase file)
         {
-           
+            var last = (from m in db.Funcionario
+                        select m.codigoFuncionario).Max();
+
             if (ModelState.IsValid)
             {
+                funcionario.codigoFuncionario = last + 1;
+                jugador.codigoFuncionario = last + 1;
+                jugador.usuarioCreacion = funcionario.usuarioCreacion;
+                funcionario.fchCreacion = DateTime.Now;
+                jugador.fchCreacion = DateTime.Now;
                 if (file != null)
                 {
                     file.SaveAs(HttpContext.Server.MapPath("~/Resources/")
                                                           + file.FileName);
                     funcionario.foto = file.FileName;
                 }
-                db.Funcionario.Add(funcionario);
+                //db.Funcionario.Add(funcionario);
+                //db.SaveChanges();
+                db.Jugador.Add(jugador);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idClub = new SelectList(db.Club, "idClub", "idClub", funcionario.idClub);
-            ViewBag.codigoFuncionario = new SelectList(db.Entrenador, "codigoFuncionario", "nombre", funcionario.codigoFuncionario);
-            ViewBag.codigoFuncionario = new SelectList(db.Jugador, "codigoFuncionario", "usuarioCreacion", funcionario.codigoFuncionario);
+            ViewBag.idClub = new SelectList(db.Club, "idClub", "nombre", funcionario.idClub);
             return View(funcionario);
         }
 
@@ -99,12 +104,23 @@ namespace Fifa19.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "codigoFuncionario,nombre,fchNacimiento,idClub,foto,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Funcionario funcionario)
+        public ActionResult Edit([Bind(Include = "codigoFuncionario,nombre,fchNacimiento,idClub,foto,usuarioModificacion")] Funcionario funcionario, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(funcionario).State = EntityState.Modified;
-                db.SaveChanges();
+                if (file != null)
+                {
+                    file.SaveAs(HttpContext.Server.MapPath("~/Resources/")
+                                                          + file.FileName);
+                    funcionario.foto = file.FileName;
+                }
+                Funcionario funcionarioOut = db.Funcionario.Find(funcionario.codigoFuncionario);
+                funcionario.usuarioCreacion = funcionarioOut.usuarioCreacion;
+                funcionario.fchCreacion = funcionarioOut.fchCreacion;
+                funcionario.fchModificacion = DateTime.Now;
+                var newContext = new FootballEntities();
+                newContext.Entry(funcionario).State = EntityState.Modified;
+                newContext.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.idClub = new SelectList(db.Club, "idClub", "idClub", funcionario.idClub);

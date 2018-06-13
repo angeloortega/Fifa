@@ -149,7 +149,7 @@ namespace Fifa19.Controllers
         // GET: Torneos/Create
         public ActionResult Create()
         {
-            ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "IdCompeticion");
+            ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "nombre");
             return View();
         }
 
@@ -158,16 +158,17 @@ namespace Fifa19.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idCompeticion,anho,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Torneo torneo)
+        public ActionResult Create([Bind(Include = "idCompeticion,anho,usuarioCreacion")] Torneo torneo)
         {
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
+                torneo.fchCreacion = DateTime.Now;
                 db.Torneo.Add(torneo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "IdCompeticion", torneo.idCompeticion);
+            ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "nombre", torneo.idCompeticion);
             return View(torneo);
         }
 

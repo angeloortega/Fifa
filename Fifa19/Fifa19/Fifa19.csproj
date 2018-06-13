@@ -1545,6 +1545,8 @@
     <Content Include="Views\Contratoes\Edit.cshtml" />
     <Content Include="Views\Contratoes\Index.cshtml" />
     <Content Include="Views\Torneos\PlayerPerformance.cshtml" />
+    <Content Include="Views\Funcionarios\CreatePlayer.cshtml" />
+    <Content Include="Views\Partidoes\AgregarJugador.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

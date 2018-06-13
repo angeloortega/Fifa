@@ -12,6 +12,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.foto)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content("~/Resources/" + Model.foto)" alt="IMAGES" width="75" height="75" />
+        </dd>
+        
+        <dt>
             @Html.DisplayNameFor(model => model.nombre)
         </dt>
 
@@ -25,14 +33,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.fchNacimiento)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.foto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.foto)
         </dd>
 
         <dt>

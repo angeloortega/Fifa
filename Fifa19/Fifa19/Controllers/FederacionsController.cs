@@ -38,6 +38,7 @@ namespace Fifa19.Controllers
         // GET: Federacions/Create
         public ActionResult Create()
         {
+
             return View();
         }
 
@@ -46,10 +47,14 @@ namespace Fifa19.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idFederacion,nombre,fchFundacion,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Federacion federacion)
+        public ActionResult Create([Bind(Include = "nombre,fchFundacion,usuarioCreacion")] Federacion federacion)
         {
+            var last = (from m in db.Federacion
+                        select m.idFederacion).Max();
+            federacion.idFederacion = last + 1;
             if (ModelState.IsValid)
             {
+                federacion.fchCreacion = DateTime.Now;
                 db.Federacion.Add(federacion);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -78,12 +83,17 @@ namespace Fifa19.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idFederacion,nombre,fchFundacion,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Federacion federacion)
+        public ActionResult Edit([Bind(Include = "idFederacion,nombre,fchFundacion,usuarioModificacion")] Federacion federacion)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(federacion).State = EntityState.Modified;
-                db.SaveChanges();
+                Federacion federacionOut = db.Federacion.Find(federacion.idFederacion);
+                federacion.usuarioCreacion = federacionOut.usuarioCreacion;
+                federacion.fchCreacion = federacionOut.fchCreacion;
+                federacion.fchModificacion = DateTime.Now;
+                var newContext = new FootballEntities();
+                newContext.Entry(federacion).State = EntityState.Modified;
+                newContext.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(federacion);

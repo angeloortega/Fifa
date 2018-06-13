@@ -11,6 +11,26 @@
     <h4>Jugador</h4>
     <hr />
     <dl class="dl-horizontal">
+
+        <dd>
+            <img src="@Url.Content("~/Resources/" + Model.Funcionario.foto)" alt="IMAGES" width="75" height="75" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Funcionario.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Funcionario.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Club")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Funcionario.Club.nombre)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Peso)
         </dt>
@@ -67,13 +87,7 @@
             @Html.DisplayFor(model => model.fchModificacion)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Funcionario.nombre)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Funcionario.nombre)
-        </dd>
     </dl>
 </div>
 <p>

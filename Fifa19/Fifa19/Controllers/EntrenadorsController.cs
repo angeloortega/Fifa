@@ -71,16 +71,21 @@ namespace Fifa19.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "codigoFuncionario,nombre,fchInicioCarrera,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Entrenador entrenador)
+        public ActionResult Create([Bind(Include = "nombre,fchInicioCarrera,usuarioCreacion")] Entrenador entrenador)
         {
+            var last = (from m in db.Funcionario
+                        select m.codigoFuncionario).Max();
+            entrenador.codigoFuncionario = last + 1;
             if (ModelState.IsValid)
             {
+                entrenador.fchCreacion = DateTime.Now;
                 db.Entrenador.Add(entrenador);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.codigoFuncionario = new SelectList(db.Funcionario, "codigoFuncionario", "idClub", entrenador.codigoFuncionario);
+
+            //ViewBag.codigoFuncionario = new SelectList(db.Funcionario, "codigoFuncionario", "idClub", entrenador.codigoFuncionario);
             return View(entrenador);
         }
 
@@ -105,12 +110,17 @@ namespace Fifa19.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "codigoFuncionario,nombre,fchInicioCarrera,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Entrenador entrenador)
+        public ActionResult Edit([Bind(Include = "codigoFuncionario,nombre,fchInicioCarrera,usuarioModificacion")] Entrenador entrenador)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(entrenador).State = EntityState.Modified;
-                db.SaveChanges();
+                Entrenador entrenadorOut = db.Entrenador.Find(entrenador.codigoFuncionario);
+                entrenador.usuarioCreacion = entrenadorOut.usuarioCreacion;
+                entrenador.fchCreacion = entrenadorOut.fchCreacion;
+                entrenador.fchModificacion = DateTime.Now;
+                var newContext = new FootballEntities();
+                newContext.Entry(entrenador).State = EntityState.Modified;
+                newContext.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.codigoFuncionario = new SelectList(db.Funcionario, "codigoFuncionario", "nombre", entrenador.codigoFuncionario);

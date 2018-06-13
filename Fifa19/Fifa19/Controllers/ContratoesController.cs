@@ -85,12 +85,17 @@ namespace Fifa19.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idClub,codigoFuncionario,importe,fchInicio,fchFinProgramado,fchFinReal,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Contrato contrato)
+        public ActionResult Edit([Bind(Include = "idClub,codigoFuncionario,importe,fchInicio,fchFinProgramado,fchFinReal,usuarioModificacion")] Contrato contrato)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(contrato).State = EntityState.Modified;
-                db.SaveChanges();
+                Contrato contratoOut = db.Contrato.Find(contrato.idClub, contrato.codigoFuncionario);
+                contrato.usuarioCreacion = contratoOut.usuarioCreacion;
+                contrato.fchCreacion = contratoOut.fchCreacion;
+                contrato.fchModificacion = DateTime.Now;
+                var newContext = new FootballEntities();
+                newContext.Entry(contrato).State = EntityState.Modified;
+                newContext.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.idClub = new SelectList(db.Club, "idClub", "nombre", contrato.idClub);

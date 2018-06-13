@@ -55,8 +55,12 @@ namespace Fifa19.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "idArbitro,categoria,nombre,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Arbitro arbitro)
         {
+            var last = (from m in db.Arbitro
+                        select m.idArbitro).Max();
+            arbitro.idArbitro = last + 1;
             if (ModelState.IsValid)
             {
+                arbitro.fchCreacion = DateTime.Now;
                 db.Arbitro.Add(arbitro);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -85,12 +89,18 @@ namespace Fifa19.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idArbitro,categoria,nombre,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Arbitro arbitro)
+        public ActionResult Edit([Bind(Include = "idArbitro,categoria,nombre,usuarioModificacion")] Arbitro arbitro)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(arbitro).State = EntityState.Modified;
-                db.SaveChanges();
+
+                Arbitro arbitroOut = db.Arbitro.Find(arbitro.idArbitro);
+                arbitro.usuarioCreacion = arbitroOut.usuarioCreacion;
+                arbitro.fchCreacion = arbitroOut.fchCreacion;
+                arbitro.fchModificacion = DateTime.Now;
+                var newContext = new FootballEntities();
+                newContext.Entry(arbitro).State = EntityState.Modified;
+                newContext.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(arbitro);

@@ -139,7 +139,7 @@ namespace Fifa19.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idPartido,anho,equipoVisita,equipoCasa,fecha,golesCasa,golesVisita,usuarioModificacion")] Partido partido)
+        public ActionResult Edit([Bind(Include = "idPartido,anho,nroFecha,idCompeticon,equipoVisita,equipoCasa,fecha,golesCasa,golesVisita,usuarioModificacion")] Partido partido)
         {
             if (ModelState.IsValid)
             {
@@ -214,6 +214,40 @@ namespace Fifa19.Controllers
 
             ViewBag.jugadores = nombreJugadores;
             return View(golxpartido);
+        }
+
+        public ActionResult AgregarJugador(decimal idEquipo, decimal idPartido)
+        {
+            if (idEquipo == null || idPartido == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SelectList nombreJugadores = new SelectList(from a in db.Funcionario
+                                                        where a.idClub == idEquipo
+                                                        join b in db.Jugador on a.codigoFuncionario equals b.codigoFuncionario
+                                                        select new { nombre = a.nombre, codigoFuncionario = a.codigoFuncionario });
+            ViewBag.codigoJugador = new SelectList(db.Funcionario.Where(x => x.idClub == idEquipo), "codigoFuncionario", "nombre");
+            //SelectList minutos = new SelectList();
+            JugadorxPartido variable = new JugadorxPartido();
+            variable.idPartido = idPartido;
+            return View(variable);
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AgregarJugador([Bind(Include = "idPartido,codigoJugador,posicion,tipo,desempenho,usuarioCreacion")] JugadorxPartido jugadorxpartido)
+        {
+            if (ModelState.IsValid)
+            {
+                jugadorxpartido.fchCreacion = DateTime.Now;
+                db.JugadorxPartido.Add(jugadorxpartido);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.codigoJugador = new SelectList(db.Funcionario.Where(x => x.idClub == jugadorxpartido.Jugador.Funcionario.idClub), "codigoFuncionario", "nombre");
+            return View(jugadorxpartido);
         }
 
         public ActionResult RegistrarCambio(decimal idEquipo, decimal idPartido)

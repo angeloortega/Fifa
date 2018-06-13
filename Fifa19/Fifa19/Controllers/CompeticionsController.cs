@@ -48,10 +48,14 @@ namespace Fifa19.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdCompeticion,idFederacion,nbrCompeticion,tipo,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Competicion competicion)
+        public ActionResult Create([Bind(Include = "idFederacion,nbrCompeticion,tipo,usuarioCreacion")] Competicion competicion)
         {
+            var last = (from m in db.Competicion
+                        select m.IdCompeticion).Max();
+            competicion.IdCompeticion = last + 1;
             if (ModelState.IsValid)
             {
+                competicion.fchCreacion = DateTime.Now;
                 db.Competicion.Add(competicion);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,15 +86,20 @@ namespace Fifa19.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdCompeticion,idFederacion,nbrCompeticion,tipo,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Competicion competicion)
+        public ActionResult Edit([Bind(Include = "IdCompeticion,idFederacion,nbrCompeticion,tipo,usuarioModificacion")] Competicion competicion)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(competicion).State = EntityState.Modified;
-                db.SaveChanges();
+                Competicion competicionOut = db.Competicion.Find(competicion.IdCompeticion);
+                competicion.usuarioCreacion = competicionOut.usuarioCreacion;
+                competicion.fchCreacion = competicionOut.fchCreacion;
+                competicion.fchModificacion = DateTime.Now;
+                var newContext = new FootballEntities();
+                newContext.Entry(competicion).State = EntityState.Modified;
+                newContext.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.idFederacion = new SelectList(db.Federacion, "idFederacion", "idFederacion", competicion.idFederacion);
+            ViewBag.idFederacion = new SelectList(db.Federacion, "idFederacion", "nombre", competicion.idFederacion);
             return View(competicion);
         }
 

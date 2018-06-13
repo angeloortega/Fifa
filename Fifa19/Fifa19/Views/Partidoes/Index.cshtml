@@ -105,6 +105,8 @@
                 @Html.ActionLink("Edit", "Edit", new { id = item.idPartido }) |
                 @Html.ActionLink("Details", "Details", new { id = item.idPartido }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.idPartido }) |
+                @Html.ActionLink("Add Local Player", "AgregarJugador", new { idEquipo = item.equipoCasa,idPartido = item.idPartido }) |
+                @Html.ActionLink("Add Visit Player", "AgregarJudador", new { idEquipo = item.equipoVisita, idPartido = item.idPartido }) |
                 @Html.ActionLink("Add Referee", "RegistrarArbitro", new { idPartido = item.idPartido }) |
                 @Html.ActionLink("Add Local Goal", "RegistrarGol", new { idEquipo = item.equipoCasa, idPartido = item.idPartido }) |
                 @Html.ActionLink("Add Visit Goal", "RegistrarGol", new { idEquipo = item.equipoVisita, idPartido = item.idPartido }) |

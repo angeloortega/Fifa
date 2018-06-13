@@ -21,6 +21,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor("Año")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anho)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.usuarioCreacion)
         </dt>
 
@@ -55,6 +63,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

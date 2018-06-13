@@ -5,17 +5,65 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section styles{
+    <style>
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-ImagePath {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+    </style>
+}
+@section scripts
+{
+    <script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imgFunc')
+                        .attr('src', e.target.result)
+                        .height(75);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}
+
 <h2>Edit</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Funcionarios", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    <head>
+
+    </head>
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Funcionario</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.codigoFuncionario)
+        @Html.HiddenFor(model => model.idClub)
+        @Html.HiddenFor(model => model.foto)
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.foto, "Foto", htmlAttributes: new { @class = "control-label col-md-2" })
+            <img id="imgFunc" src="@Url.Content("~/Resources/"+Model.foto+"")" style="width:75px; margin-right:20px; margin-left:15px;" />
+            <label for="ImagePath" class="custom-ImagePath">
+                <i class="fa fa-cloud-upload"></i> Seleccionar Imagen
+            </label>
+            <input id="ImagePath" type="file" name="file" onchange="readURL(this);" style="display:none;" accept=".jpg, .jpeg, .png" />
+
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -34,50 +82,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.idClub, "idClub", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("idClub", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.idClub, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.foto, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.foto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.foto, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.usuarioCreacion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.usuarioCreacion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.usuarioCreacion, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.usuarioModificacion, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.usuarioModificacion, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.usuarioModificacion, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.fchCreacion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.fchCreacion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.fchCreacion, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.fchModificacion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.fchModificacion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.fchModificacion, "", new { @class = "text-danger" })
             </div>
         </div>
 

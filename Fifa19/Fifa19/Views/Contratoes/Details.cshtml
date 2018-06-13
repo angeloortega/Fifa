@@ -11,6 +11,23 @@
     <h4>Contrato</h4>
     <hr />
     <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayName("Club")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Club.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Nombre Funcionario")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Funcionario.nombre)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.importe)
         </dt>
@@ -65,22 +82,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.fchModificacion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Club.nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Club.nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Funcionario.nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Funcionario.nombre)
         </dd>
 
     </dl>

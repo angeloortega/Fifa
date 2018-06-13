@@ -46,10 +46,14 @@ namespace Fifa19.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "nombre,codigoSocio,fchNacimiento,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Socio socio)
+        public ActionResult Create([Bind(Include = "nombre,fchNacimiento,usuarioCreacion")] Socio socio)
         {
+            var last = (from m in db.Socio
+                        select m.codigoSocio).Max();
+            socio.codigoSocio = last + 1;
             if (ModelState.IsValid)
             {
+                socio.fchCreacion = DateTime.Now;
                 db.Socio.Add(socio);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -78,12 +82,17 @@ namespace Fifa19.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "nombre,codigoSocio,fchNacimiento,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Socio socio)
+        public ActionResult Edit([Bind(Include = "nombre,codigoSocio,fchNacimiento,usuarioModificacion")] Socio socio)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(socio).State = EntityState.Modified;
-                db.SaveChanges();
+                Socio socioOut = db.Socio.Find(socio.codigoSocio);
+                socio.usuarioCreacion = socioOut.usuarioCreacion;
+                socio.fchCreacion = socioOut.fchCreacion;
+                socio.fchModificacion = DateTime.Now;
+                var newContext = new FootballEntities();
+                newContext.Entry(socio).State = EntityState.Modified;
+                newContext.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(socio);

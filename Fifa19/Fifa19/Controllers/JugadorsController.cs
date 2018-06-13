@@ -119,11 +119,13 @@ namespace Fifa19.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Jugador jugador = db.Jugador.Find(id);
+            Funcionario funcionario = db.Funcionario.Find(id);
             if (jugador == null)
             {
                 return HttpNotFound();
             }
             ViewBag.codigoFuncionario = new SelectList(db.Funcionario, "codigoFuncionario", "nombre", jugador.codigoFuncionario);
+            ViewBag.idClub = new SelectList(db.Club, "idClub", "nombre", funcionario.idClub);
             return View(jugador);
         }
 
@@ -132,12 +134,17 @@ namespace Fifa19.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "codigoFuncionario,Peso,Altura,nroCamiseta,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Jugador jugador)
+        public ActionResult Edit([Bind(Include = "codigoFuncionario,Peso,Altura,nroCamiseta,usuarioModificacion")] Jugador jugador)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(jugador).State = EntityState.Modified;
-                db.SaveChanges();
+                Jugador jugadorOut = db.Jugador.Find(jugador.codigoFuncionario);
+                jugador.usuarioCreacion = jugadorOut.usuarioCreacion;
+                jugador.fchCreacion = jugadorOut.fchCreacion;
+                jugador.fchModificacion = DateTime.Now;
+                var newContext = new FootballEntities();
+                newContext.Entry(jugador).State = EntityState.Modified;
+                newContext.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.codigoFuncionario = new SelectList(db.Funcionario, "codigoFuncionario", "nombre", jugador.codigoFuncionario);
