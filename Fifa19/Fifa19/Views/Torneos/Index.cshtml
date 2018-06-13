@@ -54,13 +54,14 @@
                 </td>
 
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.idCompeticion, id2 = item.anho }) |
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.idCompeticion, id2 = item.anho }) |*@
                     @Html.ActionLink("Details", "Details", new { id = item.idCompeticion, id2 = item.anho }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.idCompeticion, id2 = item.anho }) |
                     @Html.ActionLink("Add Tournament Date", "AddFecha", new { id = item.idCompeticion, id2 = item.anho }) |
                     @Html.ActionLink("Add Team", "AddTeam", new { id = item.idCompeticion, id2 = item.anho }) |
                     @Html.ActionLink("Positions Table", "Positions", new { id = item.idCompeticion, id2 = item.anho }) |
-                    @Html.ActionLink("Referee Performance", "Performance", new { id = item.idCompeticion, id2 = item.anho })
+                    @Html.ActionLink("Referee Performance", "RefereePerformance", new { id = item.idCompeticion, id2 = item.anho }) |
+                    @Html.ActionLink("Player Performance", "PlayerPerformance", new { id = item.idCompeticion, id2 = item.anho })
                     @Html.ActionLink("Generate Game Calendar", "Calendar", new { id = item.idCompeticion, id2 = item.anho }) |
                     @Html.ActionLink("Simulate Results", "Simulation", new { id = item.idCompeticion, id2 = item.anho }) |
                 </td>
