@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Torneos</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Nuevo Torneo", "Create")
 </p>
 <div style="height: 550px; overflow: auto;">
     <table class="table">
@@ -16,7 +16,9 @@
             <th>
                 Nombre
             </th>
-
+            <th>
+                Año
+            </th>
             <th>
                 Usuario de Creacion
             </th>
@@ -35,37 +37,39 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Competicion.nbrCompeticion)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Competicion.nbrCompeticion)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.usuarioCreacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.usuarioModificacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fchCreacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fchModificacion)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.usuarioCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.anho)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.usuarioModificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fchCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fchModificacion)
+            </td>
 
-                <td>
-                    @*@Html.ActionLink("Edit", "Edit", new { id = item.idCompeticion, id2 = item.anho }) |*@
-                    @Html.ActionLink("Details", "Details", new { id = item.idCompeticion, id2 = item.anho }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.idCompeticion, id2 = item.anho }) |
-                    @Html.ActionLink("Add Tournament Date", "AddFecha", new { id = item.idCompeticion, id2 = item.anho }) |
-                    @Html.ActionLink("Add Team", "AddTeam", new { id = item.idCompeticion, id2 = item.anho }) |
-                    @Html.ActionLink("Positions Table", "Positions", new { id = item.idCompeticion, id2 = item.anho }) |
-                    @Html.ActionLink("Referee Performance", "RefereePerformance", new { id = item.idCompeticion, id2 = item.anho }) |
-                    @Html.ActionLink("Player Performance", "PlayerPerformance", new { id = item.idCompeticion, id2 = item.anho })
-                    @Html.ActionLink("Generate Game Calendar", "Calendar", new { id = item.idCompeticion, id2 = item.anho }) |
-                    @Html.ActionLink("Simulate Results", "Simulation", new { id = item.idCompeticion, id2 = item.anho }) |
-                </td>
-            </tr>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.idCompeticion, id2 = item.anho }) |*@
+                @Html.ActionLink("Delete", "Delete", new { id = item.idCompeticion, id2 = item.anho }) |
+                @Html.ActionLink("Add Tournament Date", "AddFecha", new { id = item.idCompeticion, id2 = item.anho }) |
+                @Html.ActionLink("Add Team", "AddTeam", new { id = item.idCompeticion, id2 = item.anho }) |
+                @Html.ActionLink("Positions Table", "Positions", new { id = item.idCompeticion, id2 = item.anho }) |
+                @Html.ActionLink("Referee Performance", "RefereePerformance", new { id = item.idCompeticion, id2 = item.anho }) |
+                @Html.ActionLink("Player Performance", "PlayerPerformance", new { id = item.idCompeticion, id2 = item.anho }) |
+                @Html.ActionLink("Generate Game Calendar", "Calendar", new { id = item.idCompeticion, id2 = item.anho }) |
+                @Html.ActionLink("Simulate Results", "Simulation", new { id = item.idCompeticion, id2 = item.anho }) |
+            </td>
+        </tr>
         }
 
     </table>

@@ -105,13 +105,13 @@
                 @Html.ActionLink("Edit", "Edit", new { id = item.idPartido }) |
                 @Html.ActionLink("Details", "Details", new { id = item.idPartido }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.idPartido }) |
-                @Html.ActionLink("Add Local Player", "AgregarJugador", new { idEquipo = item.equipoCasa,idPartido = item.idPartido }) |
-                @Html.ActionLink("Add Visit Player", "AgregarJugador", new { idEquipo = item.equipoVisita, idPartido = item.idPartido }) |
+                @Html.ActionLink("Add Home Player", "AgregarJugador", new { idEquipo = item.equipoCasa,idPartido = item.idPartido }) |
+                @Html.ActionLink("Add Away Player", "AgregarJugador", new { idEquipo = item.equipoVisita, idPartido = item.idPartido }) |
                 @Html.ActionLink("Add Referee", "RegistrarArbitro", new { idPartido = item.idPartido }) |
-                @Html.ActionLink("Add Local Goal", "RegistrarGol", new { idEquipo = item.equipoCasa, idPartido = item.idPartido }) |
-                @Html.ActionLink("Add Visit Goal", "RegistrarGol", new { idEquipo = item.equipoVisita, idPartido = item.idPartido }) |
+                @Html.ActionLink("Add Home Goal", "RegistrarGol", new { idEquipo = item.equipoCasa, idPartido = item.idPartido }) |
+                @Html.ActionLink("Add Away Goal", "RegistrarGol", new { idEquipo = item.equipoVisita, idPartido = item.idPartido }) |
                 @Html.ActionLink("Add Local Sub", "RegistrarCambio", new { idEquipo = item.equipoCasa, idPartido = item.idPartido }) |
-                @Html.ActionLink("Add Visit Sub", "RegistrarCambio", new { idEquipo = item.equipoVisita, idPartido = item.idPartido }) |
+                @Html.ActionLink("Add Away Sub", "RegistrarCambio", new { idEquipo = item.equipoVisita, idPartido = item.idPartido }) |
                 @Html.ActionLink("Match History", "MatchHistory", new { idEquipo1 = item.equipoCasa, idEquipo2 = item.equipoVisita, idFecha = item.fecha })
 
             </td>
