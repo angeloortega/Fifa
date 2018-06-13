@@ -265,6 +265,7 @@
     <Compile Include="Models\Partido.cs">
       <DependentUpon>modeloSolicitud.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\partidoGoles.cs" />
     <Compile Include="Models\PartidoHistorico.cs">
       <DependentUpon>modeloSolicitud.tt</DependentUpon>
     </Compile>

@@ -4,95 +4,327 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
+<h2>Detalles de Partido</h2>
+<hr />
 <div>
-    <h4>Partido</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.fecha)
-        </dt>
+    <div class="container">
 
-        <dd>
-            @Html.DisplayFor(model => model.fecha)
-        </dd>
+        
+        <div class="row">
+            <div class="center-block">
+                <h2 style="text-align: center;">@Html.DisplayFor(model => model.Club1.nombre) @Html.DisplayFor(model => model.golesCasa) - @Html.DisplayFor(model => model.golesCasa) @Html.DisplayFor(model => model.Club.nombre) </h2>
+                <h4 style="text-align: center;">
+                    @Html.DisplayFor(model => model.fecha)
+                </h4>
+            </div>
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.golesCasa)
-        </dt>
+        <hr />
+        <h2>
+            Alineaciones
+        </h2>
+        <hr />
+        <div class="col-xs-6">
+            <h3 class="sub-header">@Html.DisplayFor(model => model.Club1.nombre)</h3>
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <th>
+                            Foto
+                        </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.golesCasa)
-        </dd>
+                        <th>
+                            Nombre Jugador
+                        </th>
+                        <th>
+                            Posicion
+                        </th>
+                        <th>
+                            Dorsal
+                        </th>
+                        <th>
+                            Tipo
+                        </th>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.golesVisita)
-        </dt>
+                    </tr>
+                    @foreach (var item in Model.JugadorxPartido)
+                    {
+                        if (item.Jugador.Funcionario.idClub == Model.equipoCasa)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="@Url.Content("~/Resources/" + item.Jugador.Funcionario.foto)" alt="IMAGES" width="75" height="75" />
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Jugador.Funcionario.nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.posicion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Jugador.nroCamiseta)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tipo)
+                                </td>
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.golesVisita)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.usuarioCreacion)
-        </dt>
+        <div class="col-xs-6">
+            <h3 class="sub-header">@Html.DisplayFor(model => model.Club.nombre)</h3>
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <th>
+                            Foto
+                        </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.usuarioCreacion)
-        </dd>
+                        <th>
+                            Nombre Jugador
+                        </th>
+                        <th>
+                            Posicion
+                        </th>
+                        <th>
+                            Dorsal
+                        </th>
+                        <th>
+                            Tipo
+                        </th>
+                    </tr>
+                    @foreach (var item in Model.JugadorxPartido)
+                    {
+                        if (item.Jugador.Funcionario.idClub == Model.equipoVisita)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="@Url.Content("~/Resources/" + item.Jugador.Funcionario.foto)" alt="IMAGES" width="75" height="75" />
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Jugador.Funcionario.nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.posicion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Jugador.nroCamiseta)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tipo)
+                                </td>
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.usuarioModificacion)
-        </dt>
+        <hr />
+        <h2>Goles</h2>
+        <hr />
 
-        <dd>
-            @Html.DisplayFor(model => model.usuarioModificacion)
-        </dd>
+        <h3 class="sub-header">@Html.DisplayFor(model => model.Club.nombre)</h3>
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th>
+                        Nombre anotador
+                    </th>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.fchCreacion)
-        </dt>
+                    <th>
+                        Minuto
+                    </th>
+                    <th>
+                        Segundo
+                    </th>
+                    <th>
+                        Video
+                    </th>
+                    <th style="width: 100%">
 
-        <dd>
-            @Html.DisplayFor(model => model.fchCreacion)
-        </dd>
+                    </th>
+                </tr>
+                @foreach (var item in Model.GolxPartido)
+                {
+                    if (item.Jugador.Funcionario.idClub == Model.equipoCasa)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Jugador.Funcionario.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.minuto)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.segundo)
+                            </td>
+                            <td>
+                                <video controls>
+                                    <source src="@Url.Content("~/Resources/" + item.video)" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.fchModificacion)
-        </dt>
+        </div>
+        <h3 class="sub-header">@Html.DisplayFor(model => model.Club1.nombre)</h3>
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th>
+                        Nombre anotador
+                    </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.fchModificacion)
-        </dd>
+                    <th>
+                        Minuto
+                    </th>
+                    <th>
+                        Segundo
+                    </th>
+                    <th>
+                        Video
+                    </th>
+                    <th style="width: 100%">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.equipoVisita)
-        </dt>
+                    </th>
+                </tr>
+                @foreach (var item in Model.GolxPartido)
+                {
+                    if (item.Jugador.Funcionario.idClub == Model.equipoVisita)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Jugador.Funcionario.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.minuto)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.segundo)
+                            </td>
+                            <td>
+                                <video controls>
+                                    <source src="@Url.Content("~/Resources/" + item.video)" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Club.nombre)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.equipoCasa)
-        </dt>
+        <hr />
+        <h2>
+            Cambios
+        </h2>
+        <hr />
+        <table class="table">
+            <tr>
+                <th>
+                    Foto Jugador Entra
+                </th>
+                <th>
+                    Nombre Jugador Entra
+                </th>
+                <th>
+                    Foto Jugador Sale
+                </th>
+                <th>
+                    Nombre Jugador Sale
+                </th>
+                <th>
+                    Minuto
+                </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.Club1.nombre)
-        </dd>
+                <th>
+                    Equipo
+                </th>
+                <th style="width: 100%">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaTorneo.usuarioCreacion)
-        </dt>
+                </th>
+            </tr>
+            @foreach (var item in Model.CambioxPartido)
+            {
+                string clubName = "";
+                if (Model.Club.idClub == item.Jugador.Funcionario.idClub)
+                {
+                    clubName = Model.Club.nombre;
+                }
+                else
+                {
+                    clubName = Model.Club1.nombre;
+                }
+                <tr>
+                    <td>
+                        <img src="@Url.Content("~/Resources/" + item.Jugador.Funcionario.foto)" alt="IMAGES" width="75" height="75" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Jugador.Funcionario.nombre)
+                    </td>
+                    <td>
+                        <img src="@Url.Content("~/Resources/" + item.Jugador1.Funcionario.foto)" alt="IMAGES" width="75" height="75" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Jugador1.Funcionario.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.minuto)
+                    </td>
+                    <td>
+                        @Html.Raw(clubName)
+                    </td>
+                </tr>
+            }
+        </table>
 
-        <dd>
-            @Html.DisplayFor(model => model.FechaTorneo.usuarioCreacion)
-        </dd>
+        <hr />
+        <h2>
+            Arbitros
+        </h2>
+        <hr />
+        <table class="table">
+            <tr>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Rol
+                </th>
+                <th>
+                    Rating de Desempeño
+                </th>
+                <th style="width: 100%">
 
-    </dl>
-</div>
-<p>
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.idPartido }) |*@
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                </th>
+            </tr>
+            @foreach (var item in Model.ArbitroxPartido)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Arbitro.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tipo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.desempenho)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <p>
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.idPartido }) |*@
+        @Html.ActionLink("Back to List", "Index")
+    </p>
