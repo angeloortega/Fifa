@@ -1,7 +1,9 @@
-﻿@model IEnumerable<Fifa19.Models.Jugador>
+﻿@model PagedList.IPagedList<Fifa19.Models.Jugador>
+@using PagedList.Mvc
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Jugadores";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,39 +13,39 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-<form asp-controller="Jugador" asp-action="Index">
+@using (Html.BeginForm("Index", "Jugadors", FormMethod.Get))
+{
     <p>
-        Title: <input type="text" name="search">
-        <input type="submit" value="Filter" />
+        Busqueda: @Html.TextBox("search", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
     </p>
-</form>
-
+}
 <div style="height: 550px; overflow: auto;">
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Peso)
+                Peso
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Altura)
+                Altura
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.nroCamiseta)
+                Nro Camiseta
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.usuarioCreacion)
+                Usuario Creacion
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.usuarioModificacion)
+                Usuario Modificacion
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.fchCreacion)
+                Fecha Creacion
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.fchModificacion)
+                Fecha Modificacion
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Funcionario.nombre)
+                @Html.ActionLink("Nombre Funcionario", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th></th>
         </tr>
@@ -83,6 +85,10 @@
                 </td>
             </tr>
         }
-
     </table>
 </div>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

@@ -18,15 +18,41 @@ namespace Fifa19.Controllers
         private FootballEntities db = new FootballEntities();
 
         // GET: Jugadors
-        public async Task<ActionResult> Index(string search)
+        public ViewResult Index(string sortOrder, string currentFilter, string search, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            
+            if (search != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                search = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = search;
+
             var player = from m in db.Jugador
                        select m;
+
             if (!String.IsNullOrEmpty(search))
             {
                 player = player.Where(s => s.Funcionario.nombre.Contains(search));
             }
-            return View(await player.ToListAsync());
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    player = player.OrderByDescending(s => s.Funcionario.nombre);
+                    break;
+                default:
+                    player = player.OrderBy(s => s.Funcionario.nombre);
+                    break;
+            }
+            int pageSize = 50;
+            int pageNumber = (page ?? 1);
+            return View(player.ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult HistorialEquipos(decimal id)
