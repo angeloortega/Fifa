@@ -159,6 +159,7 @@
     <Compile Include="Controllers\ArbitroesController.cs" />
     <Compile Include="Controllers\ClubsController.cs" />
     <Compile Include="Controllers\CompeticionsController.cs" />
+    <Compile Include="Controllers\ContratoesController.cs" />
     <Compile Include="Controllers\EntrenadorsController.cs" />
     <Compile Include="Controllers\EspecialidadsController.cs" />
     <Compile Include="Controllers\FechaTorneosController.cs" />
@@ -1528,6 +1529,12 @@
     <Content Include="Views\Torneos\Simulation.cshtml" />
     <Content Include="Views\Torneos\Calendar.cshtml" />
     <Content Include="Views\Torneos\AddTeam.cshtml" />
+    <Content Include="Views\Partidoes\MatchHistory.cshtml" />
+    <Content Include="Views\Contratoes\Create.cshtml" />
+    <Content Include="Views\Contratoes\Delete.cshtml" />
+    <Content Include="Views\Contratoes\Details.cshtml" />
+    <Content Include="Views\Contratoes\Edit.cshtml" />
+    <Content Include="Views\Contratoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

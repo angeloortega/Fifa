@@ -1,37 +1,38 @@
-﻿@model Fifa19.Models.Partido
+﻿@model Fifa19.Models.Contrato
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>Partido</h4>
+    <h4>Contrato</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.fecha)
+            @Html.DisplayNameFor(model => model.importe)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.fecha)
+            @Html.DisplayFor(model => model.importe)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.golesCasa)
+            @Html.DisplayNameFor(model => model.fchFinProgramado)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.golesCasa)
+            @Html.DisplayFor(model => model.fchFinProgramado)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.golesVisita)
+            @Html.DisplayNameFor(model => model.fchFinReal)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.golesVisita)
+            @Html.DisplayFor(model => model.fchFinReal)
         </dd>
 
         <dt>
@@ -67,7 +68,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.equipoVisita)
+            @Html.DisplayNameFor(model => model.Club.nombre)
         </dt>
 
         <dd>
@@ -75,24 +76,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.equipoCasa)
+            @Html.DisplayNameFor(model => model.Funcionario.nombre)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Club1.nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaTorneo.usuarioCreacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaTorneo.usuarioCreacion)
+            @Html.DisplayFor(model => model.Funcionario.nombre)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idPartido }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idClub, id2 = Model.codigoFuncionario, id3 = Model.fchInicio }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

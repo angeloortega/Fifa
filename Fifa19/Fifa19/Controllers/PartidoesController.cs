@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -25,6 +26,19 @@ namespace Fifa19.Controllers
                 club = club.Where(s => s.Club.nombre.Contains(search) || s.Club1.nombre.Contains(search) || s.FechaTorneo.Torneo.Competicion.nbrCompeticion.Contains(search));
             }
             return View(await club.ToListAsync());
+        }
+
+        public ActionResult MatchHistory(decimal idEquipo1, decimal idEquipo2, DateTime idFecha)
+        {
+            if (idEquipo1 == null || idEquipo2 == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SqlParameter p1 = new SqlParameter("@equipo1", idEquipo1);
+            SqlParameter p2 = new SqlParameter("@equipo2", idEquipo2);
+            SqlParameter p3 = new SqlParameter("@fechaInicio", idFecha);
+            var lista = db.Database.SqlQuery<sp_obtenerEncuentrosHistoricos_Result>("exec FIFA.sp_obtenerEncuentrosHistoricos @equipo1, @equipo2, @fechaInicio", p1, p2, p3);
+            return View(lista.ToList());
         }
 
         // GET: Partidoes/Details/5
