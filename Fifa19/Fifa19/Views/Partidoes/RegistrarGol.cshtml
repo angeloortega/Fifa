@@ -3,9 +3,36 @@
 @{
     ViewBag.Title = "RegistrarGolCasa";
 }
+@section styles{
+    <style>
+        .custom-ImagePath {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+    </style>
+}
+@section scripts
+{
+    <script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imgFunc')
+                        .attr('src', e.target.result)
+                        .height(75);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}
 
 <h2>RegistrarGolCasa</h2>
-@using (Html.BeginForm())
+@using (Html.BeginForm("RegistrarGol", "Partidoes", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -15,7 +42,26 @@
     <hr />
 
     <div class="form-group">
-        @Html.LabelFor(model => model.codigoJugador, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.video, "Video", htmlAttributes: new { @class = "control-label col-md-2" })
+        <video id="imgFunc" controls>
+            <source src="@Url.Content("~/Resources/default.mp4")" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <label for="ImagePath" class="custom-ImagePath">
+            <i class="fa fa-cloud-upload"></i> Seleccionar Video
+        </label>
+
+        <input id="ImagePath" type="file" name="file" onchange="readURL(this);" style="display:none;" accept=".mp4" />
+
+
+
+
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.codigoJugador, "Anotador", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownList("codigoJugador", null, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.codigoJugador, "", new { @class = "text-danger" })
@@ -23,7 +69,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.minuto, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.minuto,"Minuto", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownListFor(model => model.minuto, new SelectList(Enumerable.Range(0, 91)))
             @Html.ValidationMessageFor(model => model.minuto, "", new { @class = "text-danger" })
@@ -31,7 +77,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.segundo, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.segundo,"Segundo", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownListFor(model => model.segundo, new SelectList(Enumerable.Range(0, 61)))
             @Html.ValidationMessageFor(model => model.segundo, "", new { @class = "text-danger" })
@@ -39,7 +85,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.usuarioCreacion, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.usuarioCreacion,"Usuario de Creacion", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.usuarioCreacion, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.usuarioCreacion, "", new { @class = "text-danger" })
@@ -47,7 +93,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.usuarioModificacion, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.usuarioModificacion, "Usuario de Modificacion", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.usuarioModificacion, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.usuarioModificacion, "", new { @class = "text-danger" })
@@ -55,7 +101,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.fchCreacion, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.fchCreacion,"Fecha de Creacion",htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.fchCreacion, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.fchCreacion, "", new { @class = "text-danger" })
@@ -63,18 +109,18 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.fchModificacion, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.fchModificacion, "Fecha de Modificacion", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.fchModificacion, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.fchModificacion, "", new { @class = "text-danger" })
         </div>
     </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Agregar Gol" class="btn btn-default" />
-            </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Agregar Gol" class="btn btn-default" />
         </div>
     </div>
-    }
+</div>
+}
 

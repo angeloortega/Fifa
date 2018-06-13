@@ -174,11 +174,16 @@ namespace Fifa19.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult RegistrarGol([Bind(Include = "idPartido,codigoJugador,minuto,segundo,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] GolxPartido golxpartido)
+        public ActionResult RegistrarGol(GolxPartido golxpartido, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                
+                if (file != null)
+                {
+                    file.SaveAs(HttpContext.Server.MapPath("~/Resources/")
+                                                          + file.FileName);
+                    golxpartido.video = file.FileName;
+                }
                 db.GolxPartido.Add(golxpartido);
                 db.SaveChanges();
                 return RedirectToAction("Index");
