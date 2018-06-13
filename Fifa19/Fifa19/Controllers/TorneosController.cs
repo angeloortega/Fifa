@@ -50,7 +50,10 @@ namespace Fifa19.Controllers
             {
                 return HttpNotFound();
             }
-            return View(torneo);
+            Calendar cal = new Calendar();
+            cal.anho = torneo.anho;
+            cal.idCompeticion = torneo.idCompeticion;
+            return View(cal);
         }
         public ActionResult GenerateCalendar(decimal id, decimal id2, DateTime id3)
         {
@@ -126,6 +129,24 @@ namespace Fifa19.Controllers
 
             ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "IdCompeticion", torneo.idCompeticion);
             return View(torneo);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Calendar(Calendar calendario)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Database.ExecuteSqlCommand(
+                "EXEC FIFA.sorteoTabla @idCampeonato, @anho, @fchInicio",
+                new SqlParameter("@idCampeonato", calendario.idCompeticion),
+                new SqlParameter("@anho", calendario.anho),
+                new SqlParameter("@fchInicio", calendario.fchInicio));
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "IdCompeticion", calendario.idCompeticion);
+            return View(calendario);
         }
 
         public ActionResult Positions(decimal id, decimal id2)

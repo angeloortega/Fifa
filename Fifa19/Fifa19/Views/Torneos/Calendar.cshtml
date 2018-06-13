@@ -1,23 +1,32 @@
-﻿@model Fifa19.Models.Torneo
+﻿@model Fifa19.Models.Calendar
 @{
     ViewBag.Title = "Calendar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Calendar</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <h4>Inserte Fecha de Inicio del Torneo</h4>
+    <div class="form-group">
+        @Html.HiddenFor(model => model.anho)
+        @Html.HiddenFor(model => model.idCompeticion)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.fchInicio, "Fecha de Inicio", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.fchInicio, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.fchInicio, "Please insert valid date", new { @class = "text-danger" })
+        </div>
+    </div>
 
-<form>
-    <p>
-        Fecha Inicio: <input type="date" name="fchInicio" id="fcInicio">
-         <button type="submit" onclick="Generator(Model.idCompeticion, Model.anho)"> Generar Calendario </button>
-    </p>
-</form>
-@Html.ActionLink("Partidos", "Index", "Partidoes")
-
-<script type="text/javascript"> 
-    function Generator(Ml) {
-        var id3 = document.getElementById("fcinicio").value = "12/05/1999";
-        var id1 = ne
-    }
-
-</script>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" value="Calendar" class="btn btn-default"> Generar Calendario </button>
+        </div>
+    </div>
+</div>
+}
+@Html.ActionLink("Torneos", "Index")
