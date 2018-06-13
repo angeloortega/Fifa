@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Fifa19.Models.sp_obtenerEncuentrosHistoricos_Result>
+
+@{
+    ViewBag.Title = "MatchHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Match History</h2>
+<div style="height: 550px; overflow: auto;">
+    <table class="table">
+        <tr>
+            <th>
+                Equipo Casa
+            </th>
+            <th>
+                Equipo Visita
+            </th>
+            <th>
+                Goles Casa
+            </th>
+            <th>
+                Goles Visita
+            </th>
+            <th>
+                Id Competencia
+            </th>
+            <th>
+                Año
+            </th>
+            <th>
+                Nombre Jugador
+            </th>
+            <th>
+                Cantidad de Goles
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.equipoCasa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.equipoVisita)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.golesCasa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.golesVisita)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idCompetencia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.anho)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nbrJugador)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.goles)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

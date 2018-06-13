@@ -20,6 +20,6 @@ namespace Fifa19.Models
         public Nullable<decimal> idCompetencia { get; set; }
         public Nullable<decimal> anho { get; set; }
         public string nbrJugador { get; set; }
-        public Nullable<decimal> Column1 { get; set; }
+        public Nullable<decimal> goles { get; set; }
     }
 }
