@@ -125,12 +125,17 @@ namespace Fifa19.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idPartido,idCompeticion,anho,nroFecha,equipoVisita,equipoCasa,fecha,golesCasa,golesVisita,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Partido partido)
+        public ActionResult Edit([Bind(Include = "idPartido,anho,equipoVisita,equipoCasa,fecha,golesCasa,golesVisita,usuarioModificacion")] Partido partido)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(partido).State = EntityState.Modified;
-                db.SaveChanges();
+                Partido partidoOut = db.Partido.Find(partido.idPartido);
+                partido.usuarioCreacion = partidoOut.usuarioCreacion;
+                partido.fchCreacion = partidoOut.fchCreacion;
+                partido.fchModificacion = DateTime.Now;
+                var newContext = new FootballEntities();
+                newContext.Entry(partido).State = EntityState.Modified;
+                newContext.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.equipoVisita = new SelectList(db.Club, "idClub", "nombre", partido.equipoVisita);
@@ -163,7 +168,7 @@ namespace Fifa19.Controllers
             SelectList nombreJugadores = new SelectList (from a in db.Funcionario
                          where a.idClub == idEquipo
                          join b in db.Jugador on a.codigoFuncionario equals b.codigoFuncionario
-                         select new { a.nombre, a.codigoFuncionario});
+                         select new { nombre = a.nombre, codigoFuncionario = a.codigoFuncionario});
             ViewBag.codigoJugador = new SelectList(db.Funcionario.Where(x => x.idClub == idEquipo), "codigoFuncionario", "nombre");
             //SelectList minutos = new SelectList();
             GolxPartido variable = new GolxPartido();

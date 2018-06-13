@@ -37,7 +37,7 @@ namespace Fifa19.Controllers
             return View(torneo);
         }
 
-        public ActionResult Performance(decimal id, decimal id2)
+        public ActionResult RefereePerformance(decimal id, decimal id2)
         {
             if (id == null || id2 == null)
             {
@@ -52,6 +52,64 @@ namespace Fifa19.Controllers
             SqlParameter p2 = new SqlParameter("@anho", id2);
             var lista = db.Database.SqlQuery<sp_desempenhoArbitroTorneo_Result>("exec FIFA.sp_desempenhoArbitroTorneo @idCampeonato, @anho", p1, p2);
             return View(lista.ToList());
+        }
+
+        public ActionResult PlayerPerformance(decimal id, decimal id2)
+        {
+            if (id == null || id2 == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SelectList nombreClubes = new SelectList(from a in db.TorneoXClub
+                                                        where (a.idCompeticion == id && a.anho == id2)
+                                                        join b in db.Club on a.idClub equals b.idClub
+                                                        select b.nombre);
+            ViewBag.idClub = new SelectList(db.TorneoXClub.Where(e =>  e.idCompeticion== id), "idClub", "idClub");
+            ViewBag.codigoFuncionario = new SelectList(db.Funcionario.Where(e => e.idClub == 0), "codigoFuncionario", "codigoFuncionario");
+            FuncionarioXClubXTorneo funcionario = new FuncionarioXClubXTorneo();
+            funcionario.idCompeticion = id;
+            funcionario.anho = id2;
+            return View(funcionario); 
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PlayerPerformance([Bind(Include = "idCompeticion,anho,idClub,codigoFuncionario,sinopsisRendimiento,usuarioModificacion")] FuncionarioXClubXTorneo funcionario)
+        {
+            FuncionarioXClubXTorneo funcionarioOut = db.FuncionarioXClubXTorneo.Find(funcionario.codigoFuncionario, funcionario.idClub,funcionario.idCompeticion,funcionario.anho);
+            funcionario.usuarioCreacion = funcionarioOut.usuarioCreacion;
+            funcionario.fchCreacion = funcionarioOut.fchCreacion;
+            funcionario.posicionTabla = funcionarioOut.posicionTabla;
+            funcionario.fchModificacion = DateTime.Now;
+            if (ModelState.IsValid)
+            {
+                var newContext = new FootballEntities();
+                newContext.Entry(funcionario).State = EntityState.Modified;
+                newContext.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            SelectList nombreClubes = new SelectList(from a in db.TorneoXClub
+                                                     where (a.idCompeticion == funcionario.idCompeticion && a.anho == funcionario.anho)
+                                                     join b in db.Club on a.idClub equals b.idClub
+                                                     select b.nombre);
+            ViewBag.idClub = nombreClubes;
+            ViewBag.codigoFuncionario = new SelectList(db.Funcionario.Where(e => e.idClub == 1), "codigoFuncionario", "nombre");
+            return View(funcionario);
+        }
+
+        [HttpPost]
+        public ActionResult CambioClub(decimal id)
+        {
+            //ViewBag.equipoVisita = new SelectList(db.Club, "idClub", "nombre", model.equipoVisita);
+            //ViewBag.equipoCasa = new SelectList(db.Club, "idClub", "nombre", model.equipoCasa);
+            //ViewBag.idCompeticion = new SelectList(db.Torneo, "idCompeticion", "idCompeticion", model.idCompeticion);
+            var lista = from a in db.Funcionario
+                        where a.idClub == id
+                        select a.codigoFuncionario;
+
+            //SelectList result = new SelectList(db.Funcionario.Where(e => e.idClub == 1), "codigoFuncionario", "nombre");
+
+            return Json(lista);
         }
 
         // GET: Torneos/Create
@@ -127,16 +185,22 @@ namespace Fifa19.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idCompeticion,anho,usuarioCreacion,usuarioModificacion,fchCreacion,fchModificacion")] Torneo torneo)
+        public ActionResult Edit([Bind(Include = "idCompeticion,anho,usuarioModificacion")] Torneo torneo)
         {
+            
             if (ModelState.IsValid)
             {
-                db.Entry(torneo).State = EntityState.Modified;
-                db.SaveChanges();
+                Torneo torneoOut = db.Torneo.Find(torneo.idCompeticion, torneo.anho);
+                torneo.usuarioCreacion = torneoOut.usuarioCreacion;
+                torneo.fchCreacion = torneoOut.fchCreacion;
+                torneo.fchModificacion = DateTime.Now;
+                var newContext = new FootballEntities();
+                newContext.Entry(torneo).State = EntityState.Modified;
+                newContext.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "nbrCompeticion", torneo.idCompeticion);
-            ViewBag.anho = new SelectList(db.Competicion, "anho", "anho", torneo.anho);
+            //ViewBag.anho = new SelectList(db.Competicion, "anho", "anho", torneo.anho);
             return View(torneo);
         }
 
@@ -176,7 +240,11 @@ namespace Fifa19.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddFecha([Bind(Include = "idCompeticion,anho,nroFecha,usuarioCreacion,fchCreacion,usuarioModificacion,fchModificacion")] FechaTorneo torneo)
         {
-            if (ModelState.IsValid && !db.FechaTorneo.Contains(new FechaTorneo { idCompeticion = torneo.idCompeticion , anho = torneo.anho , nroFecha =torneo.nroFecha}))
+            var query = from m in db.FechaTorneo
+                        where m.nroFecha == torneo.nroFecha && m.idCompeticion == torneo.idCompeticion && m.anho == torneo.anho
+                        select m.nroFecha;
+                        
+            if (ModelState.IsValid && query.ToList().Count == 0)
             {
                 db.FechaTorneo.Add(torneo);
                 db.SaveChanges();

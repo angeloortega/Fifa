@@ -1519,12 +1519,13 @@
     <Content Include="Views\Torneos\Positions.cshtml" />
     <Content Include="Views\Jugadors\HistorialEquipos.cshtml" />
     <Content Include="Views\Entrenadors\HistorialEntrenador.cshtml" />
-    <Content Include="Views\Torneos\Performance.cshtml" />
+    <Content Include="Views\Torneos\RefereePerformance.cshtml" />
     <Content Include="Views\Partidoes\RegistrarGol.cshtml">
       <BrowseToURL>~/Partidoes/RegistrarGol</BrowseToURL>
     </Content>
     <Content Include="Views\Partidoes\RegistrarCambio.cshtml" />
     <Content Include="Views\Partidoes\RegistrarArbitro.cshtml" />
+    <Content Include="Views\Torneos\PlayerPerformance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
