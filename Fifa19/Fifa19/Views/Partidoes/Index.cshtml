@@ -96,6 +96,7 @@
                     @Html.ActionLink("Add Visit Goal", "RegistrarGol", new { idEquipo = item.equipoVisita, idPartido = item.idPartido }) |
                     @Html.ActionLink("Add Local Sub", "RegistrarCambio", new { idEquipo = item.equipoCasa, idPartido = item.idPartido }) |
                     @Html.ActionLink("Add Visit Sub", "RegistrarCambio", new { idEquipo = item.equipoVisita, idPartido = item.idPartido }) |
+                    @Html.ActionLink("Match History", "MatchHistory", new { idEquipo1 = item.equipoCasa, idEquipo2 = item.equipoVisita, idFecha = item.fecha})
                     @*@Html.ActionLink("Add line-up", "AgregaAlineacion", new { id = item.idPartido})*@
 
                 </td>

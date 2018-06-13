@@ -236,6 +236,39 @@ namespace Fifa19.Controllers
             return View(torneo);
         }
 
+        public ActionResult AddTeam(decimal id, decimal id2)
+        {
+            if (id == null || id2 == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Torneo torneo = db.Torneo.Find(id, id2);
+            if (torneo == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.idClub = new SelectList(db.Club, "idClub", "nombre");
+            TorneoXClub variable = new TorneoXClub();
+            variable.idCompeticion = id;
+            variable.anho = id2;
+            return View(variable);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddTeam([Bind(Include ="idClub, idCompeticion, anho, usuarioCreacion, usuarioModificacion, fchCreacion, fchModificacion")] TorneoXClub torneoxclub)
+        {
+            if (ModelState.IsValid)
+            {
+
+                db.TorneoXClub.Add(torneoxclub);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.idClub = new SelectList(db.Club, "idClub", "nombre");
+            return View(torneoxclub);
+        }
+
         // POST: Torneos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
