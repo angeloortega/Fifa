@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Fifa19.Models.Imagenes>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.image_byte)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.image_byte)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.nombre }) |
+            @Html.ActionLink("Details", "Details", new { id=item.nombre }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.nombre })
+        </td>
+    </tr>
+}
+
+</table>

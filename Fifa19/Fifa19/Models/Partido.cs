@@ -11,8 +11,7 @@ namespace Fifa19.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Partido
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -31,9 +30,7 @@ namespace Fifa19.Models
         public decimal equipoVisita { get; set; }
         public decimal equipoCasa { get; set; }
         public System.DateTime fecha { get; set; }
-        [DisplayFormat(DataFormatString = "{0:N0}", ApplyFormatInEditMode = true)]
         public decimal golesCasa { get; set; }
-        [DisplayFormat(DataFormatString = "{0:N0}", ApplyFormatInEditMode = true)]
         public decimal golesVisita { get; set; }
         public string usuarioCreacion { get; set; }
         public string usuarioModificacion { get; set; }

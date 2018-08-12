@@ -147,6 +147,7 @@ namespace Fifa19.Controllers
                 partido.usuarioCreacion = partidoOut.usuarioCreacion;
                 partido.fchCreacion = partidoOut.fchCreacion;
                 partido.fchModificacion = DateTime.Now;
+                partido.idCompeticion = partidoOut.idCompeticion;
                 var newContext = new FootballEntities();
                 newContext.Entry(partido).State = EntityState.Modified;
                 newContext.SaveChanges();

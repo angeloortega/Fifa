@@ -310,6 +310,13 @@
           <Property Name="fchCreacion" Type="datetime" Nullable="false" />
           <Property Name="fchModificacion" Type="datetime" />
         </EntityType>
+        <EntityType Name="Imagenes">
+          <Key>
+            <PropertyRef Name="nombre" />
+          </Key>
+          <Property Name="nombre" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="image_byte" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="Jugador">
           <Key>
             <PropertyRef Name="codigoFuncionario" />
@@ -1071,6 +1078,7 @@
           <EntitySet Name="FuncionarioXClubXTorneoHistorico" EntityType="Self.FuncionarioXClubXTorneoHistorico" Schema="FIFA" store:Type="Tables" />
           <EntitySet Name="GolxPartido" EntityType="Self.GolxPartido" Schema="FIFA" store:Type="Tables" />
           <EntitySet Name="GolxPartidoHistorico" EntityType="Self.GolxPartidoHistorico" Schema="FIFA" store:Type="Tables" />
+          <EntitySet Name="Imagenes" EntityType="Self.Imagenes" Schema="FIFA" store:Type="Tables" />
           <EntitySet Name="Jugador" EntityType="Self.Jugador" Schema="FIFA" store:Type="Tables" />
           <EntitySet Name="JugadorxPartido" EntityType="Self.JugadorxPartido" Schema="FIFA" store:Type="Tables" />
           <EntitySet Name="JugadorxPartidoHistorico" EntityType="Self.JugadorxPartidoHistorico" Schema="FIFA" store:Type="Tables" />
@@ -2530,6 +2538,7 @@
             <Parameter Name="anho" Mode="In" Type="Decimal" />
             <Parameter Name="fchInicio" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <EntitySet Name="Imagenes" EntityType="FootballModel.Imagenes" />
         </EntityContainer>
         <ComplexType Name="sp_generarTablaPosiciones_Result">
           <Property Type="Decimal" Name="idEquipo" Nullable="true" Precision="4" Scale="0" />
@@ -2575,6 +2584,13 @@
           <Property Type="String" Name="tipoCompetencia" Nullable="true" MaxLength="1" />
           <Property Type="String" Name="sinopsis" Nullable="true" MaxLength="240" />
         </ComplexType>
+        <EntityType Name="Imagenes">
+          <Key>
+            <PropertyRef Name="nombre" />
+          </Key>
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="image_byte" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3147,6 +3163,14 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_simulacion" FunctionName="FootballModel.Store.sp_simulacion" />
           <FunctionImportMapping FunctionImportName="sorteoTabla" FunctionName="FootballModel.Store.sorteoTabla" />
+          <EntitySetMapping Name="Imagenes">
+            <EntityTypeMapping TypeName="FootballModel.Imagenes">
+              <MappingFragment StoreEntitySet="Imagenes">
+                <ScalarProperty Name="image_byte" ColumnName="image_byte" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

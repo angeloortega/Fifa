@@ -62,6 +62,7 @@ namespace Fifa19.Models
         public virtual DbSet<TorneoHistorico> TorneoHistorico { get; set; }
         public virtual DbSet<TorneoXClub> TorneoXClub { get; set; }
         public virtual DbSet<TorneoXClubHistorico> TorneoXClubHistorico { get; set; }
+        public virtual DbSet<Imagenes> Imagenes { get; set; }
     
         public virtual ObjectResult<sp_generarTablaPosiciones_Result> sp_generarTablaPosiciones(Nullable<decimal> idCampeonato, Nullable<decimal> anho)
         {
