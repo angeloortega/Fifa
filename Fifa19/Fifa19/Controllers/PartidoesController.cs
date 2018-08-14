@@ -231,11 +231,12 @@ namespace Fifa19.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AgregarJugador([Bind(Include = "idPartido,codigoJugador,posicion,tipo,desempenho,usuarioCreacion")] JugadorxPartido jugadorxpartido)
+        public ActionResult AgregarJugador(JugadorxPartido jugadorxpartido)
         {
             if (ModelState.IsValid)
             {
                 jugadorxpartido.fchCreacion = DateTime.Now;
+                jugadorxpartido.usuarioCreacion = "angramirez";
                 db.JugadorxPartido.Add(jugadorxpartido);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -261,9 +262,6 @@ namespace Fifa19.Controllers
                                                         select new { a.nombre, a.codigoFuncionario });
             ViewBag.codigoJugadorEntra = new SelectList(db.Funcionario.Where(x => x.idClub == idEquipo), "codigoFuncionario", "nombre");
             ViewBag.codigoJugadorSale = new SelectList(db.Funcionario.Where(x => x.idClub == idEquipo), "codigoFuncionario", "nombre");
-            //ViewBag.jugadoresEntran = nombreJugadores;
-            //ViewBag.jugadoresSalen = nombreJugadores2;
-            //SelectList minutos = new SelectList();
             CambioxPartido variable = new CambioxPartido();
             variable.idPartido = idPartido;
             return View(variable);
@@ -305,9 +303,6 @@ namespace Fifa19.Controllers
             SelectList lista = new SelectList(tipos);
             ViewBag.idArbitro = new SelectList(db.Arbitro, "idArbitro", "nombre");
             ViewBag.tipo = lista;
-            //ViewBag.jugadoresEntran = nombreJugadores;
-            //ViewBag.jugadoresSalen = nombreJugadores2;
-            //SelectList minutos = new SelectList();
             ArbitroxPartido variable = new ArbitroxPartido();
             variable.idPartido = idPartido;
             return View(variable);

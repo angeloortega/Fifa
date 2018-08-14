@@ -41,7 +41,7 @@ namespace Fifa19.Controllers
         }
 
         // GET: Funcionarios/Create
-        public ActionResult CreatePlayer()
+        public ActionResult Create()
         {
             ViewBag.idClub = new SelectList(db.Club, "idClub", "nombre");
             return View();
@@ -52,27 +52,22 @@ namespace Fifa19.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreatePlayer([Bind(Include = "Funcionario.nombre,Funcionario.fchNacimiento,Funcionario.idClub,usuarioCreacion")] Funcionario funcionario, [Bind(Include = "Peso,Altura,nroCamiseta")] Jugador jugador, HttpPostedFileBase file)
+        public ActionResult Create(Funcionario funcionario, HttpPostedFileBase file)
         {
             var last = (from m in db.Funcionario
                         select m.codigoFuncionario).Max();
+            funcionario.codigoFuncionario = last + 1;
+            funcionario.fchCreacion = DateTime.Now;
 
             if (ModelState.IsValid)
             {
-                funcionario.codigoFuncionario = last + 1;
-                jugador.codigoFuncionario = last + 1;
-                jugador.usuarioCreacion = funcionario.usuarioCreacion;
-                funcionario.fchCreacion = DateTime.Now;
-                jugador.fchCreacion = DateTime.Now;
                 if (file != null)
                 {
                     file.SaveAs(HttpContext.Server.MapPath("~/Resources/")
                                                           + file.FileName);
                     funcionario.foto = file.FileName;
                 }
-                //db.Funcionario.Add(funcionario);
-                //db.SaveChanges();
-                db.Jugador.Add(jugador);
+                db.Funcionario.Add(funcionario);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -99,6 +94,30 @@ namespace Fifa19.Controllers
             return View(funcionario);
         }
 
+        public ActionResult Jugador(decimal id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Jugador funcionario = new Jugador();
+            funcionario.codigoFuncionario = id;
+
+            return View(funcionario);
+        }
+        public ActionResult Entrenador(decimal id)
+        {
+            Funcionario original = db.Funcionario.Find(id);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Entrenador funcionario = new Entrenador();
+            funcionario.codigoFuncionario = id;
+            funcionario.nombre = original.nombre;
+
+            return View(funcionario);
+        }
         // POST: Funcionarios/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -128,7 +147,36 @@ namespace Fifa19.Controllers
             ViewBag.codigoFuncionario = new SelectList(db.Jugador, "codigoFuncionario", "usuarioCreacion", funcionario.codigoFuncionario);
             return View(funcionario);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Jugador(Jugador jugador)
+        {
+            if (ModelState.IsValid)
+            {
+                jugador.fchCreacion = DateTime.Now;
+                var newContext = new FootballEntities();
+                db.Jugador.Add(jugador);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
+            return View(jugador);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Entrenador(Entrenador entrenador)
+        {
+            if (ModelState.IsValid)
+            {
+                entrenador.fchCreacion = DateTime.Now;
+                var newContext = new FootballEntities();
+                db.Entrenador.Add(entrenador);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(entrenador);
+        }
         // GET: Funcionarios/Delete/5
         public ActionResult Delete(decimal id)
         {

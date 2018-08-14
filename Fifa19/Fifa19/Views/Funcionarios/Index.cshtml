@@ -7,8 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New Player", "CreatePlayer")
-    @Html.ActionLink("Create New Manager", "CreateManager")
+    @Html.ActionLink("Crear Nuevo Funcionario", "Create")
 </p>
 
 <form asp-controller="Funcionario" asp-action="Index">
@@ -27,14 +26,14 @@
             <th>
                 Nombre
             </th>
-            <th>
-                ID De Club Actual
-            </th>
+
 
             <th>
                 Fecha de Nacimiento
             </th>
-
+            <th>
+                ID De Club Actual
+            </th>
             <th>
                 Usuario de Creacion
             </th>
@@ -83,7 +82,9 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.codigoFuncionario }) |
                 @Html.ActionLink("Details", "Details", new { id = item.codigoFuncionario }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.codigoFuncionario })
+                @Html.ActionLink("Delete", "Delete", new { id = item.codigoFuncionario }) |
+                @Html.ActionLink("Agregar Como Jugador", "Jugador", new { id = item.codigoFuncionario }) |
+                @Html.ActionLink("Agregar Como Entrenador", "Entrenador", new { id = item.codigoFuncionario })
             </td>
         </tr>
         }

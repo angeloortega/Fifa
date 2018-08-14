@@ -149,7 +149,7 @@ namespace Fifa19.Controllers
         // GET: Torneos/Create
         public ActionResult Create()
         {
-            ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "nombre");
+            ViewBag.idCompeticion = new SelectList(db.Competicion, "IdCompeticion", "nbrCompeticion");
             return View();
         }
 
@@ -319,7 +319,7 @@ namespace Fifa19.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.idClub = new SelectList(db.Club, "idClub", "nombre");
+            ViewBag.idClub = new SelectList(db.Club.Where(c=> c.idFederacion == torneo.Competicion.idFederacion), "idClub", "nombre");
             TorneoXClub variable = new TorneoXClub();
             variable.idCompeticion = id;
             variable.anho = id2;
@@ -330,6 +330,7 @@ namespace Fifa19.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddTeam([Bind(Include ="idClub, idCompeticion, anho, usuarioCreacion, usuarioModificacion, fchCreacion, fchModificacion")] TorneoXClub torneoxclub)
         {
+            torneoxclub.fchCreacion = DateTime.Now;
             if (ModelState.IsValid)
             {
 
