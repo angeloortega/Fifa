@@ -76,6 +76,7 @@
         <AssociationConnector Association="FootballModel.SocioxClub_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="FootballModel.TituloxEntrenador_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="FootballModel.TorneoXClub_FK1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FootballModel.Imagenes" Width="1.5" PointX="0.75" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

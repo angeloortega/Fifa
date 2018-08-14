@@ -34,7 +34,7 @@ namespace Fifa19.Models
             else
             {
                 colorBG = "white";
-                colorFG = "balck";
+                colorFG = "black";
             }
             this.posicion = pos;
             this.nombre = f.nombre;

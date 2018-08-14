@@ -222,12 +222,7 @@ namespace Fifa19.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SelectList nombreJugadores = new SelectList(from a in db.Funcionario
-                                                        where a.idClub == idEquipo
-                                                        join b in db.Jugador on a.codigoFuncionario equals b.codigoFuncionario
-                                                        select new { nombre = a.nombre, codigoFuncionario = a.codigoFuncionario });
             ViewBag.codigoJugador = new SelectList(db.Funcionario.Where(x => x.idClub == idEquipo), "codigoFuncionario", "nombre");
-            //SelectList minutos = new SelectList();
             JugadorxPartido variable = new JugadorxPartido();
             variable.idPartido = idPartido;
             return View(variable);

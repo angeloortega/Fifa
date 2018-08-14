@@ -90,6 +90,7 @@ namespace Fifa19.Controllers
         public ActionResult Create()
         {
             ViewBag.codigoFuncionario = new SelectList(db.Funcionario, "codigoFuncionario", "idClub");
+            
             return View();
         }
 
